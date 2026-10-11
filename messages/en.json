@@ -108,7 +108,13 @@
     "language": "Language",
     "signOut": "Sign out",
     "back": "Home",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "pauseLength": "{minutes} min pause",
+    "addBehavior": "Add a behavior",
+    "name": "Your name",
+    "namePlaceholder": "What should we call you?",
+    "nameHint": "Shown in the greeting on Home. You can leave it empty.",
+    "save": "Save"
   },
   "urge": {
     "close": "Close",
@@ -316,5 +322,30 @@
       "unsupported": "Not supported in this browser",
       "needs-install": "On iPhone, add to Home Screen first"
     }
+  },
+  "behaviorSettings": {
+    "addTitle": "Add a behavior",
+    "add": "Add",
+    "ackAndAdd": "Got it, add",
+    "nameLabel": "Name",
+    "pauseLabel": "Pause length",
+    "pauseHint": "How much space should open when an urge comes?",
+    "minutes": "{minutes} min",
+    "goalLabel": "My goal",
+    "goals": {
+      "reduce": "Reduce",
+      "mindful": "Do it more mindfully",
+      "quit": "Quit",
+      "custom": "My own goal"
+    },
+    "goalTextPlaceholder": "Describe your goal briefly",
+    "whyLabel": "Why do I want to change?",
+    "whyHint": "To remind yourself in hard moments.",
+    "whyPlaceholder": "e.g. I want to wake up feeling fresher",
+    "save": "Save",
+    "archive": "Stop tracking this behavior",
+    "archiveConfirm": "This behavior will leave your list. Your past entries stay; if you add it again, they come back.",
+    "cancel": "Cancel",
+    "lastActive": "You need to track at least one behavior. Add another one first."
   }
 }

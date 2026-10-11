@@ -108,7 +108,13 @@
     "language": "Dil",
     "signOut": "Çıkış yap",
     "back": "Ana sayfa",
-    "notifications": "Bildirimler"
+    "notifications": "Bildirimler",
+    "pauseLength": "{minutes} dk pause",
+    "addBehavior": "Davranış ekle",
+    "name": "Adın",
+    "namePlaceholder": "Sana nasıl hitap edelim?",
+    "nameHint": "Ana Sayfa'daki selamlamada görünür. Boş bırakabilirsin.",
+    "save": "Kaydet"
   },
   "urge": {
     "close": "Kapat",
@@ -316,5 +322,30 @@
       "unsupported": "Bu tarayıcı desteklemiyor",
       "needs-install": "iPhone'da önce ana ekrana ekle"
     }
+  },
+  "behaviorSettings": {
+    "addTitle": "Davranış ekle",
+    "add": "Ekle",
+    "ackAndAdd": "Anladım, ekle",
+    "nameLabel": "Ad",
+    "pauseLabel": "Pause süresi",
+    "pauseHint": "Dürtü geldiğinde ne kadar alan açılsın?",
+    "minutes": "{minutes} dk",
+    "goalLabel": "Hedefim",
+    "goals": {
+      "reduce": "Azaltmak",
+      "mindful": "Daha bilinçli yapmak",
+      "quit": "Bırakmak",
+      "custom": "Kendi hedefim"
+    },
+    "goalTextPlaceholder": "Hedefini kısaca yaz",
+    "whyLabel": "Neden değiştirmek istiyorum?",
+    "whyHint": "Zor anlarda kendine hatırlatmak için.",
+    "whyPlaceholder": "Örn. sabahları daha dinç uyanmak istiyorum",
+    "save": "Kaydet",
+    "archive": "Bu davranışı takip etmeyi bırak",
+    "archiveConfirm": "Bu davranış listenden kalkar. Geçmiş kayıtların silinmez; tekrar eklersen geri gelir.",
+    "cancel": "Vazgeç",
+    "lastActive": "En az bir davranış takip etmen gerekiyor. Önce başka bir davranış ekle."
   }
 }

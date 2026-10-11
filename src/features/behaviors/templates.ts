@@ -35,3 +35,9 @@ export function isTemplateKey(key: string | null | undefined): key is TemplateKe
 
 export const USUAL_TIMES = ["morning", "afternoon", "evening", "night", "varies"] as const;
 export type UsualTime = (typeof USUAL_TIMES)[number];
+
+// Davranış başına seçilebilen pause süreleri (dakika). Veritabanındaki check ile aynı.
+export const PAUSE_MINUTES = [2, 5, 10, 15] as const;
+
+export const BEHAVIOR_GOALS = ["reduce", "mindful", "quit", "custom"] as const;
+export type BehaviorGoal = (typeof BEHAVIOR_GOALS)[number];

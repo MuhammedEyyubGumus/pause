@@ -31,3 +31,21 @@ export async function signOut() {
   await supabase.auth.signOut();
   redirect("/login");
 }
+
+// Ana Sayfa'daki selamlamada görünen ad ("İyi akşamlar, Muhammed")
+export async function setDisplayName(formData: FormData) {
+  const raw = formData.get("displayName");
+  const name = typeof raw === "string" ? raw.trim().slice(0, 60) : "";
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return;
+
+  await supabase
+    .from("profiles")
+    .update({ display_name: name || null })
+    .eq("id", user.id);
+  revalidatePath("/", "layout");
+}
