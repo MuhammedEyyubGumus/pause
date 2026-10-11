@@ -1,8 +1,10 @@
 "use client";
 
-import { Bell, BellOff } from "lucide-react";
+import { Bell, BellOff, Send } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+
+import { createClient } from "@/lib/supabase/client";
 
 import { disablePush, enablePush, getPushState, type PushState } from "./push-client";
 
@@ -13,6 +15,7 @@ export function NotificationSetting() {
   const [state, setState] = useState<PushState | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(false);
+  const [test, setTest] = useState<"idle" | "sending" | "sent" | "missing" | "failed">("idle");
 
   useEffect(() => {
     void getPushState().then(setState);
@@ -29,6 +32,15 @@ export function NotificationSetting() {
     } finally {
       setBusy(false);
     }
+  }
+
+  // Abonelik bu cihazda kayıtlı mı, sunucu gönderebiliyor mu: uçtan uca deneme
+  async function sendTest() {
+    setTest("sending");
+    const { error: err } = await createClient().functions.invoke("test-push");
+    if (!err) return setTest("sent");
+    const status = (err as { context?: { status?: number } }).context?.status;
+    setTest(status === 404 ? "missing" : "failed");
   }
 
   if (!state) return <div className="h-16 rounded-xl bg-card" />;
@@ -63,6 +75,22 @@ export function NotificationSetting() {
         )}
       </div>
       {error && <p className="text-sm font-medium text-destructive">{t("error")}</p>}
+      {on && (
+        <div className="flex flex-col gap-1 border-t border-border pt-3">
+          <button
+            type="button"
+            onClick={() => void sendTest()}
+            disabled={test === "sending"}
+            className="tap-target-sm inline-flex items-center gap-2 self-start font-semibold text-primary disabled:opacity-50"
+          >
+            <Send className="size-4" aria-hidden />
+            {test === "sending" ? t("testSending") : t("test")}
+          </button>
+          {test === "sent" && <p className="text-sm text-muted-foreground">{t("testSent")}</p>}
+          {test === "missing" && <p className="text-sm font-medium text-destructive">{t("testMissing")}</p>}
+          {test === "failed" && <p className="text-sm font-medium text-destructive">{t("testFailed")}</p>}
+        </div>
+      )}
     </div>
   );
 }

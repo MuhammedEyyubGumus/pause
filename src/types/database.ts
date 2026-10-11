@@ -254,6 +254,39 @@ export type Database = {
           },
         ]
       }
+      feedback: {
+        Row: {
+          answers: Json
+          app_version: string | null
+          created_at: string
+          id: string
+          screenshot_path: string | null
+          user_agent: string | null
+          user_id: string
+          would_reuse: number | null
+        }
+        Insert: {
+          answers?: Json
+          app_version?: string | null
+          created_at?: string
+          id?: string
+          screenshot_path?: string | null
+          user_agent?: string | null
+          user_id?: string
+          would_reuse?: number | null
+        }
+        Update: {
+          answers?: Json
+          app_version?: string | null
+          created_at?: string
+          id?: string
+          screenshot_path?: string | null
+          user_agent?: string | null
+          user_id?: string
+          would_reuse?: number | null
+        }
+        Relationships: []
+      }
       options: {
         Row: {
           behavior_id: string | null

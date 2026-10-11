@@ -25,7 +25,8 @@
     "invalidEmail": "Enter a valid email address.",
     "invalidCode": "That code is wrong or has expired. Try again.",
     "rateLimit": "Too many attempts. Try again in a few minutes.",
-    "linkFailed": "That link is invalid or has expired. Request a new email and open the link in the same browser."
+    "linkFailed": "That link is invalid or has expired. Request a new email and open the link in the same browser.",
+    "accountDeleted": "Your account and all your data have been deleted. You can start again with the same email anytime."
   },
   "onboarding": {
     "welcomeTitle": "Widen the space between urge and action.",
@@ -114,7 +115,11 @@
     "name": "Your name",
     "namePlaceholder": "What should we call you?",
     "nameHint": "Shown in the greeting on Home. You can leave it empty.",
-    "save": "Save"
+    "save": "Save",
+    "testGroup": "Test group",
+    "feedback": "Give feedback",
+    "feedbackHint": "What was hard, what helped? Takes 2 minutes.",
+    "yourData": "Your data"
   },
   "urge": {
     "close": "Close",
@@ -321,7 +326,12 @@
       "denied": "Blocked in browser settings",
       "unsupported": "Not supported in this browser",
       "needs-install": "On iPhone, add to Home Screen first"
-    }
+    },
+    "test": "Send a test notification",
+    "testSending": "Sending…",
+    "testSent": "Sent. It should arrive within a few seconds.",
+    "testMissing": "No notification subscription is saved for this account. Turn notifications off and on again.",
+    "testFailed": "Couldn't send the test notification. Try again in a moment."
   },
   "behaviorSettings": {
     "addTitle": "Add a behavior",
@@ -347,5 +357,44 @@
     "archiveConfirm": "This behavior will leave your list. Your past entries stay; if you add it again, they come back.",
     "cancel": "Cancel",
     "lastActive": "You need to track at least one behavior. Add another one first."
+  },
+  "account": {
+    "exportJson": "Download all my data",
+    "exportJsonHint": "JSON · complete backup",
+    "exportCsv": "Download my entries as a table",
+    "exportCsvHint": "CSV · opens in Excel or Numbers",
+    "delete": "Delete my account",
+    "deleteTitle": "Your account will be permanently deleted",
+    "deleteBody": "Your behaviors, all entries, feedback and notification subscriptions will be deleted. This can't be undone. You may want to download your data first.",
+    "typeToConfirm": "Type {word} to confirm",
+    "confirmWord": "DELETE",
+    "deleteFailed": "Couldn't delete the account. Check your connection and try again.",
+    "cancel": "Cancel",
+    "deleting": "Deleting…",
+    "deleteForever": "Delete permanently"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "intro": "We're shaping PAUSE together. Answer any questions you like; all are optional.",
+    "q": {
+      "hard": "What felt hard?",
+      "unclear": "What didn't you understand?",
+      "unnecessary": "Which screen felt unnecessary?",
+      "helpful": "Which feature really helped you?",
+      "wish": "What would you like us to add?"
+    },
+    "reuse": "Would you use PAUSE again?",
+    "reuseLow": "Unlikely",
+    "reuseHigh": "Definitely",
+    "screenshot": "Screenshot (optional)",
+    "addScreenshot": "Add image",
+    "removeScreenshot": "Remove image",
+    "screenshotHint": "Up to 5 MB. Only the team sees it.",
+    "tooLarge": "The image is larger than 5 MB.",
+    "uploadFailed": "Couldn't upload the image. Try sending without it.",
+    "send": "Send",
+    "thanksTitle": "Thank you",
+    "thanksBody": "Your feedback reached us. We read every answer.",
+    "back": "Back to settings"
   }
 }

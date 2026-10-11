@@ -25,7 +25,8 @@
     "invalidEmail": "Geçerli bir e-posta adresi yaz.",
     "invalidCode": "Kod doğru değil ya da süresi dolmuş. Tekrar dene.",
     "rateLimit": "Çok sık denendi. Birkaç dakika sonra tekrar dene.",
-    "linkFailed": "Bağlantı geçersiz ya da süresi dolmuş. Yeni bir e-posta iste ve bağlantıyı aynı tarayıcıda aç."
+    "linkFailed": "Bağlantı geçersiz ya da süresi dolmuş. Yeni bir e-posta iste ve bağlantıyı aynı tarayıcıda aç.",
+    "accountDeleted": "Hesabın ve tüm verilerin silindi. İstersen aynı e-postayla yeniden başlayabilirsin."
   },
   "onboarding": {
     "welcomeTitle": "Dürtü ile davranış arasındaki alanı büyüt.",
@@ -114,7 +115,11 @@
     "name": "Adın",
     "namePlaceholder": "Sana nasıl hitap edelim?",
     "nameHint": "Ana Sayfa'daki selamlamada görünür. Boş bırakabilirsin.",
-    "save": "Kaydet"
+    "save": "Kaydet",
+    "testGroup": "Test grubu",
+    "feedback": "Geri bildirim ver",
+    "feedbackHint": "Ne zor geldi, ne işe yaradı? 2 dakika sürer.",
+    "yourData": "Verilerin"
   },
   "urge": {
     "close": "Kapat",
@@ -321,7 +326,12 @@
       "denied": "Tarayıcı ayarlarında engellenmiş",
       "unsupported": "Bu tarayıcı desteklemiyor",
       "needs-install": "iPhone'da önce ana ekrana ekle"
-    }
+    },
+    "test": "Test bildirimi gönder",
+    "testSending": "Gönderiliyor…",
+    "testSent": "Gönderildi. Birkaç saniye içinde gelmesi gerekir.",
+    "testMissing": "Bu hesapta kayıtlı bildirim aboneliği yok. Bildirimi kapatıp yeniden aç.",
+    "testFailed": "Test bildirimi gönderilemedi. Biraz sonra tekrar dene."
   },
   "behaviorSettings": {
     "addTitle": "Davranış ekle",
@@ -347,5 +357,44 @@
     "archiveConfirm": "Bu davranış listenden kalkar. Geçmiş kayıtların silinmez; tekrar eklersen geri gelir.",
     "cancel": "Vazgeç",
     "lastActive": "En az bir davranış takip etmen gerekiyor. Önce başka bir davranış ekle."
+  },
+  "account": {
+    "exportJson": "Tüm verilerimi indir",
+    "exportJsonHint": "JSON · eksiksiz yedek",
+    "exportCsv": "Kayıtlarımı tablo olarak indir",
+    "exportCsvHint": "CSV · Excel veya Numbers ile açılır",
+    "delete": "Hesabımı sil",
+    "deleteTitle": "Hesabın kalıcı olarak silinecek",
+    "deleteBody": "Davranışların, tüm kayıtların, geri bildirimlerin ve bildirim abonelikleri silinir. Bu geri alınamaz. İstersen önce verilerini indir.",
+    "typeToConfirm": "Onaylamak için {word} yaz",
+    "confirmWord": "SİL",
+    "deleteFailed": "Hesap silinemedi. İnternet bağlantını kontrol edip tekrar dene.",
+    "cancel": "Vazgeç",
+    "deleting": "Siliniyor…",
+    "deleteForever": "Kalıcı olarak sil"
+  },
+  "feedback": {
+    "title": "Geri bildirim",
+    "intro": "PAUSE'u birlikte şekillendiriyoruz. İstediğin soruları cevapla, boş bırakabilirsin.",
+    "q": {
+      "hard": "Ne zor geldi?",
+      "unclear": "Neyi anlamadın?",
+      "unnecessary": "Hangi ekran gereksizdi?",
+      "helpful": "Hangi özellik sana gerçekten yardımcı oldu?",
+      "wish": "Ne eklenmesini isterdin?"
+    },
+    "reuse": "PAUSE'u tekrar kullanır mısın?",
+    "reuseLow": "Hiç sanmam",
+    "reuseHigh": "Kesinlikle",
+    "screenshot": "Ekran görüntüsü (isteğe bağlı)",
+    "addScreenshot": "Görüntü ekle",
+    "removeScreenshot": "Görüntüyü kaldır",
+    "screenshotHint": "En fazla 5 MB. Yalnızca ekip görür.",
+    "tooLarge": "Görüntü 5 MB'tan büyük.",
+    "uploadFailed": "Görüntü yüklenemedi. Görüntüsüz göndermeyi deneyebilirsin.",
+    "send": "Gönder",
+    "thanksTitle": "Teşekkürler",
+    "thanksBody": "Geri bildirimin bize ulaştı. Her cevabı tek tek okuyoruz.",
+    "back": "Ayarlara dön"
   }
 }

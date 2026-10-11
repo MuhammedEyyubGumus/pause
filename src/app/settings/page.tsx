@@ -1,8 +1,9 @@
-import { ArrowLeft, ChevronRight, LogOut, Plus } from "lucide-react";
+import { ArrowLeft, ChevronRight, LogOut, MessageSquareText, Plus } from "lucide-react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
+import { AccountSection } from "@/features/account/account-section";
 import { isTemplateKey } from "@/features/behaviors/templates";
 import { NotificationSetting } from "@/features/notifications/notification-setting";
 import { setDisplayName, setLocale, signOut } from "@/features/settings/actions";
@@ -110,6 +111,28 @@ export default async function SettingsPage() {
             </button>
           ))}
         </form>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-sm font-semibold text-muted-foreground">{t("testGroup")}</h2>
+        <Link
+          href="/settings/feedback"
+          className="flex items-center gap-3 rounded-xl bg-card p-4 transition-colors hover:bg-accent/60"
+        >
+          <span className="grid size-10 place-items-center rounded-full bg-muted">
+            <MessageSquareText className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("feedback")}</span>
+            <span className="text-sm text-muted-foreground">{t("feedbackHint")}</span>
+          </span>
+          <ChevronRight className="size-5 text-muted-foreground rtl:rotate-180" aria-hidden />
+        </Link>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-sm font-semibold text-muted-foreground">{t("yourData")}</h2>
+        <AccountSection />
       </section>
 
       <section className="mt-auto flex flex-col gap-2">

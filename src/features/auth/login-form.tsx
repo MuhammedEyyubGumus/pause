@@ -29,6 +29,7 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(
     searchParams.get("error") === "link" ? t("linkFailed") : null,
   );
+  const accountDeleted = searchParams.get("deleted") === "1";
   const [cooldown, setCooldown] = useState(0);
   const codeInput = useRef<HTMLInputElement>(null);
 
@@ -160,6 +161,11 @@ export function LoginForm() {
                 />
               </label>
 
+              {accountDeleted && (
+                <p role="status" className="rounded-xl bg-muted p-4 text-sm font-medium">
+                  {t("accountDeleted")}
+                </p>
+              )}
               <p className="text-sm text-muted-foreground">{t("noPassword")}</p>
             </motion.div>
           ) : (
