@@ -409,6 +409,60 @@ export type Database = {
         }
         Relationships: []
       }
+      reflections: {
+        Row: {
+          created_at: string
+          cut_point: Database["public"]["Enums"]["chain_step"] | null
+          duration_minutes: number | null
+          event_id: string
+          first_action: string | null
+          id: string
+          next_option_id: string | null
+          thought: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          cut_point?: Database["public"]["Enums"]["chain_step"] | null
+          duration_minutes?: number | null
+          event_id: string
+          first_action?: string | null
+          id?: string
+          next_option_id?: string | null
+          thought?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          cut_point?: Database["public"]["Enums"]["chain_step"] | null
+          duration_minutes?: number | null
+          event_id?: string
+          first_action?: string | null
+          id?: string
+          next_option_id?: string | null
+          thought?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reflections_event_id_user_id_fkey"
+            columns: ["event_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "urge_events"
+            referencedColumns: ["id", "user_id"]
+          },
+          {
+            foreignKeyName: "reflections_next_option_id_fkey"
+            columns: ["next_option_id"]
+            isOneToOne: false
+            referencedRelation: "options"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       urge_events: {
         Row: {
           behavior_id: string
@@ -537,6 +591,14 @@ export type Database = {
     }
     Enums: {
       behavior_goal: "reduce" | "mindful" | "quit" | "custom"
+      chain_step:
+        | "trigger"
+        | "thought"
+        | "emotion"
+        | "urge"
+        | "first_action"
+        | "control_shift"
+        | "outcome"
       event_source: "live" | "sos" | "retro"
       option_kind: "emotion" | "trigger" | "intervention" | "outcome"
       outcome_class:
@@ -677,6 +739,15 @@ export const Constants = {
   public: {
     Enums: {
       behavior_goal: ["reduce", "mindful", "quit", "custom"],
+      chain_step: [
+        "trigger",
+        "thought",
+        "emotion",
+        "urge",
+        "first_action",
+        "control_shift",
+        "outcome",
+      ],
       event_source: ["live", "sos", "retro"],
       option_kind: ["emotion", "trigger", "intervention", "outcome"],
       outcome_class: [

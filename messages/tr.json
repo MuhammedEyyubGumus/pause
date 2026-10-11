@@ -161,14 +161,20 @@
     "outcomeTitle": "Sonra ne oldu?",
     "dataTitle": "Bu da veri.",
     "dataBody": "Davranışın gerçekleştiği anlar da sende neyin işe yaradığını anlamaya yardım eder.",
-    "dataLater": "İstersen daha sonra ne olduğunu birlikte inceleyebiliriz. Bu inceleme ekranı bir sonraki fazda geliyor.",
+    "dataLater": "İstersen şimdi ne olduğuna birlikte bakabiliriz. Yaklaşık 2 dakika sürer.",
     "done": "Tamam",
     "sosTitle": "Şu anda karar verme.",
     "sosSub": "Sadece nefese eşlik et.",
     "sosFinish": "Bitir ve ölç",
     "sosBeforeTitle": "Başta dürtü ne kadar güçlüydü?",
     "sosBehaviorTitle": "Hangi davranış içindi?",
-    "saveError": "Kaydedilemedi. Tekrar dener misin?"
+    "saveError": "Kaydedilemedi. Tekrar dener misin?",
+    "reviewNow": "Şimdi incele",
+    "reviewLater": "Daha sonra",
+    "reviewOffline": "Kayıt henüz gönderilemedi. Bağlantı gelince Geçmiş'ten inceleyebilirsin.",
+    "suggestedTitle": "Bu durumda denemeye değer",
+    "suggestedPlan": "Geçen sefer kendin için seçtiğin plan",
+    "suggestedWorked": "{trigger} olduğunda dürtün ortalama {value} puan düştü"
   },
   "interventions": {
     "breathe": {
@@ -297,7 +303,8 @@
     "continuePause": "Pause'a devam et",
     "intensityBefore": "Başta dürtü",
     "intensityAfter": "Sonra dürtü",
-    "addValue": "Değer ekle"
+    "addValue": "Değer ekle",
+    "reviewChain": "Zinciri incele"
   },
   "retro": {
     "whenTitle": "Ne zaman oldu?",
@@ -503,5 +510,51 @@
       "closest": "En yakın eşleşme: {count} / {min} ölçüm",
       "measured": "{count} ölçüm"
     }
+  },
+  "reflect": {
+    "chainLabel": "Davranış zinciri",
+    "steps": {
+      "trigger": "Tetikleyici",
+      "thought": "Düşünce",
+      "emotion": "Duygu",
+      "urge": "Dürtü",
+      "first_action": "İlk davranış",
+      "control_shift": "Kontrol değişimi",
+      "outcome": "Sonuç"
+    },
+    "unknown": "—",
+    "cutHere": "Burada kesebilirdim",
+    "introTitle": "Zincire birlikte bakalım.",
+    "introBody": "Suçlamak için değil; bir dahaki sefere nerede alan açabileceğini görmek için.",
+    "start": "Başlayalım",
+    "thoughtTitle": "O an aklından ne geçiyordu?",
+    "thoughtHint": "Tek bir cümle yeter. Hatırlamıyorsan atlayabilirsin.",
+    "thoughtPlaceholder": "Örn. \"Sadece bir tane\", \"Bugün bunu hak ettim\"",
+    "actionTitle": "Zincirdeki ilk küçük adım neydi?",
+    "actionHint": "Davranışın kendisinden hemen önceki an: çoğu zaman en kolay kesilen yer.",
+    "actionPlaceholder": "Örn. Telefonu elime aldım, markete yürüdüm",
+    "durationTitle": "Ne kadar sürdü?",
+    "durationHint": "Yaklaşık bir tahmin yeterli.",
+    "durations": {
+      "3": "5 dakikadan az",
+      "10": "5–15 dakika",
+      "20": "15–30 dakika",
+      "45": "30–60 dakika",
+      "90": "1 saatten fazla"
+    },
+    "stoppedEarly": "Erken durdun",
+    "cutTitle": "Zinciri nerede kesebilirdin?",
+    "cutHint": "Bir halkaya dokun. En erken nokta her zaman en kolayı değildir; sana gerçekçi geleni seç.",
+    "nextTitle": "O an geldiğinde ne deneyeceğiz?",
+    "nextHint": "\"{step}\" anı için bir alternatif seç.",
+    "savePlan": "Planı kaydet",
+    "saving": "Kaydediliyor…",
+    "saveError": "Kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.",
+    "doneTitle": "Planın hazır.",
+    "doneBody": "Bir sonraki dürtüde alternatiflerin en üstünde göreceksin.",
+    "nextTime": "Bir dahaki sefere",
+    "reminderTitle": "Zincire bakmak ister misin?",
+    "reminderBody": "Son kaydını 2 dakikada inceleyip bir plan seçebilirsin.",
+    "reminderDismiss": "Gizle"
   }
 }

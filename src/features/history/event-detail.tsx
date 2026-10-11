@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, CircleCheck, CircleSlash, LifeBuoy, Pencil, Trash2 } from "lucide-react";
+import { ArrowLeft, CircleCheck, CircleSlash, LifeBuoy, Link2, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -206,6 +206,14 @@ export function EventDetail({ event, title, behaviors, allBehaviors, options }: 
           </div>
         ) : (
           <>
+            {(r.outcome_class === "occurred" || r.outcome_class === "stopped_early") && (
+              <Link
+                href={`/reflect/${event.id}?from=history`}
+                className="tap-target inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/40 font-semibold text-primary transition-colors hover:bg-accent"
+              >
+                <Link2 className="size-5" aria-hidden /> {t("reviewChain")}
+              </Link>
+            )}
             <PrimaryButton onClick={() => setMode("edit")} disabled={r.pause_status === "active"}>
               <Pencil className="size-5" aria-hidden /> {t("edit")}
             </PrimaryButton>

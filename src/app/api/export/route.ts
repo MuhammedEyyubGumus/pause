@@ -24,6 +24,10 @@ type InterventionRow = Pick<Tables<"event_interventions">, "event_id" | "option_
 type AnswerRow = Pick<Tables<"event_answers">, "event_id" | "question_key" | "value_num" | "value_text">;
 type OptionRow = Pick<Tables<"options">, "id" | "kind" | "key" | "label" | "user_id">;
 type BehaviorRow = Tables<"behaviors">;
+type ReflectionRow = Pick<
+  Tables<"reflections">,
+  "event_id" | "thought" | "first_action" | "duration_minutes" | "cut_point" | "next_option_id" | "created_at" | "updated_at"
+>;
 
 async function fetchAll<T>(page: (from: number, to: number) => PromiseLike<{ data: T[] | null; error: unknown }>) {
   const rows: T[] = [];
@@ -48,7 +52,7 @@ export async function GET(request: NextRequest) {
   const tOpt = await getTranslations("options");
   const tx = await getTranslations("export");
 
-  const [profile, behaviors, options, events, emotions, triggers, interventions, answers, feedback] = await Promise.all([
+  const [profile, behaviors, options, events, emotions, triggers, interventions, answers, feedback, reflections] = await Promise.all([
     supabase.from("profiles").select("display_name, locale, timezone, created_at, consents").eq("id", user.id).maybeSingle(),
     supabase.from("behaviors").select("*").order("sort_order"),
     // Sistem seçenekleri + kullanıcının kendi seçenekleri (etiketler için)
@@ -66,6 +70,9 @@ export async function GET(request: NextRequest) {
     ),
     fetchAll<AnswerRow>((a, b) => supabase.from("event_answers").select("event_id, question_key, value_num, value_text").range(a, b)),
     supabase.from("feedback").select("answers, would_reuse, created_at").order("created_at"),
+    supabase
+      .from("reflections")
+      .select("event_id, thought, first_action, duration_minutes, cut_point, next_option_id, created_at, updated_at"),
   ]);
 
   const optionRows: OptionRow[] = options.data ?? [];
@@ -91,6 +98,8 @@ export async function GET(request: NextRequest) {
   const triggersBy = groupBy(triggers);
   const interventionsBy = groupBy(interventions);
   const answersBy = groupBy(answers);
+  const reflectionRows: ReflectionRow[] = reflections.data ?? [];
+  const reflectionBy = new Map(reflectionRows.map((rf) => [rf.event_id, rf]));
 
   const date = new Date().toISOString().slice(0, 10);
   const headers = { "Cache-Control": "no-store" };
@@ -141,6 +150,12 @@ export async function GET(request: NextRequest) {
       triggers: (triggersBy.get(e.id) ?? []).map((x) => label(x.option_id)),
       interventions: (interventionsBy.get(e.id) ?? []).map(({ event_id: _e, ...x }) => ({ ...x, label: label(x.option_id) })),
       answers: (answersBy.get(e.id) ?? []).map(({ event_id: _e, ...x }) => x),
+      reflection: (() => {
+        const rf = reflectionBy.get(e.id);
+        if (!rf) return null;
+        const { event_id: _e, ...x } = rf;
+        return { ...x, next_option_label: label(x.next_option_id) || null };
+      })(),
     })),
     feedback: feedback.data ?? [],
   };

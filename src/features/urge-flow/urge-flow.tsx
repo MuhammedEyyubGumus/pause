@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
@@ -14,7 +14,7 @@ import { Breathe } from "@/features/interventions/breathe";
 import { InterventionPlayer } from "@/features/interventions/intervention-player";
 import type { LocalEvent, LocalIntervention } from "@/lib/offline/db";
 import { localDb } from "@/lib/offline/db";
-import { findActiveLocalEvent, saveLocalEvent } from "@/lib/offline/sync";
+import { findActiveLocalEvent, saveLocalEvent, syncPending } from "@/lib/offline/sync";
 import { SyncAgent } from "@/lib/offline/sync-agent";
 import { createClient } from "@/lib/supabase/client";
 import { localParts } from "@/lib/time/local";
@@ -25,9 +25,11 @@ import { ChangeView } from "./change-view";
 import { FlowHeader } from "./flow-header";
 import { IntensityPicker } from "./intensity-picker";
 import { OptionGrid } from "./option-grid";
+import { OptionIcon, useOptionLabel } from "./option-visuals";
 import { questionsFor } from "./questions";
 import { type FlowBehavior, type FlowOption, type OptionKind, optionFitsBehavior } from "./types";
 import { formatClock, usePauseClock } from "./use-pause-clock";
+import { useSuggestions } from "./use-suggestions";
 
 type Mode = "live" | "sos" | "resume";
 
@@ -92,6 +94,11 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
   const questions = questionsFor(behavior?.template_key);
   const clock = usePauseClock(event?.row.pause_started_at, event?.row.pause_ends_at);
   const pauseRunning = !!event && event.row.pause_status === "active" && !event.row.remeasured_at;
+  const optionLabel = useOptionLabel();
+  const locale = useLocale();
+  // Pause başladıktan sonra arka planda: "Bu durumda denemeye değer"
+  const suggestionsFor = useSuggestions(event?.row.behavior_id, pauseRunning && !event?.row.emergency_mode);
+  const [reviewState, setReviewState] = useState<"idle" | "opening" | "offline">("idle");
 
   const byKind = useCallback(
     (kind: OptionKind) =>
@@ -358,6 +365,20 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
     }
   }
 
+  // "Şimdi incele": olayın sunucuya ulaştığından emin olup inceleme ekranına geç
+  async function openReview() {
+    if (!event) return;
+    setReviewState("opening");
+    await syncPending();
+    const local = await localDb.events.get(event.id);
+    if (local && local.synced !== 1) {
+      setReviewState("offline");
+      return;
+    }
+    document.title = "PAUSE";
+    router.replace(`/reflect/${event.id}`);
+  }
+
   function finish() {
     document.title = "PAUSE";
     router.replace("/");
@@ -524,6 +545,44 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
             <h1 className="text-question">{t("pickTitle")}</h1>
             <p className="text-muted-foreground">{t("pickHint")}</p>
           </div>
+          {(() => {
+            const usable = byKind("intervention");
+            const list = suggestionsFor(event?.triggers ?? [], (id) => usable.some((o) => o.id === id));
+            if (!list.length) return null;
+            return (
+              <section className="flex flex-col gap-2" aria-label={t("suggestedTitle")}>
+                <h2 className="text-sm font-semibold text-muted-foreground">{t("suggestedTitle")}</h2>
+                {list.map((sug) => {
+                  const o = usable.find((x) => x.id === sug.optionId)!;
+                  const trig = sug.kind === "worked" ? options.find((x) => x.id === sug.triggerId) : undefined;
+                  return (
+                    <motion.button
+                      key={sug.optionId}
+                      type="button"
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => startIntervention(o)}
+                      className="flex items-center gap-3 rounded-card border-2 border-primary/40 bg-accent p-4 text-start text-accent-foreground"
+                    >
+                      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
+                        <OptionIcon option={o} className="size-5" />
+                      </span>
+                      <span className="flex min-w-0 flex-col">
+                        <span className="font-semibold">{optionLabel(o)}</span>
+                        <span className="text-sm opacity-80">
+                          {sug.kind === "plan"
+                            ? t("suggestedPlan")
+                            : t("suggestedWorked", {
+                                trigger: trig ? optionLabel(trig) : "",
+                                value: Math.abs(sug.avgChange).toLocaleString(locale, { maximumFractionDigits: 1 }),
+                              })}
+                        </span>
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </section>
+            );
+          })()}
           <OptionGrid
             options={byKind("intervention")}
             selected={[]}
@@ -714,7 +773,21 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
           <p className="max-w-xs text-sm text-muted-foreground">{t("dataLater")}</p>
         </div>
       );
-      footer = <PrimaryButton onClick={finish}>{t("done")}</PrimaryButton>;
+      footer = (
+        <div className="flex flex-col gap-2">
+          {reviewState === "offline" && (
+            <p role="status" className="text-center text-sm font-medium text-muted-foreground">
+              {t("reviewOffline")}
+            </p>
+          )}
+          <PrimaryButton onClick={() => void openReview()} loading={reviewState === "opening"}>
+            {t("reviewNow")}
+          </PrimaryButton>
+          <PrimaryButton variant="quiet" onClick={finish}>
+            {t("reviewLater")}
+          </PrimaryButton>
+        </div>
+      );
       break;
   }
 

@@ -161,14 +161,20 @@
     "outcomeTitle": "What happened next?",
     "dataTitle": "This is data too.",
     "dataBody": "Moments when the behavior happens also help us understand what works for you.",
-    "dataLater": "If you like, we can look at what happened together later. That review screen is coming in the next phase.",
+    "dataLater": "If you like, we can look at what happened together now. It takes about 2 minutes.",
     "done": "Done",
     "sosTitle": "Don't decide right now.",
     "sosSub": "Just follow your breath.",
     "sosFinish": "Finish and check",
     "sosBeforeTitle": "How strong was the urge at the start?",
     "sosBehaviorTitle": "Which behavior was it about?",
-    "saveError": "Couldn't save. Could you try again?"
+    "saveError": "Couldn't save. Could you try again?",
+    "reviewNow": "Review now",
+    "reviewLater": "Later",
+    "reviewOffline": "The entry hasn't been sent yet. Once you're online you can review it from History.",
+    "suggestedTitle": "Worth trying here",
+    "suggestedPlan": "The plan you chose for yourself last time",
+    "suggestedWorked": "With {trigger}, your urge dropped by {value} points on average"
   },
   "interventions": {
     "breathe": {
@@ -259,7 +265,8 @@
   },
   "nav": {
     "home": "Home",
-    "history": "History"
+    "history": "History",
+    "insights": "Insights"
   },
   "history": {
     "title": "History",
@@ -296,7 +303,8 @@
     "continuePause": "Continue the pause",
     "intensityBefore": "Urge at the start",
     "intensityAfter": "Urge afterwards",
-    "addValue": "Add a value"
+    "addValue": "Add a value",
+    "reviewChain": "Review the chain"
   },
   "retro": {
     "whenTitle": "When did it happen?",
@@ -432,5 +440,121 @@
     "yes": "Yes",
     "fileName": "pause-entries",
     "jsonFileName": "pause-my-data"
+  },
+  "reflect": {
+    "chainLabel": "Behavior chain",
+    "steps": {
+      "trigger": "Trigger",
+      "thought": "Thought",
+      "emotion": "Emotion",
+      "urge": "Urge",
+      "first_action": "First action",
+      "control_shift": "Shift in control",
+      "outcome": "Outcome"
+    },
+    "unknown": "—",
+    "cutHere": "I could have cut it here",
+    "introTitle": "Let's look at the chain together.",
+    "introBody": "Not to blame yourself; to see where you could open up some space next time.",
+    "start": "Let's begin",
+    "thoughtTitle": "What was going through your mind?",
+    "thoughtHint": "One sentence is enough. Skip it if you don't remember.",
+    "thoughtPlaceholder": "E.g. \"Just one\", \"I deserve this today\"",
+    "actionTitle": "What was the first small step in the chain?",
+    "actionHint": "The moment right before the behavior itself: often the easiest place to cut.",
+    "actionPlaceholder": "E.g. I picked up my phone, I walked to the shop",
+    "durationTitle": "How long did it last?",
+    "durationHint": "A rough guess is fine.",
+    "durations": {
+      "3": "Under 5 minutes",
+      "10": "5–15 minutes",
+      "20": "15–30 minutes",
+      "45": "30–60 minutes",
+      "90": "Over an hour"
+    },
+    "stoppedEarly": "You stopped early",
+    "cutTitle": "Where could you have cut the chain?",
+    "cutHint": "Tap a link. The earliest point isn't always the easiest; pick the one that feels realistic.",
+    "nextTitle": "When that moment comes, what will we try?",
+    "nextHint": "Pick an alternative for the \"{step}\" moment.",
+    "savePlan": "Save the plan",
+    "saving": "Saving…",
+    "saveError": "Couldn't save. Check your connection and try again.",
+    "doneTitle": "Your plan is ready.",
+    "doneBody": "You'll see it at the top of your alternatives during your next urge.",
+    "nextTime": "Next time",
+    "reminderTitle": "Want to look at the chain?",
+    "reminderBody": "Review your last entry in 2 minutes and pick a plan.",
+    "reminderDismiss": "Hide"
+  },
+  "insights": {
+    "title": "Insights",
+    "periods": {
+      "7": "7 days",
+      "30": "30 days",
+      "90": "90 days",
+      "all": "All"
+    },
+    "periodLabel": "Period",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "emptyTitle": "No entries in this period",
+    "emptyBody": "As you log urges, your own patterns will show up here. You can also try a longer period.",
+    "firstTitle": "Your first insights are on the way",
+    "firstBody": "Patterns become clear after a few entries. For now you can see what you've logged below.",
+    "progress": "{count} / {min} entries",
+    "summary": {
+      "title": "In this period",
+      "urges": "{count, plural, one {You logged # urge} other {You logged # urges}}",
+      "avgBefore": "Average intensity",
+      "pauseRate": "You paused",
+      "pauseRateSub": "in {paused} of {urges} urges",
+      "avgChange": "Change after pause",
+      "avgChangeSub": "average of {count} measurements",
+      "notDone": "You didn't act on it",
+      "notDoneSub": "of {count} entries with an outcome",
+      "stoppedEarly": "{count, plural, one {You stopped early once after starting.} other {You stopped early # times after starting.}}",
+      "noMeasure": "No measurements yet"
+    },
+    "triggers": {
+      "title": "What triggers me?",
+      "headline": "{trigger} was present in {pct} of your urges.",
+      "intensity": "Urges linked to {trigger} started at an average intensity of {avg}.",
+      "emotion": "Most common emotion: {emotion}",
+      "times": "{count}×",
+      "empty": "Triggers you pick while logging urges will show up here."
+    },
+    "time": {
+      "title": "When?",
+      "headline": "You logged the most urges between {from} and {to}.",
+      "weekday": "{day} was your hardest day.",
+      "chartLabel": "Urges by hour",
+      "hourCount": "{hour}: {count}",
+      "parts": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      },
+      "notEnough": "Your time pattern becomes clear after {min} entries."
+    },
+    "works": {
+      "title": "What works for me?",
+      "headline": "When you tried {label}, your urge dropped by {value} points on average.",
+      "noDropYet": "No alternative shows a clear drop yet. Keep experimenting; every measurement sharpens the picture.",
+      "explain": "Once an alternative has been tried and re-measured at least {min} times, I'll show its average effect.",
+      "uses": "{count, plural, one {# use} other {# uses}}",
+      "measuredProgress": "{count} / {min} measured",
+      "points": "pts",
+      "empty": "Alternatives you try during a pause will show up here.",
+      "note": "Change: intensity after the pause minus before. Not a claim of cause and effect."
+    },
+    "pairs": {
+      "title": "What works when?",
+      "when": "With {trigger}",
+      "locked": "Once you've tried the same alternative with the same trigger at least {min} times, your personal matches will appear here.",
+      "closest": "Closest match: {count} / {min} measured",
+      "measured": "{count} measured"
+    }
   }
 }

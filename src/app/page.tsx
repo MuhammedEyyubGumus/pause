@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { AppNav } from "@/components/pause/app-nav";
+import { ReviewReminder } from "@/features/home/review-reminder";
 import { UrgeArea } from "@/features/home/urge-area";
 import { NotifyPrompt } from "@/features/notifications/notify-prompt";
 import { findActivePause } from "@/features/urge-flow/load";
@@ -24,11 +25,21 @@ export default async function HomePage() {
     .eq("local_date", now.date)
     .is("deleted_at", null);
 
-  const [active, { count: completedCount }] = await Promise.all([
+  const [active, { count: completedCount }, { data: recentOccurred }] = await Promise.all([
     findActivePause(supabase),
     // Bildirim izni ilk tamamlanan pause'dan sonra sorulur
     supabase.from("urge_events").select("id", { count: "exact", head: true }).eq("pause_status", "completed"),
+    // Son 3 günde davranışın gerçekleştiği ama zinciri incelenmemiş kayıt
+    supabase
+      .from("urge_events")
+      .select("id, reflections(id)")
+      .in("outcome_class", ["occurred", "stopped_early"])
+      .is("deleted_at", null)
+      .gte("occurred_at", new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString())
+      .order("occurred_at", { ascending: false })
+      .limit(5),
   ]);
+  const toReview = (recentOccurred ?? []).find((e) => e.reflections.length === 0);
 
   const urges = events?.length ?? 0;
   const paused = events?.filter((e) => e.pause_status !== "none").length ?? 0;
@@ -75,6 +86,7 @@ export default async function HomePage() {
           {t("sos")}
         </Link>
 
+        {toReview && !active && <ReviewReminder eventId={toReview.id} />}
         <NotifyPrompt hasCompletedPause={(completedCount ?? 0) > 0} />
         <SmallWin urges={urges} paused={paused} />
       </div>
