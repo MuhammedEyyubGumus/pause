@@ -396,5 +396,38 @@
     "thanksTitle": "Thank you",
     "thanksBody": "Your feedback reached us. We read every answer.",
     "back": "Back to settings"
+  },
+  "export": {
+    "columns": {
+      "date": "Date",
+      "hour": "Hour",
+      "behavior": "Behavior",
+      "urgeBefore": "Urge before",
+      "urgeAfter": "Urge after",
+      "change": "Change",
+      "pauseMin": "Pause (min)",
+      "pauseStatus": "Pause status",
+      "outcome": "Outcome",
+      "emotions": "Emotions",
+      "triggers": "Triggers",
+      "tried": "Tried",
+      "source": "Entry type",
+      "emergency": "Very strong urge",
+      "note": "Note"
+    },
+    "pauseStatus": {
+      "none": "No pause",
+      "active": "In progress",
+      "completed": "Completed",
+      "abandoned": "Stopped early"
+    },
+    "source": {
+      "live": "Live",
+      "sos": "SOS",
+      "retro": "Added later"
+    },
+    "yes": "Yes",
+    "fileName": "pause-entries",
+    "jsonFileName": "pause-my-data"
   }
 }

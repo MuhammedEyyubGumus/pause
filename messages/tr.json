@@ -396,5 +396,38 @@
     "thanksTitle": "Teşekkürler",
     "thanksBody": "Geri bildirimin bize ulaştı. Her cevabı tek tek okuyoruz.",
     "back": "Ayarlara dön"
+  },
+  "export": {
+    "columns": {
+      "date": "Tarih",
+      "hour": "Saat",
+      "behavior": "Davranış",
+      "urgeBefore": "Başlangıç şiddeti",
+      "urgeAfter": "Sonraki şiddet",
+      "change": "Değişim",
+      "pauseMin": "Pause (dk)",
+      "pauseStatus": "Pause durumu",
+      "outcome": "Sonuç",
+      "emotions": "Duygular",
+      "triggers": "Tetikleyiciler",
+      "tried": "Denenenler",
+      "source": "Kayıt türü",
+      "emergency": "Çok güçlü dürtü",
+      "note": "Not"
+    },
+    "pauseStatus": {
+      "none": "Pause yok",
+      "active": "Sürüyordu",
+      "completed": "Tamamlandı",
+      "abandoned": "Yarıda kaldı"
+    },
+    "source": {
+      "live": "Anlık",
+      "sos": "SOS",
+      "retro": "Sonradan eklendi"
+    },
+    "yes": "Evet",
+    "fileName": "pause-kayitlarim",
+    "jsonFileName": "pause-verilerim"
   }
 }

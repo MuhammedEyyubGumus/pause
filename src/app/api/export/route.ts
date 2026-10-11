@@ -12,6 +12,12 @@ export const dynamic = "force-dynamic";
 
 const PAGE = 1000; // Supabase tek istekte en fazla 1000 satır döndürür
 
+// CSV sütunları (başlıklar messages/*.json > export.columns)
+const COLUMNS = [
+  "date", "hour", "behavior", "urgeBefore", "urgeAfter", "change", "pauseMin", "pauseStatus",
+  "outcome", "emotions", "triggers", "tried", "source", "emergency", "note",
+] as const;
+
 type EventRow = Tables<"urge_events">;
 type OptionLink = Pick<Tables<"event_emotions">, "event_id" | "option_id">;
 type InterventionRow = Pick<Tables<"event_interventions">, "event_id" | "option_id" | "position" | "started_at" | "ended_at" | "completed" | "details">;
@@ -40,6 +46,7 @@ export async function GET(request: NextRequest) {
   const locale = await getLocale();
   const tb = await getTranslations("behaviors");
   const tOpt = await getTranslations("options");
+  const tx = await getTranslations("export");
 
   const [profile, behaviors, options, events, emotions, triggers, interventions, answers, feedback] = await Promise.all([
     supabase.from("profiles").select("display_name, locale, timezone, created_at, consents").eq("id", user.id).maybeSingle(),
@@ -90,9 +97,7 @@ export async function GET(request: NextRequest) {
 
   if (format === "csv") {
     const isTr = locale === "tr";
-    const head = isTr
-      ? ["tarih", "saat", "davranis", "baslangic_siddeti", "sonraki_siddet", "degisim", "pause_dk", "pause_durumu", "sonuc", "duygular", "tetikleyiciler", "denenenler", "kaynak", "cok_guclu_durtu", "not"]
-      : ["date", "hour", "behavior", "urge_before", "urge_after", "change", "pause_min", "pause_status", "outcome", "emotions", "triggers", "tried", "source", "very_strong_urge", "note"];
+    const head = COLUMNS.map((c) => tx(`columns.${c}`));
     const rows = events.map((e) => [
       e.local_date,
       e.local_hour,
@@ -101,7 +106,7 @@ export async function GET(request: NextRequest) {
       e.urge_after,
       e.urge_change,
       e.pause_minutes,
-      e.pause_status,
+      tx(`pauseStatus.${e.pause_status}`),
       label(e.outcome_option_id),
       (emotionsBy.get(e.id) ?? []).map((x) => label(x.option_id)).join(" | "),
       (triggersBy.get(e.id) ?? []).map((x) => label(x.option_id)).join(" | "),
@@ -109,15 +114,15 @@ export async function GET(request: NextRequest) {
         .sort((a, b) => a.position - b.position)
         .map((x) => label(x.option_id))
         .join(" | "),
-      e.source,
-      e.emergency_mode ? (isTr ? "evet" : "yes") : "",
+      tx(`source.${e.source}`),
+      e.emergency_mode ? tx("yes") : "",
       e.notes,
     ]);
     return new NextResponse(toCsv([head, ...rows], isTr ? ";" : ","), {
       headers: {
         ...headers,
         "Content-Type": "text/csv; charset=utf-8",
-        "Content-Disposition": `attachment; filename="pause-${isTr ? "kayitlarim" : "entries"}-${date}.csv"`,
+        "Content-Disposition": `attachment; filename="${tx("fileName")}-${date}.csv"`,
       },
     });
   }
@@ -144,7 +149,7 @@ export async function GET(request: NextRequest) {
     headers: {
       ...headers,
       "Content-Type": "application/json; charset=utf-8",
-      "Content-Disposition": `attachment; filename="pause-${locale === "tr" ? "verilerim" : "my-data"}-${date}.json"`,
+      "Content-Disposition": `attachment; filename="${tx("jsonFileName")}-${date}.json"`,
     },
   });
 }
