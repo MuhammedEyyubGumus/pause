@@ -72,7 +72,7 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
       </nav>
 
       {(behaviors?.length ?? 0) > 1 && (
-        <nav aria-label={t("behaviorLabel")} className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1">
+        <nav aria-label={t("behaviorLabel")} className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[{ id: null, label: t("allBehaviors") }, ...behaviors!.map((b) => ({ id: b.id, label: behaviorLabel(b, tb) }))].map(
             ({ id, label }) => (
               <Link
