@@ -1,16 +1,17 @@
 "use client";
 
-import { History, House } from "lucide-react";
+import { ChartNoAxesColumn, History, House } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 
-// Alt sekmeler. İçgörüler Phase 2'de buraya eklenecek.
+// Alt sekmeler
 const TABS = [
   { href: "/", key: "home", Icon: House },
   { href: "/history", key: "history", Icon: History },
+  { href: "/insights", key: "insights", Icon: ChartNoAxesColumn },
 ] as const;
 
 export function AppNav() {

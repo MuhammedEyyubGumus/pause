@@ -70,7 +70,8 @@ const ICONS: Record<string, LucideIcon> = {
   "intervention:just_wait": Hourglass,
 };
 
-export function OptionIcon({ option, className }: { option: FlowOption; className?: string }) {
+// Yalnızca tür ve anahtar gerekir; içgörü ekranı gibi yerlerde de kullanılır.
+export function OptionIcon({ option, className }: { option: Pick<FlowOption, "kind" | "key">; className?: string }) {
   const Icon = (option.key && ICONS[`${option.kind}:${option.key}`]) || Sparkles;
   return <Icon className={className} strokeWidth={1.75} aria-hidden />;
 }

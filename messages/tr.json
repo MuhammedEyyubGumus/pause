@@ -256,7 +256,8 @@
   },
   "nav": {
     "home": "Ana Sayfa",
-    "history": "Geçmiş"
+    "history": "Geçmiş",
+    "insights": "İçgörüler"
   },
   "history": {
     "title": "Geçmiş",
@@ -429,5 +430,75 @@
     "yes": "Evet",
     "fileName": "pause-kayitlarim",
     "jsonFileName": "pause-verilerim"
+  },
+  "insights": {
+    "title": "İçgörüler",
+    "periods": {
+      "7": "7 gün",
+      "30": "30 gün",
+      "90": "90 gün",
+      "all": "Tümü"
+    },
+    "periodLabel": "Dönem",
+    "behaviorLabel": "Davranış",
+    "allBehaviors": "Hepsi",
+    "emptyTitle": "Bu dönemde kayıt yok",
+    "emptyBody": "Dürtü kaydettikçe burada kendi örüntülerini göreceksin. Daha uzun bir dönem seçmeyi de deneyebilirsin.",
+    "firstTitle": "İlk içgörülerin yolda",
+    "firstBody": "Örüntüler birkaç kayıttan sonra belirginleşir. Şimdilik ne kaydettiğini aşağıda görebilirsin.",
+    "progress": "{count} / {min} kayıt",
+    "summary": {
+      "title": "Bu dönemde",
+      "urges": "{count, plural, one {# dürtü kaydettin} other {# dürtü kaydettin}}",
+      "avgBefore": "Ortalama şiddet",
+      "pauseRate": "Pause kullandın",
+      "pauseRateSub": "{paused} / {urges} dürtüde",
+      "avgChange": "Pause sonrası değişim",
+      "avgChangeSub": "{count} ölçümde ortalama",
+      "notDone": "Davranışa geçmedin",
+      "notDoneSub": "sonucu belli {count} kayıtta",
+      "stoppedEarly": "{count, plural, one {Başladıktan sonra # kez erken durdun.} other {Başladıktan sonra # kez erken durdun.}}",
+      "noMeasure": "Henüz ölçüm yok"
+    },
+    "triggers": {
+      "title": "Beni ne tetikliyor?",
+      "headline": "{trigger}, dürtülerinin {pct} kadarında vardı.",
+      "intensity": "{trigger} ile ilişkili dürtülerin ortalama başlangıç şiddeti {avg}.",
+      "emotion": "En sık eşlik eden duygu: {emotion}",
+      "times": "{count} kez",
+      "empty": "Dürtü kaydederken tetikleyici seçtikçe burada görünecek."
+    },
+    "time": {
+      "title": "Ne zaman?",
+      "headline": "En fazla dürtüyü {from}–{to} arasında kaydettin.",
+      "weekday": "En çok {day} günü zorlandın.",
+      "chartLabel": "Saatlere göre dürtü sayısı",
+      "hourCount": "{hour}: {count}",
+      "parts": {
+        "morning": "Sabah",
+        "afternoon": "Öğleden sonra",
+        "evening": "Akşam",
+        "night": "Gece"
+      },
+      "notEnough": "Saat örüntüsü {min} kayıttan sonra belirginleşir."
+    },
+    "works": {
+      "title": "Bende ne işe yarıyor?",
+      "headline": "{label} denediğin olaylarda dürtün ortalama {value} puan düştü.",
+      "noDropYet": "Henüz belirgin bir düşüş gösteren alternatif yok. Denemeye devam; her ölçüm resmi netleştirir.",
+      "explain": "Bir alternatif en az {min} kez denenip pause sonrası ölçüldüğünde ortalama etkisini gösteririm.",
+      "uses": "{count, plural, one {# kullanım} other {# kullanım}}",
+      "measuredProgress": "{count} / {min} ölçüm",
+      "points": "puan",
+      "empty": "Pause sırasında bir alternatif denediğinde burada görünecek.",
+      "note": "Değişim: pause öncesi ve sonrası şiddet farkı. Neden-sonuç iddiası değildir."
+    },
+    "pairs": {
+      "title": "Ne, ne zaman işe yarıyor?",
+      "when": "{trigger} olduğunda",
+      "locked": "Aynı tetikleyicide aynı alternatifi en az {min} kez denediğinde burada sana özel eşleşmeler çıkacak.",
+      "closest": "En yakın eşleşme: {count} / {min} ölçüm",
+      "measured": "{count} ölçüm"
+    }
   }
 }

@@ -256,7 +256,8 @@
   },
   "nav": {
     "home": "Home",
-    "history": "History"
+    "history": "History",
+    "insights": "Insights"
   },
   "history": {
     "title": "History",
@@ -429,5 +430,75 @@
     "yes": "Yes",
     "fileName": "pause-entries",
     "jsonFileName": "pause-my-data"
+  },
+  "insights": {
+    "title": "Insights",
+    "periods": {
+      "7": "7 days",
+      "30": "30 days",
+      "90": "90 days",
+      "all": "All"
+    },
+    "periodLabel": "Period",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "emptyTitle": "No entries in this period",
+    "emptyBody": "As you log urges, your own patterns will show up here. You can also try a longer period.",
+    "firstTitle": "Your first insights are on the way",
+    "firstBody": "Patterns become clear after a few entries. For now you can see what you've logged below.",
+    "progress": "{count} / {min} entries",
+    "summary": {
+      "title": "In this period",
+      "urges": "{count, plural, one {You logged # urge} other {You logged # urges}}",
+      "avgBefore": "Average intensity",
+      "pauseRate": "You paused",
+      "pauseRateSub": "in {paused} of {urges} urges",
+      "avgChange": "Change after pause",
+      "avgChangeSub": "average of {count} measurements",
+      "notDone": "You didn't act on it",
+      "notDoneSub": "of {count} entries with an outcome",
+      "stoppedEarly": "{count, plural, one {You stopped early once after starting.} other {You stopped early # times after starting.}}",
+      "noMeasure": "No measurements yet"
+    },
+    "triggers": {
+      "title": "What triggers me?",
+      "headline": "{trigger} was present in {pct} of your urges.",
+      "intensity": "Urges linked to {trigger} started at an average intensity of {avg}.",
+      "emotion": "Most common emotion: {emotion}",
+      "times": "{count}×",
+      "empty": "Triggers you pick while logging urges will show up here."
+    },
+    "time": {
+      "title": "When?",
+      "headline": "You logged the most urges between {from} and {to}.",
+      "weekday": "{day} was your hardest day.",
+      "chartLabel": "Urges by hour",
+      "hourCount": "{hour}: {count}",
+      "parts": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      },
+      "notEnough": "Your time pattern becomes clear after {min} entries."
+    },
+    "works": {
+      "title": "What works for me?",
+      "headline": "When you tried {label}, your urge dropped by {value} points on average.",
+      "noDropYet": "No alternative shows a clear drop yet. Keep experimenting; every measurement sharpens the picture.",
+      "explain": "Once an alternative has been tried and re-measured at least {min} times, I'll show its average effect.",
+      "uses": "{count, plural, one {# use} other {# uses}}",
+      "measuredProgress": "{count} / {min} measured",
+      "points": "pts",
+      "empty": "Alternatives you try during a pause will show up here.",
+      "note": "Change: intensity after the pause minus before. Not a claim of cause and effect."
+    },
+    "pairs": {
+      "title": "What works when?",
+      "when": "With {trigger}",
+      "locked": "Once you've tried the same alternative with the same trigger at least {min} times, your personal matches will appear here.",
+      "closest": "Closest match: {count} / {min} measured",
+      "measured": "{count} measured"
+    }
   }
 }

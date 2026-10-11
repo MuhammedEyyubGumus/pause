@@ -523,6 +523,10 @@ export type Database = {
           user_id: string
         }[]
       }
+      get_insights: {
+        Args: { p_behavior?: string; p_from?: string }
+        Returns: Json
+      }
       option_usable: {
         Args: {
           p_kind: Database["public"]["Enums"]["option_kind"]
