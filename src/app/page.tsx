@@ -39,7 +39,10 @@ export default async function HomePage() {
       .order("occurred_at", { ascending: false })
       .limit(5),
   ]);
-  const toReview = (recentOccurred ?? []).find((e) => e.reflections.length === 0);
+  // (user_id, event_id) benzersiz olduğu için Supabase bu ilişkiyi bire bir sayar ve
+  // dizi yerine tek nesne ya da null döndürür; iki biçim de güvenle ele alınır.
+  const hasReflection = (r: unknown) => (Array.isArray(r) ? r.length > 0 : r != null);
+  const toReview = (recentOccurred ?? []).find((e) => !hasReflection(e.reflections));
 
   const urges = events?.length ?? 0;
   const paused = events?.filter((e) => e.pause_status !== "none").length ?? 0;
