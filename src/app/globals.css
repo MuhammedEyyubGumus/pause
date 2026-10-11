@@ -1,26 +1,375 @@
-@import "tailwindcss";
+/* =====================================================================
+   PAUSE · Tasarım sistemi (Tailwind CSS v4 + shadcn/ui)
+   Konsept: "sıcak sakinlik" — akşam ışığında bir oda.
+   Tailwind v4'te tailwind.config.ts yok; tüm token'lar burada.
+   ===================================================================== */
 
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Koyu tema: <html class="dark"> (next-themes ile, varsayılan "system") */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------
+   1. RENK TOKEN'LARI (OKLCH)
+   Zemin: kum / taş · Ana renk: derin teal · Kırmızı yok (yalnızca gerçek hata)
+   --------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Zemin ve yüzeyler — sıcak kum */
+  --background: oklch(0.975 0.008 80);        /* #FAF7F2 civarı */
+  --foreground: oklch(0.26 0.015 60);         /* sıcak taş, saf siyah değil */
+  --card: oklch(0.99 0.005 80);
+  --card-foreground: oklch(0.26 0.015 60);
+  --popover: oklch(0.99 0.005 80);
+  --popover-foreground: oklch(0.26 0.015 60);
+
+  /* Ana renk — derin, sakin teal: PAUSE'un "durak" anı */
+  --primary: oklch(0.45 0.07 195);
+  --primary-foreground: oklch(0.98 0.01 190);
+
+  /* İkincil — yumuşak taş */
+  --secondary: oklch(0.94 0.012 80);
+  --secondary-foreground: oklch(0.30 0.015 60);
+
+  /* Sessiz metin ve alanlar */
+  --muted: oklch(0.945 0.01 80);
+  --muted-foreground: oklch(0.50 0.015 60);
+
+  /* Vurgu — teal'ın açık tonu (seçili kart zemini) */
+  --accent: oklch(0.93 0.03 190);
+  --accent-foreground: oklch(0.30 0.05 195);
+
+  /* Yalnızca gerçek sistem hataları — kırmızı değil, yumuşak terrakota */
+  --destructive: oklch(0.56 0.12 35);
+
+  --border: oklch(0.90 0.012 75);
+  --input: oklch(0.90 0.012 75);
+  --ring: oklch(0.55 0.07 195);
+
+  /* Dürtü şiddeti skalası — tek renk ailesi, yoğunlaştıkça sıcaklaşır.
+     Kırmızı alarm yok; 10 "yoğun" görünür, korkutucu değil. */
+  --urge-low: oklch(0.92 0.03 85);
+  --urge-high: oklch(0.64 0.12 50);
+
+  /* Pause anı — ekran "söner", tek bir sakin yüzey kalır */
+  --pause-surface: oklch(0.30 0.035 205);
+  --pause-foreground: oklch(0.95 0.015 190);
+  --pause-ring: oklch(0.78 0.07 190);
+
+  /* Olumlu değişim (8 -> 5) — yeşil "başardın" değil, sakin teal */
+  --change-positive: oklch(0.55 0.08 185);
+
+  /* İçgörü grafikleri */
+  --chart-1: oklch(0.45 0.07 195);
+  --chart-2: oklch(0.64 0.12 50);
+  --chart-3: oklch(0.55 0.06 260);
+  --chart-4: oklch(0.70 0.06 140);
+  --chart-5: oklch(0.60 0.04 60);
+
+  /* Köşe yarıçapı — yumuşak, kart odaklı */
+  --radius: 1.25rem; /* 20px */
 }
 
+.dark {
+  /* Derin lacivert-gri gece odası */
+  --background: oklch(0.19 0.015 240);
+  --foreground: oklch(0.93 0.01 80);
+  --card: oklch(0.23 0.015 240);
+  --card-foreground: oklch(0.93 0.01 80);
+  --popover: oklch(0.23 0.015 240);
+  --popover-foreground: oklch(0.93 0.01 80);
+
+  --primary: oklch(0.74 0.08 190);
+  --primary-foreground: oklch(0.18 0.02 200);
+
+  --secondary: oklch(0.27 0.015 240);
+  --secondary-foreground: oklch(0.90 0.01 80);
+
+  --muted: oklch(0.26 0.015 240);
+  --muted-foreground: oklch(0.70 0.015 80);
+
+  --accent: oklch(0.30 0.04 200);
+  --accent-foreground: oklch(0.92 0.02 190);
+
+  --destructive: oklch(0.66 0.11 35);
+
+  --border: oklch(0.32 0.015 240);
+  --input: oklch(0.32 0.015 240);
+  --ring: oklch(0.70 0.07 190);
+
+  --urge-low: oklch(0.34 0.03 70);
+  --urge-high: oklch(0.70 0.12 55);
+
+  --pause-surface: oklch(0.14 0.02 220);
+  --pause-foreground: oklch(0.93 0.015 190);
+  --pause-ring: oklch(0.72 0.07 190);
+
+  --change-positive: oklch(0.74 0.08 185);
+}
+
+/* ---------------------------------------------------------------------
+   2. TAILWIND TEMA EŞLEŞTİRMESİ
+   bg-background, text-primary, rounded-card, ease-calm, text-hero ...
+   --------------------------------------------------------------------- */
 @theme inline {
+  /* Renkler (shadcn/ui isimleriyle uyumlu) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* PAUSE'a özel renkler */
+  --color-urge-low: var(--urge-low);
+  --color-urge-high: var(--urge-high);
+  --color-pause: var(--pause-surface);
+  --color-pause-foreground: var(--pause-foreground);
+  --color-pause-ring: var(--pause-ring);
+  --color-change-positive: var(--change-positive);
+
+  /* Yazı tipleri — değişkenler src/app/fonts.ts içinde next/font ile gelir.
+     Arapça/Kürtçe (Sorani) eklendiğinde --font-arabic otomatik devreye girer. */
+  --font-sans: var(--font-jakarta), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
+
+  /* Köşe yarıçapları */
+  --radius-sm: calc(var(--radius) - 8px);   /* 12px — küçük öğeler */
+  --radius-md: calc(var(--radius) - 4px);   /* 16px — butonlar */
+  --radius-lg: var(--radius);               /* 20px — kartlar */
+  --radius-xl: calc(var(--radius) + 4px);   /* 24px */
+  --radius-card: calc(var(--radius) + 8px); /* 28px — büyük seçim kartları */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Statik token'lar (CSS değişkeni olarak da üretilir) */
+@theme {
+  /* Tipografi ölçeği — her ekranda tek büyük öğe */
+  --text-hero: 7.5rem;          /* 120px — şiddet rakamı, 8 -> 5 */
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.04em;
+  --text-hero--font-weight: 700;
+
+  --text-timer: 4.5rem;         /* 72px — 10:00 */
+  --text-timer--line-height: 1;
+  --text-timer--letter-spacing: -0.02em;
+  --text-timer--font-weight: 600;
+
+  --text-question: 1.75rem;     /* 28px — "Dürtü şu anda ne kadar güçlü?" */
+  --text-question--line-height: 1.2;
+  --text-question--letter-spacing: -0.01em;
+  --text-question--font-weight: 600;
+
+  /* Hareket — hızlı anlar çevik, pause anları bilinçli olarak yavaş */
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);      /* adım geçişleri */
+  --ease-breath: cubic-bezier(0.45, 0, 0.55, 1);    /* nefes, dalga */
+  --ease-settle: cubic-bezier(0.34, 1.3, 0.64, 1);  /* kart seçimi, hafif yaylanma */
+
+  /* Animasyonlar */
+  --animate-breathe-in: breathe-in 4s var(--ease-breath) forwards;
+  --animate-breathe-out: breathe-out 6s var(--ease-breath) forwards;
+  --animate-pulse-soft: pulse-soft 4s var(--ease-breath) infinite;
+  --animate-fade-up: fade-up 400ms var(--ease-calm) both;
+
+  @keyframes breathe-in {
+    from { transform: scale(0.6); opacity: 0.6; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  @keyframes breathe-out {
+    from { transform: scale(1);   opacity: 1; }
+    to   { transform: scale(0.6); opacity: 0.6; }
+  }
+  /* DÜRTÜ GELDİ butonu çok yavaş "nefes alır" */
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.025); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------
+   3. HAREKET SÜRELERİ (Motion bileşenlerinde de bu değerler kullanılacak)
+   --------------------------------------------------------------------- */
+:root {
+  --duration-fast: 150ms;     /* basma, seçim */
+  --duration-base: 250ms;     /* adım geçişi */
+  --duration-slow: 400ms;     /* sayfa girişi */
+  --duration-pause: 600ms;    /* pause anına giriş */
+}
+
+/* ---------------------------------------------------------------------
+   4. YARDIMCI SINIFLAR
+   --------------------------------------------------------------------- */
+
+/* Dokunma hedefi: ana butonlar 56px, diğerleri en az 48px */
+@utility tap-target {
+  min-height: 3.5rem;
+  min-width: 3.5rem;
+}
+@utility tap-target-sm {
+  min-height: 3rem;
+  min-width: 3rem;
+}
+
+/* Telefon çentiği / ana ekran çubuğu için güvenli alan */
+@utility pt-safe {
+  padding-top: max(env(safe-area-inset-top), 1rem);
+}
+@utility pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+/* Dürtü şiddetine göre renk: style={{ "--urge": 8 }} ile 0–10 arası değer.
+   Tek renk ailesi içinde düşükten yükseğe karışım. */
+@utility bg-urge {
+  background-color: color-mix(
+    in oklch,
+    var(--urge-high) calc(var(--urge, 0) * 10%),
+    var(--urge-low)
+  );
+}
+@utility text-urge {
+  color: color-mix(
+    in oklch,
+    var(--urge-high) calc(var(--urge, 0) * 10%),
+    var(--foreground)
+  );
+}
+
+/* Rakamlar zıplamasın: 8 -> 5, 09:59 -> 09:58 */
+@utility numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------------------------------------------------------------------
+   5. TEMEL STİLLER
+   --------------------------------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    /* iOS'ta yazı boyutunun yatay modda büyümesini engelle */
+    -webkit-text-size-adjust: 100%;
+    /* Uzun basmada metin seçimi ve gri vurgu yok — uygulama hissi */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* PWA'da sayfanın "lastik gibi" çekilmesini engelle */
+    overscroll-behavior-y: none;
+    min-height: 100dvh;
+  }
+
+  /* Buton ve kart metinleri seçilmesin */
+  button,
+  [role="button"],
+  [role="radio"],
+  [role="checkbox"] {
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation; /* çift dokunma zoom gecikmesi yok */
+  }
+
+  /* Klavye kullanıcıları için görünür odak */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   6. AZALTILMIŞ HAREKET
+   Tüm hareketler yumuşak opaklık geçişlerine düşer; nefes egzersizi
+   metin ve sayaçla devam eder.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   7. BÜYÜK KAYDIRICI (dürtü şiddeti, yeniden ölçüm, açlık)
+   Dolu kısmın genişliği elementteki --fill değişkeninden gelir.
+   --------------------------------------------------------------------- */
+@layer components {
+  .urge-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  .urge-range:focus {
+    outline: none;
+  }
+  .urge-range::-webkit-slider-runnable-track {
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--primary) var(--fill, 50%), var(--muted) var(--fill, 50%));
+  }
+  .urge-range::-moz-range-track {
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--primary) var(--fill, 50%), var(--muted) var(--fill, 50%));
+  }
+  .urge-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-top: -0.75rem;
+    border-radius: 9999px;
+    background: var(--card);
+    border: 3px solid var(--primary);
+    box-shadow: 0 2px 10px oklch(0 0 0 / 0.18);
+    transition: transform 150ms var(--ease-settle);
+  }
+  .urge-range::-moz-range-thumb {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background: var(--card);
+    border: 3px solid var(--primary);
+    box-shadow: 0 2px 10px oklch(0 0 0 / 0.18);
+  }
+  .urge-range:active::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+  .urge-range:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  .urge-range:focus-visible::-moz-range-thumb {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
 }
