@@ -3,7 +3,7 @@
 import { LifeBuoy, MoonStar, Plus, Shuffle, Sun, Sunrise, Sunset } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useMemo, useState, useTransition } from "react";
+import { type ReactNode, useEffect, useMemo, useState, useTransition } from "react";
 
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
 import { ChoiceCard } from "@/components/pause/choice-card";
@@ -16,6 +16,7 @@ import {
   USUAL_TIMES,
   type UsualTime,
 } from "@/features/behaviors/templates";
+import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 import { completeOnboarding } from "./actions";
@@ -55,6 +56,11 @@ export function OnboardingFlow() {
   const step = steps[Math.min(index, steps.length - 1)];
   const behaviorCount = templates.length + (customOn ? 1 : 0);
 
+  // Anonim ürün ölçümü: onboarding'in hangi ekranında çıkılıyor
+  useEffect(() => {
+    track("onboarding_step", { step });
+  }, [step]);
+
   function go(delta: 1 | -1) {
     setDirection(delta);
     setError(null);
@@ -76,6 +82,7 @@ export function OnboardingFlow() {
 
   function finish() {
     setError(null);
+    track("onboarding_completed", { behaviors: behaviorCount });
     startSaving(async () => {
       const result = await completeOnboarding({
         templates,

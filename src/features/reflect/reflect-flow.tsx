@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 
 import { ChoiceCard } from "@/components/pause/choice-card";
 import { PrimaryButton } from "@/components/pause/primary-button";
@@ -13,6 +13,7 @@ import { OptionGrid } from "@/features/urge-flow/option-grid";
 import { OptionIcon, useOptionLabel } from "@/features/urge-flow/option-visuals";
 import { type FlowBehavior, type FlowOption, optionFitsBehavior } from "@/features/urge-flow/types";
 import type { LocalEvent } from "@/lib/offline/db";
+import { track } from "@/lib/analytics";
 import { createClient } from "@/lib/supabase/client";
 import { uuid } from "@/lib/uuid";
 
@@ -61,6 +62,12 @@ export function ReflectFlow({ userId, event, behavior, options: initialOptions, 
   const [error, setError] = useState<string | null>(null);
 
   const step = STEPS[index];
+
+  useEffect(() => {
+    track("review_started", { edit: !!existing });
+    // yalnızca açılışta
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const byId = useMemo(() => new Map(options.map((o) => [o.id, o])), [options]);
   const r = event.row;
   const outcome = r.outcome_option_id ? byId.get(r.outcome_option_id) : undefined;
@@ -139,6 +146,7 @@ export function ReflectFlow({ userId, event, behavior, options: initialOptions, 
       setError(t("saveError"));
       return;
     }
+    track("review_completed", {});
     go(1);
   }
 

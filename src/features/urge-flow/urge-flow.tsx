@@ -16,6 +16,7 @@ import type { LocalEvent, LocalIntervention } from "@/lib/offline/db";
 import { localDb } from "@/lib/offline/db";
 import { findActiveLocalEvent, saveLocalEvent, syncPending } from "@/lib/offline/sync";
 import { SyncAgent } from "@/lib/offline/sync-agent";
+import { track } from "@/lib/analytics";
 import { createClient } from "@/lib/supabase/client";
 import { localParts } from "@/lib/time/local";
 import { uuid } from "@/lib/uuid";
@@ -191,6 +192,8 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
         return;
       }
 
+      track("urge_flow_started", { mode });
+
       if (mode === "sos") {
         const b = behaviors[0];
         if (!b) {
@@ -220,6 +223,11 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
     }
     return ended ? "remeasure" : "waiting";
   }
+
+  // Anonim ürün ölçümü: hangi adıma kadar gelindi (içerik yok, yalnızca adım adı)
+  useEffect(() => {
+    if (step !== "loading") track("urge_step", { step, mode });
+  }, [step, mode]);
 
   // Bitmiş bir olaya dönülürse ana sayfaya
   useEffect(() => {
@@ -325,6 +333,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
       details: {},
     };
     setActiveIntervention(iv);
+    track("intervention_started", { key: option.key ?? "custom" });
     void persist({ ...event, interventions: [...event.interventions, iv] });
     setStep("intervention");
   }
@@ -332,6 +341,10 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
   function finishIntervention(details: Record<string, unknown>, completed = true) {
     if (!event || !activeIntervention) return;
     const ended = { ...activeIntervention, ended_at: new Date().toISOString(), completed, details };
+    track("intervention_completed", {
+      key: options.find((o) => o.id === ended.option_id)?.key ?? "custom",
+      completed,
+    });
     void persist({
       ...event,
       interventions: event.interventions.map((i) => (i.id === ended.id ? ended : i)),
@@ -344,6 +357,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
     if (!event) return;
     const now = new Date().toISOString();
     patchRow({ urge_after: after, remeasured_at: now, pause_completed_at: now });
+    track("pause_completed", { mode: event.row.emergency_mode ? "sos" : "live" });
     setStep("change");
   }
 
@@ -358,6 +372,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
       outcome_class: option.outcome_class,
       pause_status: "completed",
     });
+    track("urge_flow_completed", { mode: event.row.emergency_mode ? "sos" : "live" });
     if (option.outcome_class === "occurred" || option.outcome_class === "stopped_early") {
       setStep("data");
     } else {

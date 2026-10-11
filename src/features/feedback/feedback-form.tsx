@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { PrimaryButton } from "@/components/pause/primary-button";
+import { track } from "@/lib/analytics";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import { uuid } from "@/lib/uuid";
@@ -63,6 +64,7 @@ export function FeedbackForm({ userId }: { userId: string }) {
       setError(tc("error"));
       return;
     }
+    track("feedback_sent", {});
     setDone(true);
   }
 

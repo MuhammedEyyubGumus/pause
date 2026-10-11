@@ -122,7 +122,9 @@
     "feedback": "Give feedback",
     "feedbackHint": "What was hard, what helped? Takes 2 minutes.",
     "yourData": "Your data",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "analyticsTitle": "Anonymous usage statistics",
+    "analyticsHint": "Helps us improve the app. Not linked to your account, contains no content."
   },
   "urge": {
     "close": "Close",

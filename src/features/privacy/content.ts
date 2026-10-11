@@ -21,6 +21,7 @@ export const PRIVACY: Record<"tr" | "en", { title: string; updated: string; intr
           "Dürtü kayıtları: zaman, dürtü şiddeti (önce ve sonra), duygular, tetikleyiciler, denediğin alternatifler, sonuç, davranışa özel sorulara cevaplar ve yazdığın notlar.",
           "Ayarlar: dil, saat dilimi ve bildirim aboneliği (tarayıcının verdiği teknik bir adres).",
           "Geri bildirim: test döneminde gönderdiğin cevaplar ve eklediğin ekran görüntüleri.",
+          "Anonim kullanım istatistikleri: hangi ekranın açıldığı, dürtü akışının hangi adımında çıkıldığı, bir alternatifin başlatılıp bitirildiği gibi. Hesabına bağlanmaz, yazdığın hiçbir şeyi ya da davranış, duygu, tetikleyici adlarını içermez; 180 gün sonra silinir. Ayarlar > Verilerin bölümünden kapatabilirsin.",
         ],
       },
       {
@@ -87,6 +88,7 @@ export const PRIVACY: Record<"tr" | "en", { title: string; updated: string; intr
           "Urge entries: time, urge intensity (before and after), emotions, triggers, the alternatives you tried, the outcome, answers to behavior-specific questions and any notes you write.",
           "Settings: language, time zone and your notification subscription (a technical address provided by your browser).",
           "Feedback: answers and screenshots you send during the test period.",
+          "Anonymous usage statistics: which screens are opened, at which step of the urge flow people leave, whether an alternative was started and finished. They aren't linked to your account, contain nothing you wrote and no behavior, emotion or trigger names, and are deleted after 180 days. You can turn them off in Settings > Your data.",
         ],
       },
       {

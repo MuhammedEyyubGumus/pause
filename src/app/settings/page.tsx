@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
 import { AccountSection } from "@/features/account/account-section";
+import { AnalyticsSetting } from "@/features/settings/analytics-setting";
 import { isTemplateKey } from "@/features/behaviors/templates";
 import { NotificationSetting } from "@/features/notifications/notification-setting";
 import { setDisplayName, setLocale, signOut } from "@/features/settings/actions";
@@ -133,6 +134,7 @@ export default async function SettingsPage() {
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-semibold text-muted-foreground">{t("yourData")}</h2>
         <AccountSection />
+        <AnalyticsSetting />
       </section>
 
       <section className="mt-auto flex flex-col gap-2">

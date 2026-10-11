@@ -39,6 +39,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_events: {
+        Row: {
+          app_version: string | null
+          created_at: string
+          id: number
+          name: string
+          props: Json
+          session_id: string
+        }
+        Insert: {
+          app_version?: string | null
+          created_at?: string
+          id?: never
+          name: string
+          props?: Json
+          session_id: string
+        }
+        Update: {
+          app_version?: string | null
+          created_at?: string
+          id?: never
+          name?: string
+          props?: Json
+          session_id?: string
+        }
+        Relationships: []
+      }
       behaviors: {
         Row: {
           archived_at: string | null
@@ -588,6 +615,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      prune_app_events: { Args: never; Returns: number }
     }
     Enums: {
       behavior_goal: "reduce" | "mindful" | "quit" | "custom"

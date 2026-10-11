@@ -122,7 +122,9 @@
     "feedback": "Geri bildirim ver",
     "feedbackHint": "Ne zor geldi, ne işe yaradı? 2 dakika sürer.",
     "yourData": "Verilerin",
-    "privacy": "Gizlilik"
+    "privacy": "Gizlilik",
+    "analyticsTitle": "Anonim kullanım istatistikleri",
+    "analyticsHint": "Uygulamayı iyileştirmemize yardım eder. Hesabına bağlanmaz, içerik içermez."
   },
   "urge": {
     "close": "Kapat",

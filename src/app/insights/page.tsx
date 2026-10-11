@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { AppNav } from "@/components/pause/app-nav";
+import { TrackView } from "@/components/pause/track-view";
 import { behaviorLabel } from "@/features/history/labels";
 import { parseInsights, parsePeriod, PERIODS, periodStart, type Period } from "@/features/insights/analyze";
 import { PairsCard, SummaryCard, TimeCard, TriggersCard, WorksCard } from "@/features/insights/cards";
@@ -48,6 +49,7 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe">
       <SyncAgent />
+      <TrackView name="insights_viewed" props={{ period, filtered: !!behaviorId }} />
       <header className="flex h-14 items-center">
         <h1 className="text-xl font-semibold">{t("title")}</h1>
       </header>

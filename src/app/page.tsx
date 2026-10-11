@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { AppNav } from "@/components/pause/app-nav";
+import { TrackView } from "@/components/pause/track-view";
 import { ReviewReminder } from "@/features/home/review-reminder";
 import { UrgeArea } from "@/features/home/urge-area";
 import { NotifyPrompt } from "@/features/notifications/notify-prompt";
@@ -54,6 +55,7 @@ export default async function HomePage() {
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe">
       <SyncAgent />
+      <TrackView name="app_opened" />
       <header className="flex h-14 items-center justify-between">
         <span className="text-sm font-bold tracking-[0.35em] text-primary">PAUSE</span>
         <Link

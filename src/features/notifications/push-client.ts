@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@/lib/analytics";
 import { createClient } from "@/lib/supabase/client";
 
 // Bildirim durumu:
@@ -80,6 +81,7 @@ export async function enablePush(locale: string): Promise<PushState> {
       { onConflict: "user_id,endpoint" },
     );
   if (error) throw error;
+  track("push_enabled", {});
   return "subscribed";
 }
 
