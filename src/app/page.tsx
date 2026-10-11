@@ -1,6 +1,6 @@
 import { LifeBuoy, Settings2 } from "lucide-react";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { AppNav } from "@/components/pause/app-nav";
 import { UrgeArea } from "@/features/home/urge-area";
@@ -13,13 +13,14 @@ import { dayPart, localParts } from "@/lib/time/local";
 export default async function HomePage() {
   const { supabase, user, profile } = await requireOnboardedUser();
   const t = await getTranslations("home");
+  const locale = await getLocale();
 
   const now = localParts(new Date(), profile.timezone);
   const greeting = t(dayPart(now.hour));
 
   const { data: events } = await supabase
     .from("urge_events")
-    .select("pause_status")
+    .select("pause_status, urge_before")
     .eq("local_date", now.date)
     .is("deleted_at", null);
 
@@ -31,6 +32,10 @@ export default async function HomePage() {
 
   const urges = events?.length ?? 0;
   const paused = events?.filter((e) => e.pause_status !== "none").length ?? 0;
+  const intensities = (events ?? []).flatMap((e) => (e.urge_before == null ? [] : [e.urge_before]));
+  const avgIntensity = intensities.length
+    ? new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(intensities.reduce((a, b) => a + b, 0) / intensities.length)
+    : null;
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe">
@@ -52,6 +57,7 @@ export default async function HomePage() {
         </h1>
         <p className="text-muted-foreground">
           {urges === 0 ? t("todayEmpty") : t("todayCounts", { urges, pauses: paused })}
+          {avgIntensity && ` · ${t("todayAvg", { value: avgIntensity })}`}
         </p>
       </section>
 

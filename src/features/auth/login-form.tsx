@@ -235,6 +235,11 @@ export function LoginForm() {
               ? t("verifying")
               : t("verify")}
         </PrimaryButton>
+        <p className="pt-3 text-center text-xs text-muted-foreground">
+          <a href="/privacy" className="underline-offset-4 hover:underline">
+            {t("privacy")}
+          </a>
+        </p>
       </footer>
     </form>
   );

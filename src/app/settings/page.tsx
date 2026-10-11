@@ -136,7 +136,12 @@ export default async function SettingsPage() {
       </section>
 
       <section className="mt-auto flex flex-col gap-2">
-        <p className="text-center text-sm text-muted-foreground">{user.email}</p>
+        <p className="text-center text-sm text-muted-foreground">
+          {user.email} ·{" "}
+          <Link href="/privacy" className="font-semibold underline-offset-4 hover:underline">
+            {t("privacy")}
+          </Link>
+        </p>
         <form action={signOut}>
           <button className="tap-target inline-flex w-full items-center justify-center gap-2 rounded-xl font-semibold text-muted-foreground hover:text-foreground">
             <LogOut className="size-5" aria-hidden />

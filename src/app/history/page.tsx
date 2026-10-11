@@ -5,6 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { AppNav } from "@/components/pause/app-nav";
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
 import { behaviorLabel, optionLabel } from "@/features/history/labels";
+import { OptionIcon } from "@/features/urge-flow/option-visuals";
 import { PendingBanner } from "@/features/history/pending-banner";
 import { requireOnboardedUser } from "@/lib/auth";
 import { SyncAgent } from "@/lib/offline/sync-agent";
@@ -40,6 +41,25 @@ export default async function HistoryPage({ searchParams }: { searchParams: Prom
   ]);
 
   const events = (rows ?? []).slice(0, PAGE_SIZE);
+  const ids = events.map((e) => e.id);
+
+  // Satırda olayın ilk tetikleyicisi ve ilk denenen alternatifi görünür (brief: 💼 İş · 🚪 Ortam değiştir)
+  const [{ data: triggerRows }, { data: interventionRows }, { data: chainOptions }] = await Promise.all([
+    supabase.from("event_triggers").select("event_id, option_id").in("event_id", ids),
+    supabase.from("event_interventions").select("event_id, option_id, position").in("event_id", ids).order("position"),
+    supabase.from("options").select("id, kind, key, label").in("kind", ["trigger", "intervention"]),
+  ]);
+  const chainOptionById = new Map((chainOptions ?? []).map((o) => [o.id, o]));
+  const firstOption = (list: { event_id: string; option_id: string }[] | null) => {
+    const m = new Map<string, ChainOption>();
+    for (const r of list ?? []) {
+      const o = chainOptionById.get(r.option_id);
+      if (o && !m.has(r.event_id)) m.set(r.event_id, o);
+    }
+    return m;
+  };
+  const triggerByEvent = firstOption(triggerRows);
+  const interventionByEvent = firstOption(interventionRows);
   const hasMore = (rows?.length ?? 0) > PAGE_SIZE;
   const behaviorById = new Map((behaviors ?? []).map((b) => [b.id, b]));
   const outcomeById = new Map((outcomes ?? []).map((o) => [o.id, o]));
@@ -120,6 +140,11 @@ export default async function HistoryPage({ searchParams }: { searchParams: Prom
                                 ? ` · ${t("inProgress")}`
                                 : ""}
                           </span>
+                          <ChainLine
+                            trigger={triggerByEvent.get(ev.id)}
+                            intervention={interventionByEvent.get(ev.id)}
+                            label={(o) => optionLabel(o, tOpt)}
+                          />
                         </span>
 
                         <Intensity before={ev.urge_before} after={ev.urge_after} />
@@ -160,6 +185,38 @@ function Intensity({ before, after }: { before: number | null; after: number | n
           <span className="text-muted-foreground">→</span>
           <span className={after < before ? "text-change-positive" : undefined}>{after}</span>
         </>
+      )}
+    </span>
+  );
+}
+
+type ChainOption = { id: string; kind: "trigger" | "intervention" | "emotion" | "outcome"; key: string | null; label: string | null };
+
+// Tetikleyici → denenen alternatif; ikisi de yoksa hiçbir şey gösterilmez
+function ChainLine({
+  trigger,
+  intervention,
+  label,
+}: {
+  trigger?: ChainOption;
+  intervention?: ChainOption;
+  label: (o: ChainOption) => string;
+}) {
+  if (!trigger && !intervention) return null;
+  return (
+    <span className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground">
+      {trigger && (
+        <span className="inline-flex min-w-0 items-center gap-1">
+          <OptionIcon option={trigger} className="size-3.5 shrink-0" />
+          <span className="truncate">{label(trigger)}</span>
+        </span>
+      )}
+      {trigger && intervention && <span aria-hidden>·</span>}
+      {intervention && (
+        <span className="inline-flex min-w-0 items-center gap-1">
+          <OptionIcon option={intervention} className="size-3.5 shrink-0" />
+          <span className="truncate">{label(intervention)}</span>
+        </span>
       )}
     </span>
   );

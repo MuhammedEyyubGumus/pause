@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 // Giriş gerektirmeyen yollar
-const PUBLIC_PATHS = ["/login", "/auth", "/~offline", "/privacy", "/design"];
+const PUBLIC_PATHS = ["/login", "/auth", "/~offline", "/privacy"];
 // Giriş yapmış kullanıcının görmesine gerek olmayan yollar
 const GUEST_ONLY_PATHS = ["/login"];
 
