@@ -514,7 +514,9 @@
       "measured": "{count} ölçüm"
     },
     "weeklyStory": "Haftalık hikâye",
-    "experiment": "Haftalık deney"
+    "experiment": "Haftalık deney",
+    "mapCard": "Senin davranış haritan",
+    "mapCardSub": "Tetikleyicin, riskli saatin, en güçlü alternatifin"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -650,5 +652,35 @@
     "cardFinished": "Deneyin tamamlandı",
     "cardSeeResult": "Sonuca bak",
     "cardProgress": "{opportunities} fırsatın {applied} tanesinde uygulandı"
+  },
+  "map": {
+    "title": "Davranış haritan",
+    "back": "İçgörüler",
+    "behaviorLabel": "Davranış",
+    "allBehaviors": "Hepsi",
+    "lockedTitle": "Haritan oluşuyor",
+    "lockedBody": "Kişisel davranış haritan {min} kayıttan sonra açılır. Her kayıt haritaya yeni bir nokta ekler.",
+    "progress": "{count} / {min} kayıt",
+    "intro": "{count} kaydından çıkan resim. Kayıt ekledikçe güncellenir.",
+    "unknown": "Henüz belli değil",
+    "trigger": "En sık tetikleyicin",
+    "time": "En riskli zamanın",
+    "emotion": "En sık eşlik eden duygu",
+    "avgUrge": "Ortalama dürtün",
+    "alternative": "En güçlü kişisel alternatifin",
+    "alternativeSub": "Ortalama {value} puan · {count} ölçüm",
+    "alternativeHint": "Bir alternatif en az 5 kez denenip ölçüldüğünde görünür.",
+    "cutPoint": "Zinciri en sık kesebileceğin yer",
+    "cutPointHint": "Davranış gerçekleştiğinde yaptığın zincir incelemelerinden çıkar.",
+    "growth": "En fazla geliştiğin alan",
+    "growthSub": "Son 30 gün, önceki 30 güne göre",
+    "growthHint": "İki ayrı dönemde yeterli kayıt olunca görünür.",
+    "growthAreas": {
+      "pauseRate": "Dürtü ile davranış arasına alan koymak",
+      "avgChange": "Pause sonrası dürtünün düşmesi",
+      "stoppedEarly": "Davranışı erken durdurmak",
+      "alternatives": "Alternatif denemek"
+    },
+    "note": "Bu bir tanı değil; yalnızca kendi kayıtlarından çıkan örüntüler."
   }
 }

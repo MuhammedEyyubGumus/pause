@@ -1,4 +1,4 @@
-import { CirclePlay, FlaskConical } from "lucide-react";
+import { ChevronRight, CirclePlay, Compass, FlaskConical } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -116,6 +116,19 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
       )}
 
       <main className="flex flex-1 flex-col gap-4 py-4">
+        <Link
+          href={behaviorId ? `/map?b=${behaviorId}` : "/map"}
+          className="flex items-center gap-3 rounded-card bg-pause p-4 text-pause-foreground transition-transform active:scale-[0.98]"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-pause-ring text-pause">
+            <Compass className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("mapCard")}</span>
+            <span className="text-sm opacity-80">{t("mapCardSub")}</span>
+          </span>
+          <ChevronRight className="size-5 opacity-70 rtl:rotate-180" aria-hidden />
+        </Link>
         {urges === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 py-16 text-center">
             <p className="text-question">{t("emptyTitle")}</p>

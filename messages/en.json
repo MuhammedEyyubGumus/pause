@@ -560,7 +560,9 @@
       "measured": "{count} measured"
     },
     "weeklyStory": "Weekly story",
-    "experiment": "Weekly experiment"
+    "experiment": "Weekly experiment",
+    "mapCard": "Your behavior map",
+    "mapCardSub": "Your trigger, risky hours, strongest alternative"
   },
   "review": {
     "close": "Close",
@@ -650,5 +652,35 @@
     "cardFinished": "Your experiment is finished",
     "cardSeeResult": "See the result",
     "cardProgress": "Applied in {applied} of {opportunities} opportunities"
+  },
+  "map": {
+    "title": "Your behavior map",
+    "back": "Insights",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "lockedTitle": "Your map is taking shape",
+    "lockedBody": "Your personal behavior map opens after {min} entries. Each entry adds a new point to it.",
+    "progress": "{count} / {min} entries",
+    "intro": "The picture from your {count} entries. It updates as you add more.",
+    "unknown": "Not clear yet",
+    "trigger": "Your most common trigger",
+    "time": "Your riskiest time",
+    "emotion": "Most common emotion",
+    "avgUrge": "Your average urge",
+    "alternative": "Your strongest personal alternative",
+    "alternativeSub": "Average {value} points · {count} measured",
+    "alternativeHint": "Appears once an alternative has been tried and measured at least 5 times.",
+    "cutPoint": "Where you could most often cut the chain",
+    "cutPointHint": "Comes from the chain reviews you do when a behavior happens.",
+    "growth": "Where you've grown the most",
+    "growthSub": "Last 30 days compared with the 30 before",
+    "growthHint": "Appears once there are enough entries in two separate periods.",
+    "growthAreas": {
+      "pauseRate": "Putting space between urge and behavior",
+      "avgChange": "Your urge dropping after a pause",
+      "stoppedEarly": "Stopping a behavior early",
+      "alternatives": "Trying alternatives"
+    },
+    "note": "This isn't a diagnosis; it's only the patterns in your own entries."
   }
 }
