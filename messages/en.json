@@ -562,7 +562,9 @@
     "weeklyStory": "Weekly story",
     "experiment": "Weekly experiment",
     "mapCard": "Your behavior map",
-    "mapCardSub": "Your trigger, risky hours, strongest alternative"
+    "mapCardSub": "Your trigger, risky hours, strongest alternative",
+    "milestonesCard": "Your milestones",
+    "milestonesCardSub": "{done} / {total} · no streaks, no resets"
   },
   "review": {
     "close": "Close",
@@ -682,5 +684,58 @@
       "alternatives": "Trying alternatives"
     },
     "note": "This isn't a diagnosis; it's only the patterns in your own entries."
+  },
+  "milestones": {
+    "title": "Your milestones",
+    "back": "Insights",
+    "intro": "No streaks, no resets. Each milestone marks a step in learning; none of them is taken back, even when a behavior happens.",
+    "progress": "{done} / {total}",
+    "note": "Milestones are calculated from your entries. If you delete an entry, a related milestone may change.",
+    "newEyebrow": "A new milestone",
+    "andMore": "{count, plural, one {and # more} other {and # more}}",
+    "continue": "Continue",
+    "seeAll": "All milestones",
+    "items": {
+      "first_urge": {
+        "title": "You logged your first urge.",
+        "body": "The first link of the chain is now visible.",
+        "hint": "Log an urge when it comes."
+      },
+      "first_pause": {
+        "title": "You waited out a full pause for the first time.",
+        "body": "You put deliberate space between the urge and the behavior.",
+        "hint": "Keep a pause going until time is up and re-measure the urge."
+      },
+      "first_alternative": {
+        "title": "You tried an alternative during an urge for the first time.",
+        "body": "You tried a new response instead of the automatic one.",
+        "hint": "Finish an alternative during a pause."
+      },
+      "first_stopped_early": {
+        "title": "You stopped early after starting, for the first time.",
+        "body": "Cutting the chain halfway is a skill too.",
+        "hint": "Log a moment when you were able to stop after starting."
+      },
+      "ten_events": {
+        "title": "You've collected data from 10 different moments.",
+        "body": "Your own patterns are starting to show.",
+        "hint": "Reach 10 entries."
+      },
+      "first_review": {
+        "title": "You did your first chain review.",
+        "body": "Looking at what happened without blame changes the next time.",
+        "hint": "Review the chain when a behavior happens."
+      },
+      "first_pattern": {
+        "title": "Your first personal pattern appeared.",
+        "body": "You can now see in your own data how an alternative works for you.",
+        "hint": "Try one alternative 5 times and measure after the pause."
+      },
+      "first_experiment": {
+        "title": "You completed your first personal experiment.",
+        "body": "A week-long experiment's result is now your data.",
+        "hint": "Keep a weekly experiment going to the end."
+      }
+    }
   }
 }

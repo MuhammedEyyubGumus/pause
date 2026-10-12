@@ -7,6 +7,8 @@ import { TrackView } from "@/components/pause/track-view";
 import { loadActiveExperiment } from "@/features/experiments/load";
 import { ExperimentCard } from "@/features/home/experiment-card";
 import { ReviewReminder } from "@/features/home/review-reminder";
+import { MilestoneCelebration } from "@/features/milestones/celebration";
+import { newMilestones, parseMilestones } from "@/features/milestones/shared";
 import { WeeklyStoryCard } from "@/features/home/weekly-story-card";
 import { addDays, mondayOf } from "@/features/review/build-story";
 import { UrgeArea } from "@/features/home/urge-area";
@@ -33,7 +35,8 @@ export default async function HomePage() {
   // Haftalık hikâye: geçen hafta (Pzt–Paz) kayıt varsa ana sayfada bir kart
   const lastMonday = addDays(mondayOf(now.date), -7);
 
-  const [active, { count: completedCount }, { data: recentOccurred }, { count: lastWeekCount }, experiment] = await Promise.all([
+  const [active, { count: completedCount }, { data: recentOccurred }, { count: lastWeekCount }, experiment, { data: milestoneData }] =
+    await Promise.all([
     findActivePause(supabase),
     // Bildirim izni ilk tamamlanan pause'dan sonra sorulur
     supabase.from("urge_events").select("id", { count: "exact", head: true }).eq("pause_status", "completed"),
@@ -53,7 +56,11 @@ export default async function HomePage() {
       .gte("local_date", lastMonday)
       .lte("local_date", addDays(lastMonday, 6)),
     loadActiveExperiment(supabase),
+    supabase.rpc("get_milestones"),
   ]);
+  // Kutlanmamış yeni kilometre taşları (en yenisi önce)
+  const milestones = parseMilestones(milestoneData);
+  const fresh = newMilestones(milestones, profile.celebrated_milestones);
   // (user_id, event_id) benzersiz olduğu için Supabase bu ilişkiyi bire bir sayar ve
   // dizi yerine tek nesne ya da null döndürür; iki biçim de güvenle ele alınır.
   const hasReflection = (r: unknown) => (Array.isArray(r) ? r.length > 0 : r != null);
@@ -112,6 +119,14 @@ export default async function HomePage() {
         <SmallWin urges={urges} paused={paused} />
       </div>
       <AppNav />
+      {!active && fresh.length > 0 && (
+        <MilestoneCelebration
+          userId={user.id}
+          milestone={fresh[0].key}
+          more={fresh.length - 1}
+          achieved={milestones.filter((m) => m.achievedAt).map((m) => m.key)}
+        />
+      )}
     </div>
   );
 }

@@ -516,7 +516,9 @@
     "weeklyStory": "Haftalık hikâye",
     "experiment": "Haftalık deney",
     "mapCard": "Senin davranış haritan",
-    "mapCardSub": "Tetikleyicin, riskli saatin, en güçlü alternatifin"
+    "mapCardSub": "Tetikleyicin, riskli saatin, en güçlü alternatifin",
+    "milestonesCard": "Kilometre taşların",
+    "milestonesCardSub": "{done} / {total} · seri yok, sıfırlanma yok"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -682,5 +684,58 @@
       "alternatives": "Alternatif denemek"
     },
     "note": "Bu bir tanı değil; yalnızca kendi kayıtlarından çıkan örüntüler."
+  },
+  "milestones": {
+    "title": "Kilometre taşların",
+    "back": "İçgörüler",
+    "intro": "Seri yok, sıfırlanma yok. Her taş öğrenmeye attığın bir adımı gösterir; davranış gerçekleşse bile hiçbiri geri alınmaz.",
+    "progress": "{done} / {total}",
+    "note": "Kilometre taşları kayıtlarından hesaplanır. Bir kaydı silersen ilgili taş da değişebilir.",
+    "newEyebrow": "Yeni bir kilometre taşı",
+    "andMore": "{count, plural, one {ve # taş daha} other {ve # taş daha}}",
+    "continue": "Devam",
+    "seeAll": "Tüm kilometre taşları",
+    "items": {
+      "first_urge": {
+        "title": "İlk dürtünü kaydettin.",
+        "body": "Zincirin ilk halkası artık görünür.",
+        "hint": "Bir dürtü geldiğinde kaydet."
+      },
+      "first_pause": {
+        "title": "İlk kez pause'u sonuna kadar bekledin.",
+        "body": "Dürtü ile davranış arasına bilinçli bir alan koydun.",
+        "hint": "Bir pause'u süre dolana kadar sürdür ve dürtüyü yeniden ölç."
+      },
+      "first_alternative": {
+        "title": "İlk kez dürtü sırasında bir alternatif denedin.",
+        "body": "Otomatik tepkinin yerine yeni bir tepki denedin.",
+        "hint": "Pause sırasında bir alternatifi sonuna kadar dene."
+      },
+      "first_stopped_early": {
+        "title": "İlk kez başladıktan sonra erken durdun.",
+        "body": "Zinciri ortasında kesmek de bir beceri.",
+        "hint": "Davranışa başladıktan sonra durabildiğin bir anı kaydet."
+      },
+      "ten_events": {
+        "title": "10 farklı olaydan veri topladın.",
+        "body": "Artık kendi örüntülerin görünmeye başlıyor.",
+        "hint": "10 kayda ulaş."
+      },
+      "first_review": {
+        "title": "İlk zincir incelemeni yaptın.",
+        "body": "Ne olduğunu suçlamadan incelemek bir sonraki seferi değiştirir.",
+        "hint": "Davranış gerçekleştiğinde zinciri incele."
+      },
+      "first_pattern": {
+        "title": "İlk kişisel örüntün ortaya çıktı.",
+        "body": "Bir alternatifin sende nasıl işlediğini artık verinle görebilirsin.",
+        "hint": "Bir alternatifi 5 kez dene ve pause sonrası ölç."
+      },
+      "first_experiment": {
+        "title": "İlk kişisel deneyini tamamladın.",
+        "body": "Bir haftalık deneyin sonucu artık senin verin.",
+        "hint": "Bir haftalık deneyi sonuna kadar sürdür."
+      }
+    }
   }
 }

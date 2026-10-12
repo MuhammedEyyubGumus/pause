@@ -1,4 +1,4 @@
-import { ChevronRight, CirclePlay, Compass, FlaskConical } from "lucide-react";
+import { ChevronRight, CirclePlay, Compass, FlaskConical, Milestone } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -7,6 +7,7 @@ import { TrackView } from "@/components/pause/track-view";
 import { behaviorLabel } from "@/features/history/labels";
 import { parseInsights, parsePeriod, PERIODS, periodStart, type Period } from "@/features/insights/analyze";
 import { PairsCard, SummaryCard, TimeCard, TriggersCard, WorksCard } from "@/features/insights/cards";
+import { MILESTONES, parseMilestones } from "@/features/milestones/shared";
 import { requireOnboardedUser } from "@/lib/auth";
 import { SyncAgent } from "@/lib/offline/sync-agent";
 import { localParts } from "@/lib/time/local";
@@ -37,6 +38,8 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
   });
   if (error) throw error;
   const data = parseInsights(raw);
+  const { data: milestoneData } = await supabase.rpc("get_milestones");
+  const milestonesDone = parseMilestones(milestoneData).filter((m) => m.achievedAt).length;
   const urges = data.totals.urges;
 
   const href = (p: Period, b: string | null) => {
@@ -128,6 +131,21 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
             <span className="text-sm opacity-80">{t("mapCardSub")}</span>
           </span>
           <ChevronRight className="size-5 opacity-70 rtl:rotate-180" aria-hidden />
+        </Link>
+        <Link
+          href="/milestones"
+          className="flex items-center gap-3 rounded-card bg-card p-4 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-colors hover:bg-accent/60"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground">
+            <Milestone className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("milestonesCard")}</span>
+            <span className="text-sm text-muted-foreground">
+              {t("milestonesCardSub", { done: milestonesDone, total: MILESTONES.length })}
+            </span>
+          </span>
+          <ChevronRight className="size-5 text-muted-foreground rtl:rotate-180" aria-hidden />
         </Link>
         {urges === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 py-16 text-center">

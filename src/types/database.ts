@@ -436,6 +436,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          celebrated_milestones: string[]
           consents: Json
           created_at: string
           default_pause_minutes: number
@@ -447,6 +448,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          celebrated_milestones?: string[]
           consents?: Json
           created_at?: string
           default_pause_minutes?: number
@@ -458,6 +460,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          celebrated_milestones?: string[]
           consents?: Json
           created_at?: string
           default_pause_minutes?: number
@@ -676,6 +679,7 @@ export type Database = {
         Args: { p_behavior?: string; p_from?: string; p_to?: string }
         Returns: Json
       }
+      get_milestones: { Args: never; Returns: Json }
       option_usable: {
         Args: {
           p_kind: Database["public"]["Enums"]["option_kind"]
