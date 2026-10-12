@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { X } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { createClient } from "@/lib/supabase/client";
 
@@ -25,12 +26,33 @@ export function MilestoneCelebration({
 }) {
   const t = useTranslations("milestones");
   const reduceMotion = useReducedMotion();
-  const [open, setOpen] = useState(true);
+  // Önce kapalı başlar: bu cihazda zaten kutlandıysa hiç gösterilmez
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const local = readLocal();
+    if (achieved.every((k) => local.includes(k))) {
+      // Cihazda kutlanmış ama hesaba yazılamamış: sessizce yeniden dene
+      void save(userId, achieved);
+      return;
+    }
+    setOpen(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [achieved.join(","), userId]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   function close() {
     setOpen(false);
-    // Kutlandı olarak işaretle; ağ yoksa bir sonraki açılışta tekrar görünür (sorun değil)
-    void createClient().from("profiles").update({ celebrated_milestones: achieved }).eq("id", userId);
+    // Önce cihaza (anında, ağ gerekmez), sonra hesaba: başka cihazda da tekrar görünmesin
+    writeLocal(achieved);
+    void save(userId, achieved);
   }
 
   return (
@@ -46,7 +68,17 @@ export function MilestoneCelebration({
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-50 flex flex-col bg-pause text-pause-foreground"
         >
-          <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center gap-8 px-6 pt-safe text-center">
+          <div className="mx-auto flex h-14 w-full max-w-md items-center justify-end px-4 pt-safe">
+            <button
+              type="button"
+              onClick={close}
+              aria-label={t("close")}
+              className="tap-target-sm -me-3 grid place-items-center rounded-full opacity-70 hover:opacity-100"
+            >
+              <X className="size-6" />
+            </button>
+          </div>
+          <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center gap-8 px-6 text-center">
             {/* Yayılan halkalar */}
             <div className="relative grid size-40 place-items-center" aria-hidden>
               {!reduceMotion &&
@@ -105,4 +137,28 @@ export function MilestoneCelebration({
       )}
     </AnimatePresence>
   );
+}
+
+const LOCAL_KEY = "pause:celebrated-milestones";
+
+function readLocal(): string[] {
+  try {
+    const v = JSON.parse(localStorage.getItem(LOCAL_KEY) ?? "[]");
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeLocal(keys: string[]) {
+  try {
+    localStorage.setItem(LOCAL_KEY, JSON.stringify([...new Set([...readLocal(), ...keys])]));
+  } catch {
+    // gizli sekme
+  }
+}
+
+async function save(userId: string, keys: string[]) {
+  const { error } = await createClient().from("profiles").update({ celebrated_milestones: keys }).eq("id", userId);
+  if (error) console.warn("[pause] kilometre taşı kaydedilemedi", error.message);
 }
