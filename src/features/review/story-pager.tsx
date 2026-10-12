@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 import type { Slide } from "./slides";
 
-const SEEN_KEY = (week: string) => `pause:review-seen:${week}`;
+const SEEN_KEY = (week: string) => `pause:review-done:${week}`;
 
 // Instagram hikâyesi gibi: üstte bölümler, dokun / kaydır ile ilerle.
 // Kendiliğinden ilerlemez; herkes kendi hızında okur (Headspace sakinliği).
@@ -36,12 +36,17 @@ export function StoryPager({ slides, week }: { slides: Slide[]; week: string }) 
 
   useEffect(() => {
     track("weekly_review_opened", { slides: slides.length });
+  }, [slides.length]);
+
+  // Ana sayfadaki kart, hikâye yalnızca açıldığında değil sonuna kadar okunduğunda kaybolur
+  useEffect(() => {
+    if (!last) return;
     try {
       localStorage.setItem(SEEN_KEY(week), "1");
     } catch {
       // gizli sekme
     }
-  }, [week, slides.length]);
+  }, [last, week]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

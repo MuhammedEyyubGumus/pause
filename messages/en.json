@@ -607,7 +607,8 @@
     "cardTitle": "Your weekly story is ready",
     "cardBody": "{count, plural, one {Page through last week's entry.} other {Page through last week's # entries.}}",
     "startExperiment": "Start this experiment",
-    "notNow": "Not now"
+    "notNow": "Not now",
+    "cardDismiss": "Hide"
   },
   "experiment": {
     "title": "Weekly experiment",

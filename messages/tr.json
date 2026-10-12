@@ -607,7 +607,8 @@
     "cardTitle": "Haftalık hikâyen hazır",
     "cardBody": "{count, plural, one {Geçen haftanın # kaydına sayfa sayfa bak.} other {Geçen haftanın # kaydına sayfa sayfa bak.}}",
     "startExperiment": "Bu deneyi başlat",
-    "notNow": "Şimdilik değil"
+    "notNow": "Şimdilik değil",
+    "cardDismiss": "Gizle"
   },
   "experiment": {
     "title": "Haftalık deney",
