@@ -281,6 +281,73 @@ export type Database = {
           },
         ]
       }
+      experiments: {
+        Row: {
+          behavior_id: string | null
+          created_at: string
+          ended_at: string | null
+          ends_on: string
+          id: string
+          intervention_option_id: string
+          min_urge: number
+          starts_on: string
+          status: Database["public"]["Enums"]["experiment_status"]
+          trigger_option_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          behavior_id?: string | null
+          created_at?: string
+          ended_at?: string | null
+          ends_on: string
+          id?: string
+          intervention_option_id: string
+          min_urge?: number
+          starts_on: string
+          status?: Database["public"]["Enums"]["experiment_status"]
+          trigger_option_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          behavior_id?: string | null
+          created_at?: string
+          ended_at?: string | null
+          ends_on?: string
+          id?: string
+          intervention_option_id?: string
+          min_urge?: number
+          starts_on?: string
+          status?: Database["public"]["Enums"]["experiment_status"]
+          trigger_option_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "experiments_behavior_id_user_id_fkey"
+            columns: ["behavior_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "behaviors"
+            referencedColumns: ["id", "user_id"]
+          },
+          {
+            foreignKeyName: "experiments_intervention_option_id_fkey"
+            columns: ["intervention_option_id"]
+            isOneToOne: false
+            referencedRelation: "options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "experiments_trigger_option_id_fkey"
+            columns: ["trigger_option_id"]
+            isOneToOne: false
+            referencedRelation: "options"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       feedback: {
         Row: {
           answers: Json
@@ -604,6 +671,7 @@ export type Database = {
           user_id: string
         }[]
       }
+      experiment_results: { Args: { p_experiment: string }; Returns: Json }
       get_insights: {
         Args: { p_behavior?: string; p_from?: string; p_to?: string }
         Returns: Json
@@ -616,6 +684,16 @@ export type Database = {
         Returns: boolean
       }
       prune_app_events: { Args: never; Returns: number }
+      start_experiment: {
+        Args: {
+          p_behavior?: string
+          p_intervention: string
+          p_min_urge?: number
+          p_today?: string
+          p_trigger?: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       behavior_goal: "reduce" | "mindful" | "quit" | "custom"
@@ -628,6 +706,7 @@ export type Database = {
         | "control_shift"
         | "outcome"
       event_source: "live" | "sos" | "retro"
+      experiment_status: "active" | "completed" | "abandoned"
       option_kind: "emotion" | "trigger" | "intervention" | "outcome"
       outcome_class:
         | "not_done"
@@ -777,6 +856,7 @@ export const Constants = {
         "outcome",
       ],
       event_source: ["live", "sos", "retro"],
+      experiment_status: ["active", "completed", "abandoned"],
       option_kind: ["emotion", "trigger", "intervention", "outcome"],
       outcome_class: [
         "not_done",

@@ -176,7 +176,8 @@
     "reviewOffline": "Kayıt henüz gönderilemedi. Bağlantı gelince Geçmiş'ten inceleyebilirsin.",
     "suggestedTitle": "Bu durumda denemeye değer",
     "suggestedPlan": "Geçen sefer kendin için seçtiğin plan",
-    "suggestedWorked": "{trigger} olduğunda dürtün ortalama {value} puan düştü"
+    "suggestedWorked": "{trigger} olduğunda dürtün ortalama {value} puan düştü",
+    "suggestedExperiment": "Bu haftanın deneyi"
   },
   "interventions": {
     "breathe": {
@@ -512,7 +513,8 @@
       "closest": "En yakın eşleşme: {count} / {min} ölçüm",
       "measured": "{count} ölçüm"
     },
-    "weeklyStory": "Haftalık hikâye"
+    "weeklyStory": "Haftalık hikâye",
+    "experiment": "Haftalık deney"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -599,6 +601,54 @@
     "experimentAnyUrge": "Dürtü geldiğinde",
     "experimentBody": "Sonucu kendi verilerin gösterecek.",
     "cardTitle": "Haftalık hikâyen hazır",
-    "cardBody": "{count, plural, one {Geçen haftanın # kaydına sayfa sayfa bak.} other {Geçen haftanın # kaydına sayfa sayfa bak.}}"
+    "cardBody": "{count, plural, one {Geçen haftanın # kaydına sayfa sayfa bak.} other {Geçen haftanın # kaydına sayfa sayfa bak.}}",
+    "startExperiment": "Bu deneyi başlat",
+    "notNow": "Şimdilik değil"
+  },
+  "experiment": {
+    "title": "Haftalık deney",
+    "back": "İçgörüler",
+    "activeTitle": "Bu haftanın deneyi",
+    "finishedTitle": "Deney tamamlandı",
+    "daysLeft": "{count, plural, one {Son gün} other {# gün kaldı}}",
+    "whenTrigger": "{trigger} kaynaklı dürtü",
+    "whenAny": "Dürtü geldiğinde",
+    "opportunities": "Fırsat",
+    "applied": "Uygulandı",
+    "whenApplied": "Uygulandığında",
+    "whenNotApplied": "Uygulanmadığında",
+    "measured": "{count} ölçüm",
+    "noCausality": "Değişim: pause öncesi ve sonrası dürtü farkının ortalaması. Neden-sonuç iddiası değildir.",
+    "waiting": "Kurala uyan bir dürtü geldiğinde, alternatifler arasında bu deney en üstte görünecek.",
+    "emptyTitle": "Bir hafta, tek bir deney.",
+    "emptyBody": "Belirli bir durumda tek bir alternatifi bir hafta boyunca dene; işe yarayıp yaramadığını kendi verilerin göstersin.",
+    "startNew": "Deney oluştur",
+    "end": "Deneyi şimdi bitir",
+    "endConfirm": "Deney bitirilecek. Şimdiye kadarki sonuçlar saklanır.",
+    "keep": "Devam et",
+    "endYes": "Bitir",
+    "saveError": "Kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.",
+    "pastTitle": "Önceki deneyler",
+    "pastSummary": "{opportunities} fırsatın {applied} tanesinde uygulandı",
+    "abandoned": "erken bitirildi",
+    "behaviorTitle": "Hangi davranış için?",
+    "allBehaviors": "Hepsi",
+    "triggerTitle": "Hangi durumda?",
+    "triggerHint": "Deneyin geçerli olacağı tetikleyiciyi seç.",
+    "anyTrigger": "Her durumda",
+    "interventionTitle": "Ne deneyeceksin?",
+    "interventionHint": "Bu hafta boyunca tek bir alternatif.",
+    "thresholdTitle": "Ne kadar güçlü dürtülerde?",
+    "thresholdHint": "Güçlü dürtülerle sınırlamak deneyi daha net yapar.",
+    "thresholdAny": "Her dürtüde",
+    "thresholdMin": "Dürtü {value} ve üstüyse",
+    "confirmTitle": "Bu haftanın deneyi",
+    "confirmHint": "7 gün boyunca kurala uyan her dürtüde bu alternatif en üstte görünecek.",
+    "replaceWarning": "Devam eden deneyin bitirilecek ve yerine bu başlayacak.",
+    "start": "Deneyi başlat",
+    "cardTitle": "Bu haftanın deneyi",
+    "cardFinished": "Deneyin tamamlandı",
+    "cardSeeResult": "Sonuca bak",
+    "cardProgress": "{opportunities} fırsatın {applied} tanesinde uygulandı"
   }
 }

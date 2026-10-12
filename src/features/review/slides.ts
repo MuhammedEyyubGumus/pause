@@ -17,6 +17,7 @@ export type Slide = {
   body?: string;
   bars?: { label: string; value: number }[]; // günlere göre küçük grafik
   chain?: string[]; // deney: A → B → C
+  cta?: { href: string }; // son sayfa: "Bu deneyi başlat"
 };
 
 export async function toSlides(stories: Story[], opts: { rangeLabel: string; inProgress: boolean }): Promise<Slide[]> {
@@ -102,6 +103,14 @@ export async function toSlides(stories: Story[], opts: { rangeLabel: string; inP
             "PAUSE",
           ],
           body: t("experimentBody"),
+          cta: s.intervention
+            ? {
+                href: `/experiment/new?${new URLSearchParams({
+                  intervention: s.intervention.id,
+                  ...(s.trigger ? { trigger: s.trigger.id } : {}),
+                }).toString()}`,
+              }
+            : { href: "/experiment/new" },
         };
       }
     }

@@ -1,4 +1,4 @@
-import { CirclePlay } from "lucide-react";
+import { CirclePlay, FlaskConical } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -53,13 +53,23 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
       <TrackView name="insights_viewed" props={{ period, filtered: !!behaviorId }} />
       <header className="flex h-14 items-center justify-between">
         <h1 className="text-xl font-semibold">{t("title")}</h1>
-        <Link
-          href="/review"
-          className="tap-target-sm -me-2 inline-flex items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-primary hover:bg-accent"
-        >
-          <CirclePlay className="size-5" aria-hidden />
-          {t("weeklyStory")}
-        </Link>
+        <div className="-me-2 flex items-center">
+          <Link
+            href="/experiment"
+            aria-label={t("experiment")}
+            title={t("experiment")}
+            className="tap-target-sm grid place-items-center rounded-full text-primary hover:bg-accent"
+          >
+            <FlaskConical className="size-5" aria-hidden />
+          </Link>
+          <Link
+            href="/review"
+            className="tap-target-sm inline-flex items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-primary hover:bg-accent"
+          >
+            <CirclePlay className="size-5" aria-hidden />
+            {t("weeklyStory")}
+          </Link>
+        </div>
       </header>
 
       {/* Filtreler: tek satır dönem, birden fazla davranış varsa ikinci satır */}

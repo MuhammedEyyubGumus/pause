@@ -147,13 +147,16 @@ export function StoryPager({ slides, week }: { slides: Slide[]; week: string }) 
           {last ? (
             <>
               <Link
-                href="/"
+                href={slide.cta?.href ?? "/"}
                 className="tap-target inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 text-lg font-semibold text-primary-foreground"
               >
-                {t("finish")}
+                {slide.cta ? t("startExperiment") : t("finish")}
               </Link>
-              <Link href="/insights" className="tap-target-sm text-center text-sm font-semibold opacity-80 hover:opacity-100">
-                {t("toInsights")}
+              <Link
+                href={slide.cta ? "/" : "/insights"}
+                className="tap-target-sm text-center text-sm font-semibold opacity-80 hover:opacity-100"
+              >
+                {slide.cta ? t("notNow") : t("toInsights")}
               </Link>
             </>
           ) : (

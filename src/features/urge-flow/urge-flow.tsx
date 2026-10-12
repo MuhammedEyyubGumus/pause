@@ -562,7 +562,11 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
           </div>
           {(() => {
             const usable = byKind("intervention");
-            const list = suggestionsFor(event?.triggers ?? [], (id) => usable.some((o) => o.id === id));
+            const list = suggestionsFor(
+              event?.triggers ?? [],
+              (id) => usable.some((o) => o.id === id),
+              event?.row.urge_before,
+            );
             if (!list.length) return null;
             return (
               <section className="flex flex-col gap-2" aria-label={t("suggestedTitle")}>
@@ -584,7 +588,9 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
                       <span className="flex min-w-0 flex-col">
                         <span className="font-semibold">{optionLabel(o)}</span>
                         <span className="text-sm opacity-80">
-                          {sug.kind === "plan"
+                          {sug.kind === "experiment"
+                            ? t("suggestedExperiment")
+                            : sug.kind === "plan"
                             ? t("suggestedPlan")
                             : t("suggestedWorked", {
                                 trigger: trig ? optionLabel(trig) : "",

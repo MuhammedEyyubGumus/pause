@@ -176,7 +176,8 @@
     "reviewOffline": "The entry hasn't been sent yet. Once you're online you can review it from History.",
     "suggestedTitle": "Worth trying here",
     "suggestedPlan": "The plan you chose for yourself last time",
-    "suggestedWorked": "With {trigger}, your urge dropped by {value} points on average"
+    "suggestedWorked": "With {trigger}, your urge dropped by {value} points on average",
+    "suggestedExperiment": "This week's experiment"
   },
   "interventions": {
     "breathe": {
@@ -558,7 +559,8 @@
       "closest": "Closest match: {count} / {min} measured",
       "measured": "{count} measured"
     },
-    "weeklyStory": "Weekly story"
+    "weeklyStory": "Weekly story",
+    "experiment": "Weekly experiment"
   },
   "review": {
     "close": "Close",
@@ -599,6 +601,54 @@
     "experimentAnyUrge": "When an urge comes",
     "experimentBody": "Your own data will show the result.",
     "cardTitle": "Your weekly story is ready",
-    "cardBody": "{count, plural, one {Page through last week's entry.} other {Page through last week's # entries.}}"
+    "cardBody": "{count, plural, one {Page through last week's entry.} other {Page through last week's # entries.}}",
+    "startExperiment": "Start this experiment",
+    "notNow": "Not now"
+  },
+  "experiment": {
+    "title": "Weekly experiment",
+    "back": "Insights",
+    "activeTitle": "This week's experiment",
+    "finishedTitle": "Experiment finished",
+    "daysLeft": "{count, plural, one {Last day} other {# days left}}",
+    "whenTrigger": "Urge with {trigger}",
+    "whenAny": "When an urge comes",
+    "opportunities": "Opportunities",
+    "applied": "Applied",
+    "whenApplied": "When applied",
+    "whenNotApplied": "When not applied",
+    "measured": "{count} measured",
+    "noCausality": "Change: average difference in urge before and after the pause. Not a claim of cause and effect.",
+    "waiting": "When an urge matches the rule, this experiment will appear at the top of your alternatives.",
+    "emptyTitle": "One week, one experiment.",
+    "emptyBody": "Try a single alternative in a specific situation for a week, and let your own data show whether it helps.",
+    "startNew": "Create an experiment",
+    "end": "End the experiment now",
+    "endConfirm": "The experiment will end. Results so far are kept.",
+    "keep": "Keep going",
+    "endYes": "End",
+    "saveError": "Couldn't save. Check your connection and try again.",
+    "pastTitle": "Past experiments",
+    "pastSummary": "Applied in {applied} of {opportunities} opportunities",
+    "abandoned": "ended early",
+    "behaviorTitle": "For which behavior?",
+    "allBehaviors": "All",
+    "triggerTitle": "In which situation?",
+    "triggerHint": "Pick the trigger the experiment applies to.",
+    "anyTrigger": "Any situation",
+    "interventionTitle": "What will you try?",
+    "interventionHint": "One alternative for the whole week.",
+    "thresholdTitle": "For how strong urges?",
+    "thresholdHint": "Limiting it to strong urges makes the experiment clearer.",
+    "thresholdAny": "Every urge",
+    "thresholdMin": "When the urge is {value} or more",
+    "confirmTitle": "This week's experiment",
+    "confirmHint": "For 7 days, this alternative will appear at the top for every urge that matches the rule.",
+    "replaceWarning": "Your current experiment will end and this one will start instead.",
+    "start": "Start the experiment",
+    "cardTitle": "This week's experiment",
+    "cardFinished": "Your experiment is finished",
+    "cardSeeResult": "See the result",
+    "cardProgress": "Applied in {applied} of {opportunities} opportunities"
   }
 }
