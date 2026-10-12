@@ -605,7 +605,7 @@ export type Database = {
         }[]
       }
       get_insights: {
-        Args: { p_behavior?: string; p_from?: string }
+        Args: { p_behavior?: string; p_from?: string; p_to?: string }
         Returns: Json
       }
       option_usable: {

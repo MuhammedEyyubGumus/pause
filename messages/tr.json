@@ -511,7 +511,8 @@
       "locked": "Aynı tetikleyicide aynı alternatifi en az {min} kez denediğinde burada sana özel eşleşmeler çıkacak.",
       "closest": "En yakın eşleşme: {count} / {min} ölçüm",
       "measured": "{count} ölçüm"
-    }
+    },
+    "weeklyStory": "Haftalık hikâye"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -558,5 +559,46 @@
     "reminderTitle": "Zincire bakmak ister misin?",
     "reminderBody": "Son kaydını 2 dakikada inceleyip bir plan seçebilirsin.",
     "reminderDismiss": "Gizle"
+  },
+  "review": {
+    "close": "Kapat",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "finish": "Bitir",
+    "toInsights": "Tüm içgörülere bak",
+    "swipeHint": "Dokun ya da kaydır",
+    "eyebrowSoFar": "{range} · şimdiye kadar",
+    "count": "{count, plural, one {Bu hafta # dürtü kaydettin.} other {Bu hafta # dürtü kaydettin.}}",
+    "countSoFar": "{count, plural, one {Bu hafta şimdiye kadar # dürtü kaydettin.} other {Bu hafta şimdiye kadar # dürtü kaydettin.}}",
+    "countZero": "Bu hafta kayıt yok.",
+    "countZeroBody": "Sorun değil. Dürtü geldiğinde fark edip kaydetmek bile bir adım.",
+    "hardestDay": "En çok {day} günü zorlandın.",
+    "hardestDayBody": "{count, plural, one {# dürtü.} other {# dürtü.}} Bu günü önceden bilmek, hazırlıklı olmana yardım eder.",
+    "trigger": "En sık tetikleyicin: {trigger}.",
+    "triggerBody": "Dürtülerinin {pct} kadarında vardı.",
+    "paused": "{count, plural, one {# kez davranıştan önce PAUSE kullandın.} other {# kez davranıştan önce PAUSE kullandın.}}",
+    "pausedBody": "{urges} dürtünün {paused} tanesinde dürtü ile davranış arasına alan koydun.",
+    "pausedZero": "Bu hafta pause kullanmadın.",
+    "pausedZeroBody": "Gelecek hafta bir kez denemek bile yeni bir veri demek.",
+    "worked": "{label} denediğin olaylarda dürtün ortalama {value} puan düştü.",
+    "workedBody": "{count} ölçüm. Bu bir neden-sonuç iddiası değil; senin verinde görülen.",
+    "progressEyebrow": "Geçen haftaya göre",
+    "progress": {
+      "pauseRate": "Daha sık alan açtın.",
+      "pauseRateBody": "Pause kullanma oranın: geçen hafta {before}, bu hafta {now}.",
+      "avgChange": "Pause sonrası dürtün daha çok düştü.",
+      "avgChangeBody": "Ortalama değişim: geçen hafta {before}, bu hafta {now} puan.",
+      "alternatives": "Daha fazla alternatif denedin.",
+      "alternativesBody": "Geçen hafta {before}, bu hafta {now} kez.",
+      "stoppedEarly": "Daha erken durabildin.",
+      "stoppedEarlyBody": "Başladıktan sonra erken durma: geçen hafta {before}, bu hafta {now} kez."
+    },
+    "experimentEyebrow": "Gelecek haftanın deneyi",
+    "experimentTitle": "Bir hafta boyunca tek bir şeyi dene.",
+    "experimentWhen": "{trigger} kaynaklı bir dürtü geldiğinde",
+    "experimentAnyUrge": "Dürtü geldiğinde",
+    "experimentBody": "Sonucu kendi verilerin gösterecek.",
+    "cardTitle": "Haftalık hikâyen hazır",
+    "cardBody": "{count, plural, one {Geçen haftanın # kaydına sayfa sayfa bak.} other {Geçen haftanın # kaydına sayfa sayfa bak.}}"
   }
 }

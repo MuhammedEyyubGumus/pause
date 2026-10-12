@@ -5,6 +5,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { AppNav } from "@/components/pause/app-nav";
 import { TrackView } from "@/components/pause/track-view";
 import { ReviewReminder } from "@/features/home/review-reminder";
+import { WeeklyStoryCard } from "@/features/home/weekly-story-card";
+import { addDays, mondayOf } from "@/features/review/build-story";
 import { UrgeArea } from "@/features/home/urge-area";
 import { NotifyPrompt } from "@/features/notifications/notify-prompt";
 import { findActivePause } from "@/features/urge-flow/load";
@@ -26,7 +28,10 @@ export default async function HomePage() {
     .eq("local_date", now.date)
     .is("deleted_at", null);
 
-  const [active, { count: completedCount }, { data: recentOccurred }] = await Promise.all([
+  // Haftalık hikâye: geçen hafta (Pzt–Paz) kayıt varsa ana sayfada bir kart
+  const lastMonday = addDays(mondayOf(now.date), -7);
+
+  const [active, { count: completedCount }, { data: recentOccurred }, { count: lastWeekCount }] = await Promise.all([
     findActivePause(supabase),
     // Bildirim izni ilk tamamlanan pause'dan sonra sorulur
     supabase.from("urge_events").select("id", { count: "exact", head: true }).eq("pause_status", "completed"),
@@ -39,6 +44,12 @@ export default async function HomePage() {
       .gte("occurred_at", new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString())
       .order("occurred_at", { ascending: false })
       .limit(5),
+    supabase
+      .from("urge_events")
+      .select("id", { count: "exact", head: true })
+      .is("deleted_at", null)
+      .gte("local_date", lastMonday)
+      .lte("local_date", addDays(lastMonday, 6)),
   ]);
   // (user_id, event_id) benzersiz olduğu için Supabase bu ilişkiyi bire bir sayar ve
   // dizi yerine tek nesne ya da null döndürür; iki biçim de güvenle ele alınır.
@@ -91,6 +102,7 @@ export default async function HomePage() {
           {t("sos")}
         </Link>
 
+        {!active && (lastWeekCount ?? 0) > 0 && <WeeklyStoryCard week={lastMonday} urges={lastWeekCount ?? 0} />}
         {toReview && !active && <ReviewReminder eventId={toReview.id} />}
         <NotifyPrompt hasCompletedPause={(completedCount ?? 0) > 0} />
         <SmallWin urges={urges} paused={paused} />

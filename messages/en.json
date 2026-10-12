@@ -557,6 +557,48 @@
       "locked": "Once you've tried the same alternative with the same trigger at least {min} times, your personal matches will appear here.",
       "closest": "Closest match: {count} / {min} measured",
       "measured": "{count} measured"
-    }
+    },
+    "weeklyStory": "Weekly story"
+  },
+  "review": {
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "finish": "Done",
+    "toInsights": "See all insights",
+    "swipeHint": "Tap or swipe",
+    "eyebrowSoFar": "{range} · so far",
+    "count": "{count, plural, one {You logged # urge this week.} other {You logged # urges this week.}}",
+    "countSoFar": "{count, plural, one {So far this week you've logged # urge.} other {So far this week you've logged # urges.}}",
+    "countZero": "No entries this week.",
+    "countZeroBody": "That's okay. Noticing an urge and logging it is already a step.",
+    "hardestDay": "{day} was your hardest day.",
+    "hardestDayBody": "{count, plural, one {# urge.} other {# urges.}} Knowing this ahead of time helps you prepare.",
+    "trigger": "Your most common trigger: {trigger}.",
+    "triggerBody": "It was present in {pct} of your urges.",
+    "paused": "{count, plural, one {You paused once before acting.} other {You paused # times before acting.}}",
+    "pausedBody": "In {paused} of {urges} urges you put space between the urge and the behavior.",
+    "pausedZero": "You didn't pause this week.",
+    "pausedZeroBody": "Trying it even once next week means new data.",
+    "worked": "When you tried {label}, your urge dropped by {value} points on average.",
+    "workedBody": "{count} measurements. Not a claim of cause and effect; it's what your data shows.",
+    "progressEyebrow": "Compared with last week",
+    "progress": {
+      "pauseRate": "You made space more often.",
+      "pauseRateBody": "Pause rate: {before} last week, {now} this week.",
+      "avgChange": "Your urge dropped more after pausing.",
+      "avgChangeBody": "Average change: {before} last week, {now} points this week.",
+      "alternatives": "You tried more alternatives.",
+      "alternativesBody": "{before} times last week, {now} this week.",
+      "stoppedEarly": "You stopped earlier.",
+      "stoppedEarlyBody": "Stopping early after starting: {before} last week, {now} this week."
+    },
+    "experimentEyebrow": "Next week's experiment",
+    "experimentTitle": "Try one thing for a week.",
+    "experimentWhen": "When an urge comes with {trigger}",
+    "experimentAnyUrge": "When an urge comes",
+    "experimentBody": "Your own data will show the result.",
+    "cardTitle": "Your weekly story is ready",
+    "cardBody": "{count, plural, one {Page through last week's entry.} other {Page through last week's # entries.}}"
   }
 }

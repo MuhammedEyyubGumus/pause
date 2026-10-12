@@ -1,3 +1,4 @@
+import { CirclePlay } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -50,8 +51,15 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe">
       <SyncAgent />
       <TrackView name="insights_viewed" props={{ period, filtered: !!behaviorId }} />
-      <header className="flex h-14 items-center">
+      <header className="flex h-14 items-center justify-between">
         <h1 className="text-xl font-semibold">{t("title")}</h1>
+        <Link
+          href="/review"
+          className="tap-target-sm -me-2 inline-flex items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-primary hover:bg-accent"
+        >
+          <CirclePlay className="size-5" aria-hidden />
+          {t("weeklyStory")}
+        </Link>
       </header>
 
       {/* Filtreler: tek satır dönem, birden fazla davranış varsa ikinci satır */}
