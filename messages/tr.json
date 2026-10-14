@@ -929,7 +929,8 @@
       "signingIn": "Giriş yapılıyor…",
       "invalid": "E-posta ya da şifre hatalı.",
       "notAdmin": "Bu hesap yönetici değil.",
-      "rateLimit": "Çok fazla deneme yapıldı. Biraz sonra tekrar dene."
+      "rateLimit": "Çok fazla deneme yapıldı. Biraz sonra tekrar dene.",
+      "backToUser": "Kullanıcı girişine dön"
     }
   }
 }

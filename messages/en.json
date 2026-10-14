@@ -929,7 +929,8 @@
       "signingIn": "Signing in…",
       "invalid": "Wrong email or password.",
       "notAdmin": "This account isn't an admin.",
-      "rateLimit": "Too many attempts. Try again in a moment."
+      "rateLimit": "Too many attempts. Try again in a moment.",
+      "backToUser": "Back to user sign-in"
     }
   }
 }

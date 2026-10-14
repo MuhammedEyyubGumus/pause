@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type FormEvent, useState } from "react";
 
@@ -80,6 +81,15 @@ export function AdminLoginForm() {
       <PrimaryButton type="submit" loading={pending} disabled={!email.trim() || !password}>
         {pending ? t("signingIn") : t("signIn")}
       </PrimaryButton>
+
+      {/* Yanlışlıkla gelen kullanıcı için normal girişe dönüş */}
+      <a
+        href="/login"
+        className="tap-target-sm inline-flex items-center justify-center gap-1.5 self-center text-sm font-semibold text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+      >
+        <ArrowLeft className="size-4 rtl:rotate-180" aria-hidden />
+        {t("backToUser")}
+      </a>
     </form>
   );
 }
