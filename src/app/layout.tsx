@@ -31,7 +31,7 @@ export const viewport: Viewport = {
   viewportFit: "cover", // çentik ve ana ekran çubuğu için pt-safe / pb-safe
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#FBF9FC" },
-    { media: "(prefers-color-scheme: dark)", color: "#1B1219" },
+    { media: "(prefers-color-scheme: dark)", color: "#FBF9FC" },
   ],
 };
 
@@ -47,7 +47,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     >
       <body>
         <NextIntlClientProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {/* Marka: beyaz + mor. Telefon koyu modda olsa da açık tema kullanılır. */}
+          <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false} disableTransitionOnChange>
             {/* İnternet geri gelince sayfayı yenileme: bir egzersizin ortasında ekran sıfırlanmasın.
                 Bekleyen kayıtları SyncAgent gönderir. */}
             <SerwistProvider swUrl="/serwist/sw.js" reloadOnOnline={false}>

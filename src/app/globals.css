@@ -49,10 +49,10 @@
   --urge-low: oklch(0.93 0.03 330);
   --urge-high: oklch(0.64 0.13 50);
 
-  /* Pause anı — ekran "söner", koyu mürdüm tek bir sakin yüzey kalır */
-  --pause-surface: oklch(0.24 0.07 325);
-  --pause-foreground: oklch(0.97 0.012 325);
-  --pause-ring: oklch(0.82 0.08 327);          /* #E4C7E3 tonunda orkide */
+  /* Pause anı — ekran tek bir sakin mor yüzeye döner (siyah değil, marka moru) */
+  --pause-surface: oklch(0.43 0.165 329);      /* #92278F'nin bir ton koyusu */
+  --pause-foreground: oklch(0.99 0.004 320);
+  --pause-ring: oklch(0.90 0.05 327);          /* açık orkide */
 
   /* Olumlu değişim (8 -> 5) — "başardın" değil, sakin yeşil */
   --change-positive: oklch(0.56 0.11 156);
