@@ -27,7 +27,8 @@
     "rateLimit": "Çok sık denendi. Birkaç dakika sonra tekrar dene.",
     "linkFailed": "Bağlantı geçersiz ya da süresi dolmuş. Yeni bir e-posta iste ve bağlantıyı aynı tarayıcıda aç.",
     "accountDeleted": "Hesabın ve tüm verilerin silindi. İstersen aynı e-postayla yeniden başlayabilirsin.",
-    "privacy": "Gizlilik politikası"
+    "privacy": "Gizlilik politikası",
+    "adminLogin": "Yönetici girişi"
   },
   "onboarding": {
     "welcomeTitle": "Dürtü ile davranış arasındaki alanı büyüt.",

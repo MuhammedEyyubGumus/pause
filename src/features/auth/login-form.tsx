@@ -236,9 +236,13 @@ export function LoginForm() {
               ? t("verifying")
               : t("verify")}
         </PrimaryButton>
-        <p className="pt-3 text-center text-xs text-muted-foreground">
+        <p className="flex items-center justify-center gap-3 pt-3 text-xs text-muted-foreground">
           <a href="/privacy" className="underline-offset-4 hover:underline">
             {t("privacy")}
+          </a>
+          <span aria-hidden>·</span>
+          <a href="/admin/login" className="underline-offset-4 hover:underline">
+            {t("adminLogin")}
           </a>
         </p>
       </footer>

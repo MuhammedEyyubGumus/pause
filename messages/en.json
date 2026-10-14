@@ -27,7 +27,8 @@
     "rateLimit": "Too many attempts. Try again in a few minutes.",
     "linkFailed": "That link is invalid or has expired. Request a new email and open the link in the same browser.",
     "accountDeleted": "Your account and all your data have been deleted. You can start again with the same email anytime.",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "adminLogin": "Admin sign-in"
   },
   "onboarding": {
     "welcomeTitle": "Widen the space between urge and action.",

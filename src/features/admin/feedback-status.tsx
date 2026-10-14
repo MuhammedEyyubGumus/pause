@@ -7,8 +7,7 @@ import { useState, useTransition } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
-export const FEEDBACK_STATUSES = ["new", "read", "done"] as const;
-export type FeedbackStatus = (typeof FEEDBACK_STATUSES)[number];
+import { FEEDBACK_STATUSES, type FeedbackStatus } from "./feedback-shared";
 
 // Geri bildirimi "yeni / okundu / tamamlandı" olarak işaretle
 export function FeedbackStatusButtons({ id, status }: { id: string; status: FeedbackStatus }) {

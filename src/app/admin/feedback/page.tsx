@@ -2,7 +2,8 @@ import { ExternalLink, Star } from "lucide-react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { FEEDBACK_STATUSES, type FeedbackStatus, FeedbackStatusButtons } from "@/features/admin/feedback-status";
+import { FEEDBACK_STATUSES, type FeedbackStatus } from "@/features/admin/feedback-shared";
+import { FeedbackStatusButtons } from "@/features/admin/feedback-status";
 import { requireAdmin } from "@/features/admin/guard";
 import { AdminShell } from "@/features/admin/shell";
 import { PageTitle } from "@/features/admin/ui";

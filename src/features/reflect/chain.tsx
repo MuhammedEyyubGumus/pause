@@ -6,10 +6,9 @@ import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 
-export const CHAIN_STEPS = ["trigger", "thought", "emotion", "urge", "first_action", "control_shift", "outcome"] as const;
-export type ChainStep = (typeof CHAIN_STEPS)[number];
-// Sonuç halkası kesilecek bir nokta değildir
-export const CUTTABLE: ChainStep[] = CHAIN_STEPS.filter((s) => s !== "outcome");
+import { CHAIN_STEPS, type ChainStep, CUTTABLE } from "./steps";
+
+export type { ChainStep };
 
 type Props = {
   values: Partial<Record<ChainStep, string>>;

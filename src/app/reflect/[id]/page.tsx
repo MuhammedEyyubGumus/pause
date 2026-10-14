@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { CHAIN_STEPS, type ChainStep } from "@/features/reflect/chain";
+import { CHAIN_STEPS, type ChainStep } from "@/features/reflect/steps";
 import { type Reflection, ReflectFlow } from "@/features/reflect/reflect-flow";
 import { loadFlowData, loadServerEvent } from "@/features/urge-flow/load";
 
