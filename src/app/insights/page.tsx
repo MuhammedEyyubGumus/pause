@@ -1,4 +1,4 @@
-import { ChevronRight, CirclePlay, Compass, FlaskConical, Milestone } from "lucide-react";
+import { ChevronRight, CirclePlay, Compass, FlaskConical, Milestone, PiggyBank } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -144,6 +144,19 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
             <span className="text-sm text-muted-foreground">
               {t("milestonesCardSub", { done: milestonesDone, total: MILESTONES.length })}
             </span>
+          </span>
+          <ChevronRight className="size-5 text-muted-foreground rtl:rotate-180" aria-hidden />
+        </Link>
+        <Link
+          href={behaviorId ? `/savings?b=${behaviorId}` : "/savings"}
+          className="flex items-center gap-3 rounded-card bg-card p-4 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-colors hover:bg-accent/60"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground">
+            <PiggyBank className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("savingsCard")}</span>
+            <span className="text-sm text-muted-foreground">{t("savingsCardSub")}</span>
           </span>
           <ChevronRight className="size-5 text-muted-foreground rtl:rotate-180" aria-hidden />
         </Link>

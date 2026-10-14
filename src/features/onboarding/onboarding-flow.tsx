@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { type ReactNode, useEffect, useMemo, useState, useTransition } from "react";
 
 import { BehaviorIcon } from "@/components/pause/behavior-icon";
+import { BrandMark } from "@/components/pause/brand";
 import { ChoiceCard } from "@/components/pause/choice-card";
 import { PrimaryButton } from "@/components/pause/primary-button";
 import { StepShell } from "@/components/pause/step-shell";
@@ -279,7 +280,8 @@ function Welcome({ title, body }: { title: string; body: string }) {
           />
         ))}
       </div>
-      <div className="flex flex-col gap-4 text-center">
+      <div className="flex flex-col items-center gap-4 text-center">
+        <BrandMark size="md" />
         <h1 className="text-[2rem] leading-tight font-bold tracking-tight text-balance">{title}</h1>
         <p className="text-lg text-muted-foreground text-balance">{body}</p>
       </div>

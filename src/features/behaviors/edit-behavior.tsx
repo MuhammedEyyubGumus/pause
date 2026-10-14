@@ -10,7 +10,15 @@ import { PrimaryButton } from "@/components/pause/primary-button";
 import { cn } from "@/lib/utils";
 
 import { archiveBehavior, updateBehavior } from "./actions";
-import { BEHAVIOR_GOALS, type BehaviorGoal, isTemplateKey, PAUSE_MINUTES } from "./templates";
+import {
+  BEHAVIOR_GOALS,
+  type BehaviorGoal,
+  CURRENCIES,
+  type Currency,
+  isTemplateKey,
+  MONEY_TEMPLATES,
+  PAUSE_MINUTES,
+} from "./templates";
 
 type Behavior = {
   id: string;
@@ -21,6 +29,8 @@ type Behavior = {
   goal: BehaviorGoal;
   goal_text: string | null;
   pause_minutes: number;
+  cost_amount: number | null;
+  cost_currency: string;
 };
 
 export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior; isOnlyBehavior: boolean }) {
@@ -37,6 +47,16 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
   const [goal, setGoal] = useState<BehaviorGoal>(behavior.goal);
   const [goalText, setGoalText] = useState(behavior.goal_text ?? "");
   const [minutes, setMinutes] = useState(behavior.pause_minutes);
+  const [cost, setCost] = useState(behavior.cost_amount != null ? String(behavior.cost_amount) : "");
+  const [currency, setCurrency] = useState<Currency>(
+    (CURRENCIES as readonly string[]).includes(behavior.cost_currency) ? (behavior.cost_currency as Currency) : "TRY",
+  );
+  const [costOpen, setCostOpen] = useState(
+    behavior.cost_amount != null || MONEY_TEMPLATES.includes(behavior.template_key ?? ""),
+  );
+  // "7,50" ve "7.50" ikisi de kabul edilir
+  const costValue = cost.trim() === "" ? null : Number(cost.replace(",", "."));
+  const costInvalid = costValue != null && (!Number.isFinite(costValue) || costValue < 0 || costValue > 100000);
   const [confirmArchive, setConfirmArchive] = useState(false);
   const [pending, start] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -51,6 +71,8 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
         goal,
         goalText,
         pauseMinutes: minutes,
+        costAmount: costOpen ? costValue : null,
+        costCurrency: currency,
       });
       if (result && !result.ok) setError(tc("error"));
     });
@@ -145,6 +167,44 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
           )}
         </Field>
 
+        <Field title={t("costLabel")} hint={costOpen ? t("costHint") : undefined}>
+          {costOpen ? (
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2">
+                <input
+                  inputMode="decimal"
+                  value={cost}
+                  onChange={(e) => setCost(e.target.value.replace(/[^\d.,]/g, ""))}
+                  placeholder={t("costPlaceholder")}
+                  aria-invalid={costInvalid || undefined}
+                  className="tap-target numeric min-w-0 flex-1 rounded-xl border-2 border-transparent bg-card px-4 text-lg outline-none focus:border-primary aria-invalid:border-destructive"
+                />
+                <select
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value as Currency)}
+                  aria-label={t("currency")}
+                  className="tap-target rounded-xl border-2 border-transparent bg-card px-3 font-semibold outline-none focus:border-primary"
+                >
+                  {CURRENCIES.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {costInvalid && <p className="text-sm text-destructive">{t("costInvalid")}</p>}
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setCostOpen(true)}
+              className="tap-target-sm self-start font-semibold text-primary"
+            >
+              {t("costAdd")}
+            </button>
+          )}
+        </Field>
+
         <Field title={t("whyLabel")} hint={t("whyHint")}>
           <textarea
             value={why}
@@ -198,7 +258,7 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
             {error}
           </p>
         )}
-        <PrimaryButton onClick={save} loading={pending} disabled={isCustom && !name.trim()}>
+        <PrimaryButton onClick={save} loading={pending} disabled={(isCustom && !name.trim()) || (costOpen && costInvalid)}>
           {t("save")}
         </PrimaryButton>
       </footer>

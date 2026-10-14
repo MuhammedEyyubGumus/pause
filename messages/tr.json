@@ -124,7 +124,9 @@
     "yourData": "Verilerin",
     "privacy": "Gizlilik",
     "analyticsTitle": "Anonim kullanım istatistikleri",
-    "analyticsHint": "Uygulamayı iyileştirmemize yardım eder. Hesabına bağlanmaz, içerik içermez."
+    "analyticsHint": "Uygulamayı iyileştirmemize yardım eder. Hesabına bağlanmaz, içerik içermez.",
+    "madeBy": "PAUSE, bir Peace Therapist uygulamasıdır ·",
+    "admin": "Yönetim paneli"
   },
   "urge": {
     "close": "Kapat",
@@ -295,7 +297,7 @@
     "completed": "Tamamlandı",
     "notCompleted": "Yarıda bırakıldı",
     "notes": "Not",
-    "notesPlaceholder": "O an aklından geçenler, fark ettiklerin…",
+    "notesPlaceholder": "O an ne yaşadın, ne fark ettin? Bir dahaki sefere kendine ne söylemek istersin?",
     "edit": "Düzenle",
     "editTitle": "Kaydı düzenle",
     "save": "Kaydet",
@@ -307,7 +309,9 @@
     "intensityBefore": "Başta dürtü",
     "intensityAfter": "Sonra dürtü",
     "addValue": "Değer ekle",
-    "reviewChain": "Zinciri incele"
+    "reviewChain": "Zinciri incele",
+    "addNote": "Not ekle",
+    "notePrivate": "Notların yalnızca sana görünür."
   },
   "retro": {
     "whenTitle": "Ne zaman oldu?",
@@ -370,7 +374,13 @@
     "archive": "Bu davranışı takip etmeyi bırak",
     "archiveConfirm": "Bu davranış listenden kalkar. Geçmiş kayıtların silinmez; tekrar eklersen geri gelir.",
     "cancel": "Vazgeç",
-    "lastActive": "En az bir davranış takip etmen gerekiyor. Önce başka bir davranış ekle."
+    "lastActive": "En az bir davranış takip etmen gerekiyor. Önce başka bir davranış ekle.",
+    "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+    "costHint": "Dürtü gelip bu davranışı yapmadığında bu tutar harcanmamış sayılır. Örn. bir paket sigara 100 ₺ ise ve her seferinde 1 sigara içiyorsan 5 ₺.",
+    "costPlaceholder": "0",
+    "currency": "Para birimi",
+    "costInvalid": "Geçerli bir tutar gir.",
+    "costAdd": "Bu davranışa para harcıyorum"
   },
   "account": {
     "exportJson": "Tüm verilerimi indir",
@@ -518,7 +528,9 @@
     "mapCard": "Senin davranış haritan",
     "mapCardSub": "Tetikleyicin, riskli saatin, en güçlü alternatifin",
     "milestonesCard": "Kilometre taşların",
-    "milestonesCardSub": "{done} / {total} · seri yok, sıfırlanma yok"
+    "milestonesCardSub": "{done} / {total} · seri yok, sıfırlanma yok",
+    "savingsCard": "Tasarruf ve dersler",
+    "savingsCardSub": "Harcamadığın para, yaşadıklarından çıkan dersler"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -739,5 +751,124 @@
       }
     },
     "close": "Kapat"
+  },
+  "savings": {
+    "title": "Tasarruf ve dersler",
+    "back": "İçgörüler",
+    "behaviorLabel": "Davranış",
+    "allBehaviors": "Hepsi",
+    "savedTitle": "Harcamadığın para",
+    "savedBody": "{count, plural, one {Dürtü gelip davranışa geçmediğin # sefer.} other {Dürtü gelip davranışa geçmediğin # sefer.}}",
+    "noCost": "Bu davranışa para harcıyorsan bir seferdeki ortalama tutarı gir; dürtü gelip yapmadığın her seferde ne kadar biriktiğini burada görürsün.",
+    "setCost": "Tutarı gir",
+    "countsTitle": "{count, plural, one {# dürtü geldi} other {# dürtü geldi}}",
+    "counts": {
+      "notDone": "Yapmadın",
+      "stoppedEarly": "Başladın ama erken durdun",
+      "occurred": "Yaptın",
+      "open": "Sonucu girilmedi"
+    },
+    "occurredNote": "Yaptığın anlar da veri: aşağıdaki dersler o anlardan çıkıyor.",
+    "lessonsTitle": "Derslerin",
+    "lessonsEmpty": "Davranış gerçekleştiğinde zinciri incelediğinde ya da kayda not yazdığında, çıkardığın dersler burada birikir.",
+    "thought": "O an aklından geçen",
+    "firstAction": "İlk adım",
+    "nextTime": "Bir dahaki sefere: {step} anında → {option}"
+  },
+  "admin": {
+    "title": "Yönetim",
+    "nav": {
+      "overview": "Genel bakış",
+      "metrics": "Ürün ölçümü",
+      "feedback": "Geri bildirimler",
+      "back": "Uygulamaya dön"
+    },
+    "overview": {
+      "title": "Genel bakış",
+      "privacy": "Burada yalnızca toplam sayılar görünür. Kişisel gizlilik gereği hiçbir kullanıcının dürtü kaydı, notu ya da davranış ayrıntısı yönetim panelinde gösterilmez.",
+      "users": "Kullanıcı",
+      "usersSub": "{onboarded} kişi kurulumu bitirdi · bu hafta {week} yeni",
+      "active": "Son 7 günde kayıt yapan",
+      "activeSub": "Son 30 günde {month}",
+      "events": "Toplam dürtü kaydı",
+      "eventsSub": "Bu hafta {week}",
+      "pausedShare": "Pause kullanılan kayıtlar",
+      "remeasuredShare": "pause'ların {pct} kadarı yeniden ölçüldü",
+      "reflections": "Zincir incelemesi",
+      "experiments": "{count} haftalık deney",
+      "push": "Bildirimi açık kullanıcı",
+      "feedback": "Geri bildirim",
+      "feedbackNew": "{count} yeni",
+      "reuse": "Ortalama \"tekrar kullanırım\" puanı",
+      "behaviors": "Takip edilen davranışlar",
+      "customBehavior": "Kendi tanımladığı davranış",
+      "empty": "Henüz veri yok."
+    },
+    "metrics": {
+      "title": "Ürün ölçümü",
+      "hint": "Anonim kullanım olayları: hesaba bağlı değil, yazılan hiçbir içeriği içermez. Oturum: uygulamanın bir kez açılıp kapanması.",
+      "period": "Dönem",
+      "days": "{count} gün",
+      "flowStarted": "Başlatılan dürtü akışı",
+      "pauseCompleted": "Pause'u tamamlanan",
+      "flowCompleted": "Sonucu girilen",
+      "interventionsStarted": "Başlatılan alternatif",
+      "reviews": "{count} zincir incelemesi tamamlandı",
+      "dropOff": "Akış nerede yarıda kalıyor?",
+      "dropOffHint": "Akışı bitirmeyen oturumlarda görülen son ekran.",
+      "onboarding": "Onboarding",
+      "onboardingCompleted": "{count} oturum onboarding'i tamamladı.",
+      "interventions": "Alternatifler",
+      "completedPct": "{pct} bitirildi",
+      "custom": "Kendi alternatifi",
+      "screens": "Ekranlar açılıyor mu?",
+      "sessions": "{count} oturum",
+      "empty": "Bu dönemde veri yok.",
+      "steps": {
+        "behavior": "Davranış seçimi",
+        "intensity": "Dürtü şiddeti",
+        "pause": "Pause ekranı",
+        "emotions": "Duygular",
+        "triggers": "Tetikleyiciler",
+        "question": "Davranışa özel soru",
+        "pick": "Alternatif seçimi",
+        "intervention": "Alternatif",
+        "waiting": "Bekleme",
+        "sos": "SOS",
+        "sosBefore": "SOS: başlangıç şiddeti",
+        "remeasure": "Yeniden ölçüm",
+        "change": "Değişim",
+        "sosBehavior": "SOS: davranış seçimi",
+        "outcome": "Sonuç",
+        "data": "\"Bu da veri\"",
+        "welcome": "Karşılama",
+        "behaviors": "Davranışlar",
+        "timing": "Zamanlama",
+        "how": "Nasıl çalışır",
+        "safety": "Güvenlik notu",
+        "goal": "Amaç",
+        "app_opened": "Uygulama açıldı",
+        "insights_viewed": "İçgörüler",
+        "weekly_review_opened": "Haftalık hikâye",
+        "review_started": "Zincir incelemesi",
+        "feedback_sent": "Geri bildirim gönderildi",
+        "push_enabled": "Bildirim açıldı"
+      }
+    },
+    "feedback": {
+      "title": "Geri bildirimler",
+      "hint": "Test kullanıcılarının formdan gönderdikleri. Gönderen kişinin kimliği gösterilmez.",
+      "filter": "Durum",
+      "all": "Hepsi",
+      "status": {
+        "new": "Yeni",
+        "read": "Okundu",
+        "done": "Tamamlandı"
+      },
+      "reuse": "Tekrar kullanırım: {value} / 10",
+      "screenshot": "Ekran görüntüsü",
+      "openScreenshot": "Tam boyutta aç",
+      "empty": "Bu durumda geri bildirim yok."
+    }
   }
 }

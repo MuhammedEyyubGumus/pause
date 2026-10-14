@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 
+import { BrandMark } from "@/components/pause/brand";
 import { PrimaryButton } from "@/components/pause/primary-button";
 import { createClient } from "@/lib/supabase/client";
 
@@ -130,8 +131,8 @@ export function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe pb-safe" noValidate>
-      <header className="flex h-14 items-center justify-center">
-        <span className="text-sm font-bold tracking-[0.35em] text-primary">PAUSE</span>
+      <header className="flex h-16 items-center justify-center">
+        <BrandMark size="lg" />
       </header>
 
       <main className="flex flex-1 flex-col justify-center gap-8 py-8">

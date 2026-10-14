@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarPlus, ChevronRight, LifeBuoy } from "lucide-react";
+import { ArrowRight, CalendarPlus, ChevronRight, LifeBuoy, NotebookPen } from "lucide-react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -26,7 +26,7 @@ export default async function HistoryPage({ searchParams }: { searchParams: Prom
   let query = supabase
     .from("urge_events")
     .select(
-      "id, behavior_id, occurred_at, local_date, urge_before, urge_after, pause_status, outcome_option_id, emergency_mode, source",
+      "id, behavior_id, occurred_at, local_date, urge_before, urge_after, pause_status, outcome_option_id, emergency_mode, source, notes",
     )
     .is("deleted_at", null)
     .order("occurred_at", { ascending: false })
@@ -145,6 +145,12 @@ export default async function HistoryPage({ searchParams }: { searchParams: Prom
                             intervention={interventionByEvent.get(ev.id)}
                             label={(o) => optionLabel(o, tOpt)}
                           />
+                          {ev.notes && (
+                            <span className="flex min-w-0 items-center gap-1 text-sm text-muted-foreground italic">
+                              <NotebookPen className="size-3.5 shrink-0" aria-label={t("notes")} />
+                              <span className="truncate">{ev.notes}</span>
+                            </span>
+                          )}
                         </span>
 
                         <Intensity before={ev.urge_before} after={ev.urge_after} />

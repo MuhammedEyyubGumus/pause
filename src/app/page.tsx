@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { AppNav } from "@/components/pause/app-nav";
+import { BrandMark } from "@/components/pause/brand";
 import { TrackView } from "@/components/pause/track-view";
 import { loadActiveExperiment } from "@/features/experiments/load";
 import { ExperimentCard } from "@/features/home/experiment-card";
@@ -78,7 +79,7 @@ export default async function HomePage() {
       <SyncAgent />
       <TrackView name="app_opened" />
       <header className="flex h-14 items-center justify-between">
-        <span className="text-sm font-bold tracking-[0.35em] text-primary">PAUSE</span>
+        <BrandMark size="sm" />
         <Link
           href="/settings"
           aria-label={t("settings")}

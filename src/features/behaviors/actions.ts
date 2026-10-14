@@ -10,6 +10,7 @@ import type { Json } from "@/types/database";
 
 import {
   BEHAVIOR_GOALS,
+  CURRENCIES,
   CUSTOM_BEHAVIOR_ICON,
   iconForTemplate,
   PAUSE_MINUTES,
@@ -103,12 +104,15 @@ const updateSchema = z.object({
     .number()
     .int()
     .refine((m) => (PAUSE_MINUTES as readonly number[]).includes(m)),
+  // Bir seferde ortalama harcanan tutar (para harcanan davranışlar için, isteğe bağlı)
+  costAmount: z.number().min(0).max(100000).nullable(),
+  costCurrency: z.enum(CURRENCIES),
 });
 
 export async function updateBehavior(input: z.input<typeof updateSchema>): Promise<BehaviorActionResult | void> {
   const parsed = updateSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "invalid" };
-  const { id, name, why, goal, goalText, pauseMinutes } = parsed.data;
+  const { id, name, why, goal, goalText, pauseMinutes, costAmount, costCurrency } = parsed.data;
 
   const { supabase } = await getSessionProfile();
   const { data: behavior } = await supabase.from("behaviors").select("template_key").eq("id", id).maybeSingle();
@@ -123,6 +127,8 @@ export async function updateBehavior(input: z.input<typeof updateSchema>): Promi
       goal,
       goal_text: goal === "custom" ? goalText || null : null,
       pause_minutes: pauseMinutes,
+      cost_amount: costAmount == null ? null : Math.round(costAmount * 100) / 100,
+      cost_currency: costCurrency,
     })
     .eq("id", id);
   if (error) return { ok: false, error: "save_failed" };

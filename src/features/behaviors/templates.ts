@@ -41,3 +41,10 @@ export const PAUSE_MINUTES = [2, 5, 10, 15] as const;
 
 export const BEHAVIOR_GOALS = ["reduce", "mindful", "quit", "custom"] as const;
 export type BehaviorGoal = (typeof BEHAVIOR_GOALS)[number];
+
+// Tasarruf hesabı için para birimleri (veritabanındaki check ile aynı)
+export const CURRENCIES = ["TRY", "USD", "EUR", "GBP"] as const;
+export type Currency = (typeof CURRENCIES)[number];
+
+// Genellikle para harcanan davranışlar: "bir seferde ne harcıyorsun?" alanı açık gelir
+export const MONEY_TEMPLATES: readonly string[] = ["smoking", "alcohol", "shopping", "gaming", "eating"];

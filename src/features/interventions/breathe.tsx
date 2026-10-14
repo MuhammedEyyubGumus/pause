@@ -40,32 +40,46 @@ export function Breathe({ onFinish, compact = false }: Props) {
     return () => clearTimeout(id);
   }, [count, phase]);
 
-  const size = compact ? "size-40" : "size-64";
+  const size = compact ? "size-44" : "size-72";
+  // Nefes egzersizinin kendisi bu hareket olduğu için "hareketi azalt" açıkken de
+  // durmaz; yalnızca genliği küçülür (yavaş, tek yönlü bir büyüyüp küçülme).
+  const small = reduceMotion ? 0.8 : 0.5;
+  const scale = phase === "in" ? 1 : small;
+  const transition = { duration: phase === "in" ? INHALE : EXHALE, ease: [0.45, 0, 0.55, 1] as const };
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-8">
       <div className={`relative grid ${size} place-items-center`}>
+        {/* Dış hale: nefesle birlikte genişler */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-pause-ring/25"
-          animate={reduceMotion ? { scale: 0.85 } : { scale: phase === "in" ? 1 : 0.55 }}
-          initial={false}
-          transition={{ duration: phase === "in" ? INHALE : EXHALE, ease: [0.45, 0, 0.55, 1] }}
+          className="absolute inset-0 rounded-full bg-pause-ring/15"
+          initial={{ scale: small }}
+          animate={{ scale }}
+          transition={transition}
           aria-hidden
         />
         <motion.div
-          className="absolute inset-[18%] rounded-full bg-pause-ring/40"
-          animate={reduceMotion ? { scale: 0.85 } : { scale: phase === "in" ? 1 : 0.6 }}
-          initial={false}
-          transition={{ duration: phase === "in" ? INHALE : EXHALE, ease: [0.45, 0, 0.55, 1] }}
+          className="absolute inset-[12%] rounded-full bg-pause-ring/25"
+          initial={{ scale: small }}
+          animate={{ scale }}
+          transition={{ ...transition, delay: 0.08 }}
           aria-hidden
         />
-        <div className="relative flex flex-col items-center" aria-live="polite">
-          <span className={compact ? "text-lg font-semibold" : "text-2xl font-semibold"}>
-            {phase === "in" ? t("in") : t("out")}
-          </span>
-          <span className={`numeric font-bold ${compact ? "text-3xl" : "text-5xl"}`}>{count}</span>
-        </div>
+        {/* Çekirdek: dolu daire, sayaç içinde */}
+        <motion.div
+          className="absolute inset-[26%] rounded-full bg-pause-ring shadow-[0_0_48px_var(--pause-ring)]"
+          initial={{ scale: small + 0.15 }}
+          animate={{ scale: phase === "in" ? 1.15 : small + 0.15 }}
+          transition={{ ...transition, delay: 0.16 }}
+          aria-hidden
+        />
+        <span className={`numeric relative leading-none font-bold text-pause ${compact ? "text-3xl" : "text-5xl"}`}>
+          {count}
+        </span>
       </div>
+      <p className={compact ? "-mt-4 text-lg font-semibold" : "-mt-2 text-2xl font-semibold"} aria-live="polite">
+        {phase === "in" ? t("in") : t("out")}
+      </p>
 
       {!compact && (
         <>

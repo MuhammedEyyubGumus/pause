@@ -10,7 +10,7 @@ export default async function EditBehaviorPage({ params }: { params: Promise<{ i
   const [{ data: behavior }, { count }] = await Promise.all([
     supabase
       .from("behaviors")
-      .select("id, name, icon, template_key, why, goal, goal_text, pause_minutes")
+      .select("id, name, icon, template_key, why, goal, goal_text, pause_minutes, cost_amount, cost_currency")
       .eq("id", id)
       .is("archived_at", null)
       .maybeSingle(),

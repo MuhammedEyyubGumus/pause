@@ -39,6 +39,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      admins: {
+        Row: {
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       app_events: {
         Row: {
           app_version: string | null
@@ -69,6 +84,8 @@ export type Database = {
       behaviors: {
         Row: {
           archived_at: string | null
+          cost_amount: number | null
+          cost_currency: string
           created_at: string
           goal: Database["public"]["Enums"]["behavior_goal"]
           goal_text: string | null
@@ -86,6 +103,8 @@ export type Database = {
         }
         Insert: {
           archived_at?: string | null
+          cost_amount?: number | null
+          cost_currency?: string
           created_at?: string
           goal?: Database["public"]["Enums"]["behavior_goal"]
           goal_text?: string | null
@@ -103,6 +122,8 @@ export type Database = {
         }
         Update: {
           archived_at?: string | null
+          cost_amount?: number | null
+          cost_currency?: string
           created_at?: string
           goal?: Database["public"]["Enums"]["behavior_goal"]
           goal_text?: string | null
@@ -350,6 +371,7 @@ export type Database = {
       }
       feedback: {
         Row: {
+          admin_status: string
           answers: Json
           app_version: string | null
           created_at: string
@@ -360,6 +382,7 @@ export type Database = {
           would_reuse: number | null
         }
         Insert: {
+          admin_status?: string
           answers?: Json
           app_version?: string | null
           created_at?: string
@@ -370,6 +393,7 @@ export type Database = {
           would_reuse?: number | null
         }
         Update: {
+          admin_status?: string
           answers?: Json
           app_version?: string | null
           created_at?: string
@@ -667,6 +691,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_feedback: {
+        Args: { p_limit?: number; p_offset?: number; p_status?: string }
+        Returns: Json
+      }
+      admin_overview: { Args: never; Returns: Json }
+      admin_product_metrics: { Args: { p_days?: number }; Returns: Json }
+      admin_set_feedback_status: {
+        Args: { p_id: string; p_status: string }
+        Returns: undefined
+      }
       claim_due_pause_notifications: {
         Args: never
         Returns: {
@@ -680,6 +714,11 @@ export type Database = {
         Returns: Json
       }
       get_milestones: { Args: never; Returns: Json }
+      get_savings: {
+        Args: { p_behavior?: string; p_from?: string }
+        Returns: Json
+      }
+      is_admin: { Args: never; Returns: boolean }
       option_usable: {
         Args: {
           p_kind: Database["public"]["Enums"]["option_kind"]

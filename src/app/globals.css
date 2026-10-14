@@ -1,6 +1,6 @@
 /* =====================================================================
    PAUSE · Tasarım sistemi (Tailwind CSS v4 + shadcn/ui)
-   Konsept: "sıcak sakinlik" — akşam ışığında bir oda.
+   Peace Therapist markası: mor ve beyaz; Headspace sakinliği.
    Tailwind v4'te tailwind.config.ts yok; tüm token'lar burada.
    ===================================================================== */
 
@@ -12,99 +12,97 @@
 
 /* ---------------------------------------------------------------------
    1. RENK TOKEN'LARI (OKLCH)
-   Zemin: kum / taş · Ana renk: derin teal · Kırmızı yok (yalnızca gerçek hata)
+   Marka: Peace Therapist — mor (#92278F) ve beyaz.
+   Zemin beyaz, ana renk derin mor; pause anı koyu mürdüm bir yüzey.
+   Kırmızı yok (yalnızca gerçek sistem hatası için yumuşak terrakota).
    --------------------------------------------------------------------- */
 :root {
-  /* Zemin ve yüzeyler — sıcak kum */
-  --background: oklch(0.975 0.008 80);        /* #FAF7F2 civarı */
-  --foreground: oklch(0.26 0.015 60);         /* sıcak taş, saf siyah değil */
-  --card: oklch(0.99 0.005 80);
-  --card-foreground: oklch(0.26 0.015 60);
-  --popover: oklch(0.99 0.005 80);
-  --popover-foreground: oklch(0.26 0.015 60);
+  /* Zemin ve yüzeyler — beyaz, çok hafif lavanta */
+  --background: oklch(0.985 0.004 320);       /* #FBF9FC civarı */
+  --foreground: oklch(0.25 0.03 320);         /* koyu mürdüm-gri, saf siyah değil */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.03 320);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.03 320);
 
-  /* Ana renk — derin, sakin teal: PAUSE'un "durak" anı */
-  --primary: oklch(0.45 0.07 195);
-  --primary-foreground: oklch(0.98 0.01 190);
+  /* Ana renk — Peace Therapist moru */
+  --primary: oklch(0.481 0.184 329.2);        /* #92278F */
+  --primary-foreground: oklch(0.99 0.005 320);
 
-  /* İkincil — yumuşak taş */
-  --secondary: oklch(0.94 0.012 80);
-  --secondary-foreground: oklch(0.30 0.015 60);
+  --secondary: oklch(0.955 0.012 320);
+  --secondary-foreground: oklch(0.32 0.06 325);
 
-  /* Sessiz metin ve alanlar */
-  --muted: oklch(0.945 0.01 80);
-  --muted-foreground: oklch(0.50 0.015 60);
+  --muted: oklch(0.955 0.01 320);
+  --muted-foreground: oklch(0.50 0.03 320);
 
-  /* Vurgu — teal'ın açık tonu (seçili kart zemini) */
-  --accent: oklch(0.93 0.03 190);
-  --accent-foreground: oklch(0.30 0.05 195);
+  /* Vurgu — morun açık tonu (seçili kart zemini) */
+  --accent: oklch(0.945 0.025 326);           /* #F4E8F4 civarı */
+  --accent-foreground: oklch(0.38 0.14 329);
 
-  /* Yalnızca gerçek sistem hataları — kırmızı değil, yumuşak terrakota */
   --destructive: oklch(0.56 0.12 35);
 
-  --border: oklch(0.90 0.012 75);
-  --input: oklch(0.90 0.012 75);
-  --ring: oklch(0.55 0.07 195);
+  --border: oklch(0.91 0.015 320);
+  --input: oklch(0.91 0.015 320);
+  --ring: oklch(0.55 0.17 329);
 
-  /* Dürtü şiddeti skalası — tek renk ailesi, yoğunlaştıkça sıcaklaşır.
-     Kırmızı alarm yok; 10 "yoğun" görünür, korkutucu değil. */
-  --urge-low: oklch(0.92 0.03 85);
-  --urge-high: oklch(0.64 0.12 50);
+  /* Dürtü şiddeti skalası — tek renk ailesi, yoğunlaştıkça sıcaklaşır (kırmızı alarm yok) */
+  --urge-low: oklch(0.93 0.03 330);
+  --urge-high: oklch(0.64 0.13 50);
 
-  /* Pause anı — ekran "söner", tek bir sakin yüzey kalır */
-  --pause-surface: oklch(0.30 0.035 205);
-  --pause-foreground: oklch(0.95 0.015 190);
-  --pause-ring: oklch(0.78 0.07 190);
+  /* Pause anı — ekran "söner", koyu mürdüm tek bir sakin yüzey kalır */
+  --pause-surface: oklch(0.24 0.07 325);
+  --pause-foreground: oklch(0.97 0.012 325);
+  --pause-ring: oklch(0.82 0.08 327);          /* #E4C7E3 tonunda orkide */
 
-  /* Olumlu değişim (8 -> 5) — yeşil "başardın" değil, sakin teal */
-  --change-positive: oklch(0.55 0.08 185);
+  /* Olumlu değişim (8 -> 5) — "başardın" değil, sakin yeşil */
+  --change-positive: oklch(0.56 0.11 156);
 
   /* İçgörü grafikleri */
-  --chart-1: oklch(0.45 0.07 195);
-  --chart-2: oklch(0.64 0.12 50);
-  --chart-3: oklch(0.55 0.06 260);
-  --chart-4: oklch(0.70 0.06 140);
-  --chart-5: oklch(0.60 0.04 60);
+  --chart-1: oklch(0.481 0.184 329.2);
+  --chart-2: oklch(0.64 0.13 50);
+  --chart-3: oklch(0.598 0.199 282.5);
+  --chart-4: oklch(0.56 0.11 156);
+  --chart-5: oklch(0.60 0.04 320);
 
   /* Köşe yarıçapı — yumuşak, kart odaklı */
   --radius: 1.25rem; /* 20px */
 }
 
 .dark {
-  /* Derin lacivert-gri gece odası */
-  --background: oklch(0.19 0.015 240);
-  --foreground: oklch(0.93 0.01 80);
-  --card: oklch(0.23 0.015 240);
-  --card-foreground: oklch(0.93 0.01 80);
-  --popover: oklch(0.23 0.015 240);
-  --popover-foreground: oklch(0.93 0.01 80);
+  /* Derin mürdüm gece odası */
+  --background: oklch(0.17 0.025 320);
+  --foreground: oklch(0.94 0.012 320);
+  --card: oklch(0.215 0.03 320);
+  --card-foreground: oklch(0.94 0.012 320);
+  --popover: oklch(0.215 0.03 320);
+  --popover-foreground: oklch(0.94 0.012 320);
 
-  --primary: oklch(0.74 0.08 190);
-  --primary-foreground: oklch(0.18 0.02 200);
+  --primary: oklch(0.75 0.13 328);
+  --primary-foreground: oklch(0.18 0.04 325);
 
-  --secondary: oklch(0.27 0.015 240);
-  --secondary-foreground: oklch(0.90 0.01 80);
+  --secondary: oklch(0.26 0.03 320);
+  --secondary-foreground: oklch(0.92 0.012 320);
 
-  --muted: oklch(0.26 0.015 240);
-  --muted-foreground: oklch(0.70 0.015 80);
+  --muted: oklch(0.25 0.03 320);
+  --muted-foreground: oklch(0.72 0.03 320);
 
-  --accent: oklch(0.30 0.04 200);
-  --accent-foreground: oklch(0.92 0.02 190);
+  --accent: oklch(0.30 0.07 325);
+  --accent-foreground: oklch(0.93 0.03 327);
 
   --destructive: oklch(0.66 0.11 35);
 
-  --border: oklch(0.32 0.015 240);
-  --input: oklch(0.32 0.015 240);
-  --ring: oklch(0.70 0.07 190);
+  --border: oklch(0.31 0.035 320);
+  --input: oklch(0.31 0.035 320);
+  --ring: oklch(0.72 0.13 328);
 
-  --urge-low: oklch(0.34 0.03 70);
+  --urge-low: oklch(0.33 0.05 325);
   --urge-high: oklch(0.70 0.12 55);
 
-  --pause-surface: oklch(0.14 0.02 220);
-  --pause-foreground: oklch(0.93 0.015 190);
-  --pause-ring: oklch(0.72 0.07 190);
+  --pause-surface: oklch(0.13 0.04 320);
+  --pause-foreground: oklch(0.95 0.015 325);
+  --pause-ring: oklch(0.76 0.11 327);
 
-  --change-positive: oklch(0.74 0.08 185);
+  --change-positive: oklch(0.75 0.11 156);
 }
 
 /* ---------------------------------------------------------------------

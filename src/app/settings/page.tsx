@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight, LogOut, MessageSquareText, Plus } from "lucide-react";
+import { ArrowLeft, ChevronRight, LayoutDashboard, LogOut, MessageSquareText, Plus } from "lucide-react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -20,11 +20,10 @@ export default async function SettingsPage() {
   const tb = await getTranslations("behaviors");
   const locale = await getLocale();
 
-  const { data: behaviors } = await supabase
-    .from("behaviors")
-    .select("id, name, icon, template_key, pause_minutes")
-    .is("archived_at", null)
-    .order("sort_order");
+  const [{ data: behaviors }, { data: isAdmin }] = await Promise.all([
+    supabase.from("behaviors").select("id, name, icon, template_key, pause_minutes").is("archived_at", null).order("sort_order"),
+    supabase.rpc("is_admin"),
+  ]);
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-8 px-4 pt-safe pb-safe">
@@ -114,6 +113,17 @@ export default async function SettingsPage() {
         </form>
       </section>
 
+      {isAdmin && (
+        <Link
+          href="/admin"
+          className="flex items-center gap-3 rounded-xl bg-primary p-4 text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          <LayoutDashboard className="size-5" aria-hidden />
+          <span className="flex-1 font-semibold">{t("admin")}</span>
+          <ChevronRight className="size-5 rtl:rotate-180" aria-hidden />
+        </Link>
+      )}
+
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-semibold text-muted-foreground">{t("testGroup")}</h2>
         <Link
@@ -143,6 +153,17 @@ export default async function SettingsPage() {
           <Link href="/privacy" className="font-semibold underline-offset-4 hover:underline">
             {t("privacy")}
           </Link>
+        </p>
+        <p className="text-center text-xs text-muted-foreground">
+          {t("madeBy")}{" "}
+          <a
+            href="https://peacetherapist.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-primary underline-offset-4 hover:underline"
+          >
+            peacetherapist.com
+          </a>
         </p>
         <form action={signOut}>
           <button className="tap-target inline-flex w-full items-center justify-center gap-2 rounded-xl font-semibold text-muted-foreground hover:text-foreground">

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, CircleCheck, CircleSlash, LifeBuoy, Link2, Pencil, Trash2 } from "lucide-react";
+import { ArrowLeft, CircleCheck, CircleSlash, LifeBuoy, Link2, NotebookPen, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -173,11 +173,7 @@ export function EventDetail({ event, title, behaviors, allBehaviors, options }: 
           ) : null;
         })}
 
-        {r.notes && (
-          <Section title={t("notes")}>
-            <p className="whitespace-pre-wrap">{r.notes}</p>
-          </Section>
-        )}
+        <NoteSection eventId={event.id} initial={r.notes ?? ""} disabled={r.pause_status === "active"} />
       </main>
 
       <footer className="flex flex-col gap-2 pt-2">
@@ -478,5 +474,102 @@ function CompactSlider({
       />
       <span className="numeric w-8 text-end text-2xl font-bold">{value}</span>
     </div>
+  );
+}
+
+// Kişisel not: ayrı düzenleme ekranına girmeden, kaydın üzerinde yazılır.
+// "O an ne yaşadım, ne fark ettim?" (en fazla 1000 karakter)
+function NoteSection({ eventId, initial, disabled }: { eventId: string; initial: string; disabled: boolean }) {
+  const t = useTranslations("history");
+  const router = useRouter();
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(initial);
+  const [saved, setSaved] = useState(initial);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function save() {
+    setBusy(true);
+    setError(false);
+    // Cihazda bekleyen değişiklik varsa önce o gitsin, not üzerine yazılmasın
+    await syncPending();
+    const value = text.trim() || null;
+    const { error: err } = await createClient().from("urge_events").update({ notes: value }).eq("id", eventId);
+    setBusy(false);
+    if (err) {
+      setError(true);
+      return;
+    }
+    await localDb.events.delete(eventId);
+    setSaved(value ?? "");
+    setEditing(false);
+    router.refresh();
+  }
+
+  if (!editing) {
+    return (
+      <Section title={t("notes")}>
+        {saved ? (
+          <button
+            type="button"
+            onClick={() => !disabled && setEditing(true)}
+            className="w-full rounded-xl bg-card p-4 text-start whitespace-pre-wrap transition-colors hover:bg-accent/60"
+          >
+            {saved}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setEditing(true)}
+            disabled={disabled}
+            className="tap-target inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border font-semibold text-primary transition-colors hover:bg-accent/60 disabled:opacity-50"
+          >
+            <NotebookPen className="size-5" aria-hidden />
+            {t("addNote")}
+          </button>
+        )}
+      </Section>
+    );
+  }
+
+  return (
+    <Section title={t("notes")}>
+      <div className="flex flex-col gap-2">
+        <textarea
+          autoFocus
+          value={text}
+          maxLength={1000}
+          rows={5}
+          onChange={(e) => setText(e.target.value)}
+          placeholder={t("notesPlaceholder")}
+          className="w-full resize-none rounded-xl border-2 border-transparent bg-card p-4 text-base outline-none focus:border-primary"
+        />
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <span>{t("notePrivate")}</span>
+          <span className="numeric">{text.length} / 1000</span>
+        </div>
+        {error && <p className="text-sm font-medium text-destructive">{t("offlineError")}</p>}
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              setText(saved);
+              setEditing(false);
+            }}
+            className="tap-target rounded-xl bg-muted font-semibold"
+          >
+            {t("cancel")}
+          </button>
+          <button
+            type="button"
+            onClick={() => void save()}
+            disabled={busy || text.trim() === saved.trim()}
+            className="tap-target rounded-xl bg-primary font-semibold text-primary-foreground disabled:opacity-50"
+          >
+            {t("save")}
+          </button>
+        </div>
+      </div>
+    </Section>
   );
 }

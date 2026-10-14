@@ -13,7 +13,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   applicationName: "PAUSE",
   title: { default: "PAUSE", template: "%s · PAUSE" },
-  description: "Dürtü ile davranış arasındaki alanı büyüt.",
+  description: "Peace Therapist · Dürtü ile davranış arasındaki alanı büyüt.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -30,8 +30,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover", // çentik ve ana ekran çubuğu için pt-safe / pb-safe
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAF7F2" },
-    { media: "(prefers-color-scheme: dark)", color: "#161B22" },
+    { media: "(prefers-color-scheme: light)", color: "#FBF9FC" },
+    { media: "(prefers-color-scheme: dark)", color: "#1B1219" },
   ],
 };
 

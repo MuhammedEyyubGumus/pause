@@ -124,7 +124,9 @@
     "yourData": "Your data",
     "privacy": "Privacy",
     "analyticsTitle": "Anonymous usage statistics",
-    "analyticsHint": "Helps us improve the app. Not linked to your account, contains no content."
+    "analyticsHint": "Helps us improve the app. Not linked to your account, contains no content.",
+    "madeBy": "PAUSE is a Peace Therapist app ·",
+    "admin": "Admin panel"
   },
   "urge": {
     "close": "Close",
@@ -295,7 +297,7 @@
     "completed": "Completed",
     "notCompleted": "Stopped midway",
     "notes": "Note",
-    "notesPlaceholder": "What was on your mind, what you noticed…",
+    "notesPlaceholder": "What did you go through, what did you notice? What would you like to tell yourself next time?",
     "edit": "Edit",
     "editTitle": "Edit entry",
     "save": "Save",
@@ -307,7 +309,9 @@
     "intensityBefore": "Urge at the start",
     "intensityAfter": "Urge afterwards",
     "addValue": "Add a value",
-    "reviewChain": "Review the chain"
+    "reviewChain": "Review the chain",
+    "addNote": "Add a note",
+    "notePrivate": "Your notes are visible only to you."
   },
   "retro": {
     "whenTitle": "When did it happen?",
@@ -370,7 +374,13 @@
     "archive": "Stop tracking this behavior",
     "archiveConfirm": "This behavior will leave your list. Your past entries stay; if you add it again, they come back.",
     "cancel": "Cancel",
-    "lastActive": "You need to track at least one behavior. Add another one first."
+    "lastActive": "You need to track at least one behavior. Add another one first.",
+    "costLabel": "How much do you spend on average each time?",
+    "costHint": "When an urge comes and you don't act on it, this amount counts as not spent. E.g. if a pack costs 100 and you smoke 1 cigarette each time, enter 5.",
+    "costPlaceholder": "0",
+    "currency": "Currency",
+    "costInvalid": "Enter a valid amount.",
+    "costAdd": "I spend money on this"
   },
   "account": {
     "exportJson": "Download all my data",
@@ -564,7 +574,9 @@
     "mapCard": "Your behavior map",
     "mapCardSub": "Your trigger, risky hours, strongest alternative",
     "milestonesCard": "Your milestones",
-    "milestonesCardSub": "{done} / {total} · no streaks, no resets"
+    "milestonesCardSub": "{done} / {total} · no streaks, no resets",
+    "savingsCard": "Savings and lessons",
+    "savingsCardSub": "Money you didn't spend, lessons from what happened"
   },
   "review": {
     "close": "Close",
@@ -739,5 +751,124 @@
       }
     },
     "close": "Close"
+  },
+  "savings": {
+    "title": "Savings and lessons",
+    "back": "Insights",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "savedTitle": "Money you didn't spend",
+    "savedBody": "{count, plural, one {The one time an urge came and you didn't act on it.} other {The # times an urge came and you didn't act on it.}}",
+    "noCost": "If you spend money on this behavior, enter the average amount per time; you'll see here how much adds up each time you don't act on an urge.",
+    "setCost": "Enter the amount",
+    "countsTitle": "{count, plural, one {# urge came} other {# urges came}}",
+    "counts": {
+      "notDone": "You didn't act",
+      "stoppedEarly": "You started but stopped early",
+      "occurred": "You acted on it",
+      "open": "No outcome entered"
+    },
+    "occurredNote": "The moments you acted are data too: the lessons below come from them.",
+    "lessonsTitle": "Your lessons",
+    "lessonsEmpty": "When you review the chain after a behavior happens or write a note on an entry, your lessons collect here.",
+    "thought": "What went through your mind",
+    "firstAction": "First step",
+    "nextTime": "Next time: at the {step} moment → {option}"
+  },
+  "admin": {
+    "title": "Admin",
+    "nav": {
+      "overview": "Overview",
+      "metrics": "Product metrics",
+      "feedback": "Feedback",
+      "back": "Back to the app"
+    },
+    "overview": {
+      "title": "Overview",
+      "privacy": "Only totals appear here. For privacy, no user's urge entries, notes or behavior details are ever shown in the admin panel.",
+      "users": "Users",
+      "usersSub": "{onboarded} finished setup · {week} new this week",
+      "active": "Logged in the last 7 days",
+      "activeSub": "{month} in the last 30 days",
+      "events": "Total urge entries",
+      "eventsSub": "{week} this week",
+      "pausedShare": "Entries with a pause",
+      "remeasuredShare": "{pct} of pauses were re-measured",
+      "reflections": "Chain reviews",
+      "experiments": "{count} weekly experiments",
+      "push": "Users with notifications on",
+      "feedback": "Feedback",
+      "feedbackNew": "{count} new",
+      "reuse": "Average \"would use again\" score",
+      "behaviors": "Behaviors being tracked",
+      "customBehavior": "Self-defined behavior",
+      "empty": "No data yet."
+    },
+    "metrics": {
+      "title": "Product metrics",
+      "hint": "Anonymous usage events: not linked to accounts and never containing anything users wrote. Session: one opening of the app.",
+      "period": "Period",
+      "days": "{count} days",
+      "flowStarted": "Urge flows started",
+      "pauseCompleted": "Pauses completed",
+      "flowCompleted": "Outcome entered",
+      "interventionsStarted": "Alternatives started",
+      "reviews": "{count} chain reviews completed",
+      "dropOff": "Where does the flow stop?",
+      "dropOffHint": "The last screen seen in sessions that didn't finish the flow.",
+      "onboarding": "Onboarding",
+      "onboardingCompleted": "{count} sessions completed onboarding.",
+      "interventions": "Alternatives",
+      "completedPct": "{pct} finished",
+      "custom": "Own alternative",
+      "screens": "Are screens being opened?",
+      "sessions": "{count} sessions",
+      "empty": "No data in this period.",
+      "steps": {
+        "behavior": "Behavior choice",
+        "intensity": "Urge intensity",
+        "pause": "Pause screen",
+        "emotions": "Emotions",
+        "triggers": "Triggers",
+        "question": "Behavior question",
+        "pick": "Choosing an alternative",
+        "intervention": "Alternative",
+        "waiting": "Waiting",
+        "sos": "SOS",
+        "sosBefore": "SOS: starting intensity",
+        "remeasure": "Re-measure",
+        "change": "Change",
+        "sosBehavior": "SOS: behavior choice",
+        "outcome": "Outcome",
+        "data": "\"This is data too\"",
+        "welcome": "Welcome",
+        "behaviors": "Behaviors",
+        "timing": "Timing",
+        "how": "How it works",
+        "safety": "Safety note",
+        "goal": "Goal",
+        "app_opened": "App opened",
+        "insights_viewed": "Insights",
+        "weekly_review_opened": "Weekly story",
+        "review_started": "Chain review",
+        "feedback_sent": "Feedback sent",
+        "push_enabled": "Notifications turned on"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "hint": "What test users sent through the form. The sender's identity isn't shown.",
+      "filter": "Status",
+      "all": "All",
+      "status": {
+        "new": "New",
+        "read": "Read",
+        "done": "Done"
+      },
+      "reuse": "Would use again: {value} / 10",
+      "screenshot": "Screenshot",
+      "openScreenshot": "Open full size",
+      "empty": "No feedback with this status."
+    }
   }
 }
