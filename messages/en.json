@@ -370,18 +370,67 @@
     "goalTextPlaceholder": "Describe your goal briefly",
     "whyLabel": "Why do I want to change?",
     "whyHint": "To remind yourself in hard moments.",
-    "whyPlaceholder": "e.g. I want to wake up feeling fresher",
     "save": "Save",
     "archive": "Stop tracking this behavior",
     "archiveConfirm": "This behavior will leave your list. Your past entries stay; if you add it again, they come back.",
     "cancel": "Cancel",
     "lastActive": "You need to track at least one behavior. Add another one first.",
-    "costLabel": "How much do you spend on average each time?",
-    "costHint": "When an urge comes and you don't act on it, this amount counts as not spent. E.g. if a pack costs 100 and you smoke 1 cigarette each time, enter 5.",
     "costPlaceholder": "0",
     "currency": "Currency",
     "costInvalid": "Enter a valid amount.",
-    "costAdd": "I spend money on this"
+    "costAdd": "I spend money on this",
+    "copy": {
+      "smoking": {
+        "costLabel": "How much do you spend on cigarettes each time?",
+        "costHint": "Every urge you don't act on counts as money kept. E.g. if a pack costs 100 and you smoke 1 cigarette each time, enter 5.",
+        "whyPlaceholder": "e.g. I want to climb stairs without getting out of breath"
+      },
+      "alcohol": {
+        "costLabel": "How much do you spend on drinks each time?",
+        "costHint": "Every urge you don't act on counts as money not spent. E.g. if you buy 2 beers in an evening at 120 each, enter 240.",
+        "whyPlaceholder": "e.g. I want to drink less for my health and sleep"
+      },
+      "shopping": {
+        "costLabel": "How much does an impulse purchase usually cost?",
+        "costHint": "Every time you don't check out, this amount counts as not spent. Think of your last unplanned purchases; e.g. 300, 500 and 400 average to 400.",
+        "whyPlaceholder": "e.g. I want to reach the end of the month without debt"
+      },
+      "gaming": {
+        "costLabel": "How much do you spend on games each time?",
+        "costHint": "In-game purchases, packs, loot boxes or coins… Every urge you don't act on counts as money not spent. Thinking monthly? Divide by how often you buy: 600 a month over 4 times is 150.",
+        "whyPlaceholder": "e.g. I want to save the money that goes into games"
+      },
+      "eating": {
+        "costLabel": "How much do you spend when you eat on an urge?",
+        "costHint": "Delivery, takeaway or snacks… Every urge you let pass counts as money not spent. E.g. if a late-night order averages 350, enter 350.",
+        "whyPlaceholder": "e.g. I want to tell hunger apart from my feelings"
+      },
+      "social_media": {
+        "costLabel": "How much do you spend on average each time?",
+        "costHint": "Things like in-app purchases or shopping from ads. Every urge you don't act on counts as money kept.",
+        "whyPlaceholder": "e.g. I want to look at my phone less before bed"
+      },
+      "procrastination": {
+        "costLabel": "How much do you spend on average each time?",
+        "costHint": "If procrastinating costs you money (delivery, distraction shopping), enter a rough amount per time. Every urge you don't act on counts as money not spent.",
+        "whyPlaceholder": "e.g. I want to finish things without leaving them to the last day"
+      },
+      "nail_biting": {
+        "costLabel": "How much do you spend on average each time?",
+        "costHint": "If this behavior costs you money, enter a rough amount per time. Every urge you don't act on counts as money not spent.",
+        "whyPlaceholder": "e.g. I want to feel good when I look at my hands"
+      },
+      "sleep": {
+        "costLabel": "How much do you spend on average each time?",
+        "costHint": "If staying up late costs you money (late orders, show or game purchases), enter a rough amount per time. Every urge you don't act on counts as money not spent.",
+        "whyPlaceholder": "e.g. I want to wake up feeling fresher"
+      },
+      "default": {
+        "costLabel": "How much do you spend on average each time?",
+        "costHint": "When an urge comes and you don't act on it, this amount counts as not spent. Enter a rough amount per time.",
+        "whyPlaceholder": "e.g. I want to make more time for myself"
+      }
+    }
   },
   "account": {
     "exportJson": "Download all my data",

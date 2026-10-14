@@ -370,18 +370,67 @@
     "goalTextPlaceholder": "Hedefini kısaca yaz",
     "whyLabel": "Neden değiştirmek istiyorum?",
     "whyHint": "Zor anlarda kendine hatırlatmak için.",
-    "whyPlaceholder": "Örn. sabahları daha dinç uyanmak istiyorum",
     "save": "Kaydet",
     "archive": "Bu davranışı takip etmeyi bırak",
     "archiveConfirm": "Bu davranış listenden kalkar. Geçmiş kayıtların silinmez; tekrar eklersen geri gelir.",
     "cancel": "Vazgeç",
     "lastActive": "En az bir davranış takip etmen gerekiyor. Önce başka bir davranış ekle.",
-    "costLabel": "Bir seferde ortalama ne harcıyorsun?",
-    "costHint": "Dürtü gelip bu davranışı yapmadığında bu tutar harcanmamış sayılır. Örn. bir paket sigara 100 ₺ ise ve her seferinde 1 sigara içiyorsan 5 ₺.",
     "costPlaceholder": "0",
     "currency": "Para birimi",
     "costInvalid": "Geçerli bir tutar gir.",
-    "costAdd": "Bu davranışa para harcıyorum"
+    "costAdd": "Bu davranışa para harcıyorum",
+    "copy": {
+      "smoking": {
+        "costLabel": "Bir seferde sigaraya ortalama ne harcıyorsun?",
+        "costHint": "İçmediğin her dürtüde bu tutar cebinde kalmış sayılır. Örn. paket 100 ₺ ve bir seferde 1 sigara içiyorsan: 5 ₺.",
+        "whyPlaceholder": "Örn. merdiven çıkarken nefesim kesilmesin istiyorum"
+      },
+      "alcohol": {
+        "costLabel": "Bir seferde içkiye ortalama ne harcıyorsun?",
+        "costHint": "İçmediğin her dürtüde bu tutar harcanmamış sayılır. Örn. bir akşam 2 bira alıyorsan ve tanesi 120 ₺ ise: 240 ₺.",
+        "whyPlaceholder": "Örn. sağlığım ve uykum için daha az içmek istiyorum"
+      },
+      "shopping": {
+        "costLabel": "Dürtüyle yaptığın bir alışveriş ortalama ne tutuyor?",
+        "costHint": "Sepeti onaylamadığın her dürtüde bu tutar harcanmamış sayılır. Son plansız alışverişlerini düşün; örn. 300, 500 ve 400 ₺ ise ortalaması: 400 ₺.",
+        "whyPlaceholder": "Örn. ay sonunu borçsuz getirmek istiyorum"
+      },
+      "gaming": {
+        "costLabel": "Bir seferde oyuna ortalama ne harcıyorsun?",
+        "costHint": "Oyun içi satın alma, paket, kasa ya da jeton… Almadığın her dürtüde bu tutar harcanmamış sayılır. Aylık düşünüyorsan ayda kaç kez aldığına böl: ayda 600 ₺ ve 4 kez ise 150 ₺.",
+        "whyPlaceholder": "Örn. oyuna giden parayı biriktirmek istiyorum"
+      },
+      "eating": {
+        "costLabel": "Dürtüyle yediğinde ortalama ne harcıyorsun?",
+        "costHint": "Sipariş, paket servis ya da atıştırmalık… Vazgeçtiğin her dürtüde bu tutar harcanmamış sayılır. Örn. gece verdiğin bir sipariş ortalama 350 ₺ ise: 350 ₺.",
+        "whyPlaceholder": "Örn. açlıkla duygularımı ayırt edebilmek istiyorum"
+      },
+      "social_media": {
+        "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+        "costHint": "Uygulama içi satın alma ya da reklamdan gelen alışveriş gibi. Harcamadığın her dürtüde bu tutar cebinde kalmış sayılır.",
+        "whyPlaceholder": "Örn. yatmadan önce telefona daha az bakmak istiyorum"
+      },
+      "procrastination": {
+        "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+        "costHint": "Ertelerken para harcıyorsan (sipariş, oyalanma alışverişi gibi) bir seferlik yaklaşık tutarı yaz. Yapmadığın her dürtüde bu tutar harcanmamış sayılır.",
+        "whyPlaceholder": "Örn. işlerimi son güne bırakmadan bitirmek istiyorum"
+      },
+      "nail_biting": {
+        "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+        "costHint": "Bu davranışa para harcıyorsan bir seferlik yaklaşık tutarı yaz. Yapmadığın her dürtüde bu tutar harcanmamış sayılır.",
+        "whyPlaceholder": "Örn. ellerime bakınca kendimi iyi hissetmek istiyorum"
+      },
+      "sleep": {
+        "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+        "costHint": "Geç saatte sipariş ya da dizi/oyun satın alımı gibi harcamalar varsa bir seferlik yaklaşık tutarı yaz. Yapmadığın her dürtüde bu tutar harcanmamış sayılır.",
+        "whyPlaceholder": "Örn. sabahları daha dinç uyanmak istiyorum"
+      },
+      "default": {
+        "costLabel": "Bir seferde ortalama ne harcıyorsun?",
+        "costHint": "Dürtü gelip bu davranışı yapmadığında bu tutar harcanmamış sayılır. Bir seferde harcadığın yaklaşık tutarı yaz.",
+        "whyPlaceholder": "Örn. kendime daha çok zaman ayırmak istiyorum"
+      }
+    }
   },
   "account": {
     "exportJson": "Tüm verilerimi indir",

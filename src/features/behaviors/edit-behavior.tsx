@@ -41,6 +41,8 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
 
   const isCustom = !isTemplateKey(behavior.template_key);
   const title = isTemplateKey(behavior.template_key) ? tb(behavior.template_key) : behavior.name;
+  // Tutar ve "neden" metinleri davranışa özel; özel davranışlar genel metni kullanır
+  const copyKey = isTemplateKey(behavior.template_key) ? behavior.template_key : "default";
 
   const [name, setName] = useState(behavior.name);
   const [why, setWhy] = useState(behavior.why ?? "");
@@ -167,7 +169,7 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
           )}
         </Field>
 
-        <Field title={t("costLabel")} hint={costOpen ? t("costHint") : undefined}>
+        <Field title={t(`copy.${copyKey}.costLabel`)} hint={costOpen ? t(`copy.${copyKey}.costHint`) : undefined}>
           {costOpen ? (
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
@@ -211,7 +213,7 @@ export function EditBehavior({ behavior, isOnlyBehavior }: { behavior: Behavior;
             onChange={(e) => setWhy(e.target.value)}
             maxLength={280}
             rows={3}
-            placeholder={t("whyPlaceholder")}
+            placeholder={t(`copy.${copyKey}.whyPlaceholder`)}
             className="w-full resize-none rounded-xl border-2 border-transparent bg-card p-4 outline-none focus:border-primary"
           />
         </Field>
