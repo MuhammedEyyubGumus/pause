@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ChartNoAxesColumn, LayoutDashboard, MessageSquareText } from "lucide-react";
+import { ChartNoAxesColumn, LayoutDashboard, MessageSquareText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -47,13 +47,6 @@ export function AdminNav({ newFeedback }: { newFeedback: number }) {
           </Link>
         );
       })}
-      <Link
-        href="/settings"
-        className="tap-target-sm inline-flex shrink-0 items-center gap-3 rounded-xl px-4 text-sm font-semibold text-muted-foreground hover:text-foreground md:mt-4"
-      >
-        <ArrowLeft className="size-5 rtl:rotate-180" aria-hidden />
-        {t("back")}
-      </Link>
     </nav>
   );
 }

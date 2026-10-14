@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { requireAdmin } from "@/features/admin/guard";
+import { AdminShell } from "@/features/admin/shell";
 import { BarList, PageTitle, Panel, StatTile } from "@/features/admin/ui";
 import { fmtPercent } from "@/features/insights/format";
 import { cn } from "@/lib/utils";
@@ -33,7 +34,7 @@ const INTERVENTION_KEYS = new Set([
 export default async function AdminMetricsPage({ searchParams }: { searchParams: Promise<{ d?: string }> }) {
   const { d } = await searchParams;
   const days = PERIODS.find((p) => String(p) === d) ?? 14;
-  const { supabase } = await requireAdmin();
+  const { supabase, user } = await requireAdmin();
   const t = await getTranslations("admin.metrics");
   const tOpt = await getTranslations("options");
   const locale = await getLocale();
@@ -47,7 +48,7 @@ export default async function AdminMetricsPage({ searchParams }: { searchParams:
   const pct = (a: number, b: number) => (b > 0 ? fmtPercent(a / b, locale) : "–");
 
   return (
-    <>
+    <AdminShell supabase={supabase} email={user?.email}>
       <PageTitle title={t("title")} hint={t("hint")} />
 
       <nav className="flex gap-2" aria-label={t("period")}>
@@ -137,6 +138,6 @@ export default async function AdminMetricsPage({ searchParams }: { searchParams:
           )}
         </Panel>
       </div>
-    </>
+    </AdminShell>
   );
 }

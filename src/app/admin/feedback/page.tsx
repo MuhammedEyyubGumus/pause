@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { FEEDBACK_STATUSES, type FeedbackStatus, FeedbackStatusButtons } from "@/features/admin/feedback-status";
 import { requireAdmin } from "@/features/admin/guard";
+import { AdminShell } from "@/features/admin/shell";
 import { PageTitle } from "@/features/admin/ui";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +26,7 @@ const QUESTIONS = ["hard", "unclear", "unnecessary", "helpful", "wish"] as const
 export default async function AdminFeedbackPage({ searchParams }: { searchParams: Promise<{ s?: string }> }) {
   const { s } = await searchParams;
   const status = (FEEDBACK_STATUSES as readonly string[]).includes(s ?? "") ? (s as FeedbackStatus) : null;
-  const { supabase } = await requireAdmin();
+  const { supabase, user } = await requireAdmin();
   const t = await getTranslations("admin.feedback");
   const tq = await getTranslations("feedback.q");
   const locale = await getLocale();
@@ -45,7 +46,7 @@ export default async function AdminFeedbackPage({ searchParams }: { searchParams
   const filters: (FeedbackStatus | null)[] = [null, ...FEEDBACK_STATUSES];
 
   return (
-    <>
+    <AdminShell supabase={supabase} email={user?.email}>
       <PageTitle title={t("title")} hint={t("hint")} />
 
       <nav className="flex flex-wrap gap-2" aria-label={t("filter")}>
@@ -116,6 +117,6 @@ export default async function AdminFeedbackPage({ searchParams }: { searchParams
           })}
         </ul>
       )}
-    </>
+    </AdminShell>
   );
 }

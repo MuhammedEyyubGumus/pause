@@ -2,7 +2,9 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 // Giriş gerektirmeyen yollar
-const PUBLIC_PATHS = ["/login", "/auth", "/~offline", "/privacy"];
+const PUBLIC_PATHS = ["/login", "/auth", "/~offline", "/privacy", "/admin/login"];
+// Yönetici hesabının da açabileceği uygulama dışı yollar
+const ADMIN_ALLOWED = ["/admin", "/auth", "/privacy", "/~offline"];
 // Giriş yapmış kullanıcının görmesine gerek olmayan yollar
 const GUEST_ONLY_PATHS = ["/login"];
 
@@ -39,12 +41,24 @@ export async function updateSession(request: NextRequest) {
 
   if (!user && !matches(path, PUBLIC_PATHS)) {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    // Yönetim sayfalarına girişsiz gelen, yönetici giriş ekranına
+    url.pathname = matches(path, ["/admin"]) ? "/admin/login" : "/login";
     url.search = "";
     return NextResponse.redirect(url);
   }
 
-  if (user && matches(path, GUEST_ONLY_PATHS)) {
+  // Yönetici hesabı uygulamayı kullanmaz: dürtü, geçmiş, onboarding yok; her zaman panel.
+  // Rol giriş anahtarında (app_metadata) taşınır, kullanıcı kendisi değiştiremez.
+  // Asıl yetki kontrolü veritabanında (admin_* fonksiyonları) ayrıca yapılır.
+  const isAdmin = user?.app_metadata?.role === "admin";
+  if (user && isAdmin && (!matches(path, ADMIN_ALLOWED) || path === "/admin/login")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
+  if (user && !isAdmin && matches(path, GUEST_ONLY_PATHS)) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     url.search = "";

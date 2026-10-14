@@ -869,6 +869,17 @@
       "screenshot": "Screenshot",
       "openScreenshot": "Open full size",
       "empty": "No feedback with this status."
+    },
+    "signOut": "Sign out",
+    "login": {
+      "title": "Admin panel sign-in",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in…",
+      "invalid": "Wrong email or password.",
+      "notAdmin": "This account isn't an admin.",
+      "rateLimit": "Too many attempts. Try again in a moment."
     }
   }
 }

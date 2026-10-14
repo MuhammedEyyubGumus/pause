@@ -869,6 +869,17 @@
       "screenshot": "Ekran görüntüsü",
       "openScreenshot": "Tam boyutta aç",
       "empty": "Bu durumda geri bildirim yok."
+    },
+    "signOut": "Çıkış yap",
+    "login": {
+      "title": "Yönetim paneli girişi",
+      "email": "E-posta",
+      "password": "Şifre",
+      "signIn": "Giriş yap",
+      "signingIn": "Giriş yapılıyor…",
+      "invalid": "E-posta ya da şifre hatalı.",
+      "notAdmin": "Bu hesap yönetici değil.",
+      "rateLimit": "Çok fazla deneme yapıldı. Biraz sonra tekrar dene."
     }
   }
 }

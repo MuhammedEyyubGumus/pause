@@ -2,6 +2,7 @@ import { Activity, Bell, Link2, MessageSquareText, Star, UserCheck, Users } from
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { requireAdmin } from "@/features/admin/guard";
+import { AdminShell } from "@/features/admin/shell";
 import { BarList, PageTitle, Panel, StatTile } from "@/features/admin/ui";
 import { isTemplateKey } from "@/features/behaviors/templates";
 import { fmtPercent } from "@/features/insights/format";
@@ -27,7 +28,7 @@ type Overview = {
 
 // Genel bakış: yalnızca toplamlar. Kimsenin kişisel kaydı burada görünmez.
 export default async function AdminOverviewPage() {
-  const { supabase } = await requireAdmin();
+  const { supabase, user } = await requireAdmin();
   const t = await getTranslations("admin.overview");
   const tb = await getTranslations("behaviors");
   const locale = await getLocale();
@@ -38,7 +39,7 @@ export default async function AdminOverviewPage() {
   const n = (v: number | null | undefined) => new Intl.NumberFormat(locale).format(Number(v ?? 0));
 
   return (
-    <>
+    <AdminShell supabase={supabase} email={user?.email}>
       <PageTitle title={t("title")} hint={t("privacy")} />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -98,6 +99,6 @@ export default async function AdminOverviewPage() {
           />
         )}
       </Panel>
-    </>
+    </AdminShell>
   );
 }
