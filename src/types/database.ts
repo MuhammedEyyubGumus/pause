@@ -753,6 +753,15 @@ export type Database = {
         Args: { p_behavior?: string; p_from?: string }
         Returns: Json
       }
+      get_timeline: {
+        Args: {
+          p_behavior?: string
+          p_limit?: number
+          p_today?: string
+          p_weeks?: number
+        }
+        Returns: Json
+      }
       get_toolbox: { Args: { p_behavior?: string }; Returns: Json }
       grant_admin: { Args: { p_email: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }

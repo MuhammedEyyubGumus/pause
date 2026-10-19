@@ -583,7 +583,9 @@
     "savingsCard": "Tasarruf ve dersler",
     "savingsCardSub": "Harcamadığın para, yaşadıklarından çıkan dersler",
     "toolboxCard": "Araç kutun",
-    "toolboxCardSub": "Sana en çok yardım eden alternatifler"
+    "toolboxCardSub": "Sana en çok yardım eden alternatifler",
+    "pathCard": "Yolun",
+    "pathCardSub": "Her kayıtla büyüyen yol, haftalık eğilim, saatler"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -980,5 +982,38 @@
     "hide": "Dürtü anında gösterme",
     "unhide": "Tekrar göster",
     "error": "Kaydedilemedi. Bağlantını kontrol edip tekrar dene."
+  },
+  "path": {
+    "title": "Yolun",
+    "back": "Geri",
+    "behaviorLabel": "Davranış",
+    "allBehaviors": "Tümü",
+    "emptyTitle": "Yolun ilk adımı bekliyor",
+    "emptyBody": "Bir dürtüyü kaydettiğinde yolunda ilk adım belirir. Her kayıtla yol biraz daha uzar.",
+    "headline": "{count, plural, other {Yolunda # adım var}}",
+    "statKept": "{count, plural, other {# kez yapmadın}}",
+    "statPaused": "{count, plural, other {# pause}}",
+    "statTools": "{count, plural, other {# yeni alternatif}}",
+    "lastSteps": "Son {count} adım gösteriliyor.",
+    "pathAria": "Son {count} dürtü kaydından oluşan yol; {kept} tanesinde davranış yapılmadı.",
+    "now": "Şimdi",
+    "start": "Başlangıç",
+    "legend": {
+      "kept": "Yapmadın",
+      "stopped": "Erken durdun",
+      "occurred": "Gerçekleşti",
+      "open": "Sonuç yok",
+      "paused": "Pause yaptın",
+      "newTool": "İlk kez denedin"
+    },
+    "trendTitle": "Haftalık eğilim",
+    "trendSub": "Son {weeks} haftada dürtünün pause öncesi ve sonrası ortalaması (0–10).",
+    "before": "Pause öncesi",
+    "after": "Pause sonrası",
+    "trendLocked": "En az {min} farklı haftada kayıt olunca eğilim burada çizilir.",
+    "heatTitle": "Dürtüler ne zaman geliyor?",
+    "heatSub": "Koyu kareler, dürtünün daha sık geldiği gün ve saatler.",
+    "heatLocked": "{min} kayıttan sonra açılır. Şu an {count} kaydın var.",
+    "note": "Bu yalnızca bir ilerleme görselidir; beynini ya da bedenini ölçmez."
   }
 }

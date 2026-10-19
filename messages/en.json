@@ -629,7 +629,9 @@
     "savingsCard": "Savings and lessons",
     "savingsCardSub": "Money you didn't spend, lessons from what happened",
     "toolboxCard": "Your toolbox",
-    "toolboxCardSub": "The alternatives that help you most"
+    "toolboxCardSub": "The alternatives that help you most",
+    "pathCard": "Your path",
+    "pathCardSub": "A path that grows with each entry, weekly trend, timing"
   },
   "review": {
     "close": "Close",
@@ -980,5 +982,38 @@
     "hide": "Don't show during urges",
     "unhide": "Show again",
     "error": "Couldn't save. Check your connection and try again."
+  },
+  "path": {
+    "title": "Your path",
+    "back": "Back",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "emptyTitle": "Your path is waiting for its first step",
+    "emptyBody": "When you log an urge, the first step appears on your path. Each entry makes it a little longer.",
+    "headline": "{count, plural, one {Your path has # step} other {Your path has # steps}}",
+    "statKept": "{count, plural, other {didn't act # times}}",
+    "statPaused": "{count, plural, one {# pause} other {# pauses}}",
+    "statTools": "{count, plural, one {# new alternative} other {# new alternatives}}",
+    "lastSteps": "Showing the last {count} steps.",
+    "pathAria": "A path made of your last {count} urge entries; you didn't act on {kept} of them.",
+    "now": "Now",
+    "start": "Start",
+    "legend": {
+      "kept": "Didn't act",
+      "stopped": "Stopped early",
+      "occurred": "Happened",
+      "open": "No outcome",
+      "paused": "Paused",
+      "newTool": "First try"
+    },
+    "trendTitle": "Weekly trend",
+    "trendSub": "Average urge before and after the pause over the last {weeks} weeks (0–10).",
+    "before": "Before pause",
+    "after": "After pause",
+    "trendLocked": "Once you have entries in at least {min} different weeks, the trend is drawn here.",
+    "heatTitle": "When do urges come?",
+    "heatSub": "Darker squares are the days and hours urges come more often.",
+    "heatLocked": "Unlocks after {min} entries. You have {count} so far.",
+    "note": "This is only a progress picture; it doesn't measure your brain or body."
   }
 }
