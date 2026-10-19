@@ -627,7 +627,9 @@
     "milestonesCard": "Your milestones",
     "milestonesCardSub": "{done} / {total} · no streaks, no resets",
     "savingsCard": "Savings and lessons",
-    "savingsCardSub": "Money you didn't spend, lessons from what happened"
+    "savingsCardSub": "Money you didn't spend, lessons from what happened",
+    "toolboxCard": "Your toolbox",
+    "toolboxCardSub": "The alternatives that help you most"
   },
   "review": {
     "close": "Close",
@@ -933,5 +935,50 @@
       "rateLimit": "Too many attempts. Try again in a moment.",
       "backToUser": "Back to user sign-in"
     }
+  },
+  "toolbox": {
+    "title": "Your toolbox",
+    "intro": "The alternatives that help you most in the moment. It gets more personal the more you use it.",
+    "back": "Back",
+    "behaviorLabel": "Behavior",
+    "allBehaviors": "All",
+    "empty": "There are no alternatives for this behavior yet.",
+    "sections": {
+      "pinned": "Pinned",
+      "works": "Working for you",
+      "learning": "Still learning",
+      "new": "Not tried yet",
+      "weak": "Not working well for you",
+      "hidden": "Hidden ({count})"
+    },
+    "hints": {
+      "pinned": "Shown at the top of the list when an urge comes.",
+      "works": "Across at least {min} measurements, your urge dropped by {drop} point or more on average.",
+      "learning": "Try an alternative {min} times and re-measure your urge to see how much it helps.",
+      "new": "Try one you're curious about next time.",
+      "weak": "That doesn't make them bad; others are working better for you right now.",
+      "hidden": "Hidden alternatives aren't shown when an urge comes."
+    },
+    "status": {
+      "works": "Works",
+      "learning": "{n}/{min} measured",
+      "new": "New",
+      "weak": "Not very effective"
+    },
+    "uses": "{count, plural, one {Tried # time} other {Tried # times}}",
+    "changeDown": "urge dropped {value} points on average",
+    "changeUp": "urge rose {value} points on average",
+    "changeSame": "urge stayed the same on average",
+    "kept": "Didn't act on it: {percent}",
+    "context": "Worked best with: {items}",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "more": "Note & settings",
+    "note": "Note to self",
+    "notePlaceholder": "e.g. 5 minutes around the block with headphones",
+    "save": "Save",
+    "hide": "Don't show during urges",
+    "unhide": "Show again",
+    "error": "Couldn't save. Check your connection and try again."
   }
 }

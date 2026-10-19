@@ -584,6 +584,41 @@ export type Database = {
           },
         ]
       }
+      toolbox_items: {
+        Row: {
+          hidden: boolean
+          note: string | null
+          option_id: string
+          pinned: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          hidden?: boolean
+          note?: string | null
+          option_id: string
+          pinned?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          hidden?: boolean
+          note?: string | null
+          option_id?: string
+          pinned?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "toolbox_items_option_id_fkey"
+            columns: ["option_id"]
+            isOneToOne: false
+            referencedRelation: "options"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       urge_events: {
         Row: {
           behavior_id: string
@@ -718,6 +753,8 @@ export type Database = {
         Args: { p_behavior?: string; p_from?: string }
         Returns: Json
       }
+      get_toolbox: { Args: { p_behavior?: string }; Returns: Json }
+      grant_admin: { Args: { p_email: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }
       option_usable: {
         Args: {
@@ -727,6 +764,7 @@ export type Database = {
         Returns: boolean
       }
       prune_app_events: { Args: never; Returns: number }
+      revoke_admin: { Args: { p_email: string }; Returns: string }
       start_experiment: {
         Args: {
           p_behavior?: string

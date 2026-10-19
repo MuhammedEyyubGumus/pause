@@ -12,6 +12,7 @@ import { TimerRing } from "@/components/pause/timer-ring";
 import { isTemplateKey } from "@/features/behaviors/templates";
 import { Breathe } from "@/features/interventions/breathe";
 import { InterventionPlayer } from "@/features/interventions/intervention-player";
+import { orderForFlow } from "@/features/toolbox/shared";
 import type { LocalEvent, LocalIntervention } from "@/lib/offline/db";
 import { localDb } from "@/lib/offline/db";
 import { findActiveLocalEvent, saveLocalEvent, syncPending } from "@/lib/offline/sync";
@@ -124,7 +125,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
   const optionLabel = useOptionLabel();
   const locale = useLocale();
   // Pause başladıktan sonra arka planda: "Bu durumda denemeye değer"
-  const suggestionsFor = useSuggestions(event?.row.behavior_id, pauseRunning && !event?.row.emergency_mode);
+  const { suggestionsFor, tools: toolbox } = useSuggestions(event?.row.behavior_id, pauseRunning && !event?.row.emergency_mode);
   const [reviewState, setReviewState] = useState<"idle" | "opening" | "offline">("idle");
 
   const byKind = useCallback(
@@ -587,7 +588,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
             <p className="text-muted-foreground">{t("pickHint")}</p>
           </div>
           {(() => {
-            const usable = byKind("intervention");
+            const usable = orderForFlow(byKind("intervention"), toolbox);
             const list = suggestionsFor(
               event?.triggers ?? [],
               (id) => usable.some((o) => o.id === id),
@@ -631,7 +632,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
             );
           })()}
           <OptionGrid
-            options={byKind("intervention")}
+            options={orderForFlow(byKind("intervention"), toolbox)}
             selected={[]}
             multiple={false}
             onToggle={(id) => {

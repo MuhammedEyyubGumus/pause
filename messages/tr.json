@@ -581,7 +581,9 @@
     "milestonesCard": "Kilometre taşların",
     "milestonesCardSub": "{done} / {total} · seri yok, sıfırlanma yok",
     "savingsCard": "Tasarruf ve dersler",
-    "savingsCardSub": "Harcamadığın para, yaşadıklarından çıkan dersler"
+    "savingsCardSub": "Harcamadığın para, yaşadıklarından çıkan dersler",
+    "toolboxCard": "Araç kutun",
+    "toolboxCardSub": "Sana en çok yardım eden alternatifler"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -933,5 +935,50 @@
       "rateLimit": "Çok fazla deneme yapıldı. Biraz sonra tekrar dene.",
       "backToUser": "Kullanıcı girişine dön"
     }
+  },
+  "toolbox": {
+    "title": "Araç kutun",
+    "intro": "Dürtü anında sana en çok yardım eden alternatifler. Kullandıkça kişiselleşir.",
+    "back": "Geri",
+    "behaviorLabel": "Davranış",
+    "allBehaviors": "Tümü",
+    "empty": "Bu davranış için henüz bir alternatif yok.",
+    "sections": {
+      "pinned": "Sabitlediklerin",
+      "works": "Sende işe yarayanlar",
+      "learning": "Öğreniyoruz",
+      "new": "Henüz denemediklerin",
+      "weak": "Sende pek işe yaramayanlar",
+      "hidden": "Gizlediklerin ({count})"
+    },
+    "hints": {
+      "pinned": "Dürtü anında listenin en üstünde çıkar.",
+      "works": "En az {min} ölçümde dürtünü ortalama {drop} puan ya da daha fazla düşürdü.",
+      "learning": "Bir alternatifi {min} kez deneyip dürtünü yeniden ölçünce ne kadar işe yaradığını görürsün.",
+      "new": "Merak ettiğini bir sonraki dürtüde dene.",
+      "weak": "Kötü oldukları anlamına gelmez; şu an sende daha iyi işe yarayanlar var.",
+      "hidden": "Gizlediklerin dürtü anında gösterilmez."
+    },
+    "status": {
+      "works": "İşe yarıyor",
+      "learning": "{n}/{min} ölçüm",
+      "new": "Yeni",
+      "weak": "Pek etkili değil"
+    },
+    "uses": "{count, plural, other {# kez denedin}}",
+    "changeDown": "dürtü ortalama {value} puan düştü",
+    "changeUp": "dürtü ortalama {value} puan yükseldi",
+    "changeSame": "dürtü ortalama değişmedi",
+    "kept": "Davranışı yapmama oranı: {percent}",
+    "context": "En çok işe yaradığı an: {items}",
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "more": "Not ve ayarlar",
+    "note": "Kendine not",
+    "notePlaceholder": "Örn. kulaklıkla bloğun etrafında 5 dakika",
+    "save": "Kaydet",
+    "hide": "Dürtü anında gösterme",
+    "unhide": "Tekrar göster",
+    "error": "Kaydedilemedi. Bağlantını kontrol edip tekrar dene."
   }
 }
