@@ -7,6 +7,7 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 
 import { BrandMark } from "@/components/pause/brand";
 import { PrimaryButton } from "@/components/pause/primary-button";
+import { InstallHint } from "@/features/install/install-hint";
 import { createClient } from "@/lib/supabase/client";
 
 // Supabase > Authentication > Providers > Email > "Email OTP Length" ile aynı olmalı
@@ -134,6 +135,12 @@ export function LoginForm() {
       <header className="flex h-16 items-center justify-center">
         <BrandMark size="lg" />
       </header>
+
+      {step === "email" && (
+        <div className="pt-2">
+          <InstallHint context="login" />
+        </div>
+      )}
 
       <main className="flex flex-1 flex-col justify-center gap-8 py-8">
         <AnimatePresence mode="wait" initial={false}>

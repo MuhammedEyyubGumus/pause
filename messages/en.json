@@ -1015,5 +1015,20 @@
     "heatSub": "Darker squares are the days and hours urges come more often.",
     "heatLocked": "Unlocks after {min} entries. You have {count} so far.",
     "note": "This is only a progress picture; it doesn't measure your brain or body."
+  },
+  "install": {
+    "title": "Add PAUSE to your home screen",
+    "sub": "Open it with one tap when an urge comes, and get notifications.",
+    "subLogin": "Add it first, then sign in from the home screen icon.",
+    "iosStep1": "In Safari, tap Share <icon></icon>. Don't see it? Open the ••• menu first.",
+    "iosStep2": "Choose <icon></icon> Add to Home Screen.",
+    "iosStep3": "Tap Add, then open PAUSE from its home screen icon.",
+    "iosOther": "This browser can't add apps to the home screen. Copy the address and open it in Safari.",
+    "copyLink": "Copy address",
+    "copied": "Copied",
+    "androidInstall": "Install app",
+    "share": "Share",
+    "dismiss": "Close",
+    "loginNote": "If you're asked to sign in when opening from the home screen, use the same email again."
   }
 }

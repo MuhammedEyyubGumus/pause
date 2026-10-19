@@ -13,6 +13,7 @@ import { newMilestones, parseMilestones } from "@/features/milestones/shared";
 import { WeeklyStoryCard } from "@/features/home/weekly-story-card";
 import { addDays, mondayOf } from "@/features/review/build-story";
 import { UrgeArea } from "@/features/home/urge-area";
+import { InstallHint } from "@/features/install/install-hint";
 import { NotifyPrompt } from "@/features/notifications/notify-prompt";
 import { findActivePause } from "@/features/urge-flow/load";
 import { requireOnboardedUser } from "@/lib/auth";
@@ -105,6 +106,7 @@ export default async function HomePage() {
       </section>
 
       <div className="flex flex-col gap-4">
+        {!active && <InstallHint />}
         <Link
           href="/sos"
           className="tap-target inline-flex items-center justify-center gap-2 rounded-xl border-2 border-border px-6 font-semibold transition-colors hover:bg-card active:scale-[0.98]"

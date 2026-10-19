@@ -11,11 +11,11 @@ import { createClient } from "@/lib/supabase/client";
 //  subscribed    açık
 export type PushState = "unsupported" | "needs-install" | "denied" | "default" | "subscribed";
 
-function isIos() {
+export function isIos() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 }
 
-function isStandalone() {
+export function isStandalone() {
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
     (navigator as Navigator & { standalone?: boolean }).standalone === true

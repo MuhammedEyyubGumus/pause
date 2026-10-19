@@ -1015,5 +1015,20 @@
     "heatSub": "Koyu kareler, dürtünün daha sık geldiği gün ve saatler.",
     "heatLocked": "{min} kayıttan sonra açılır. Şu an {count} kaydın var.",
     "note": "Bu yalnızca bir ilerleme görselidir; beynini ya da bedenini ölçmez."
+  },
+  "install": {
+    "title": "PAUSE'u ana ekranına ekle",
+    "sub": "Dürtü anında tek dokunuşla açılır ve bildirim alabilirsin.",
+    "subLogin": "Önce ekle, sonra ana ekrandaki ikondan giriş yap.",
+    "iosStep1": "Safari'de Paylaş <icon></icon> düğmesine dokun. Görmüyorsan önce ••• menüsünü aç.",
+    "iosStep2": "<icon></icon> Ana Ekrana Ekle'yi seç.",
+    "iosStep3": "Ekle'ye dokun, sonra PAUSE'u ana ekrandaki ikondan aç.",
+    "iosOther": "Bu tarayıcıdan ana ekrana eklenemiyor. Adresi kopyalayıp Safari'de aç.",
+    "copyLink": "Adresi kopyala",
+    "copied": "Kopyalandı",
+    "androidInstall": "Uygulamayı yükle",
+    "share": "Paylaş",
+    "dismiss": "Kapat",
+    "loginNote": "Ana ekrandan açınca giriş yapman istenirse aynı e-postayla tekrar gir."
   }
 }
