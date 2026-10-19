@@ -180,7 +180,8 @@
     "suggestedTitle": "Bu durumda denemeye değer",
     "suggestedPlan": "Geçen sefer kendin için seçtiğin plan",
     "suggestedWorked": "{trigger} olduğunda dürtün ortalama {value} puan düştü",
-    "suggestedExperiment": "Bu haftanın deneyi"
+    "suggestedExperiment": "Bu haftanın deneyi",
+    "progress": "Adım ilerlemesi"
   },
   "interventions": {
     "breathe": {

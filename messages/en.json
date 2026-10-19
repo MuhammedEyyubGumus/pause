@@ -180,7 +180,8 @@
     "suggestedTitle": "Worth trying here",
     "suggestedPlan": "The plan you chose for yourself last time",
     "suggestedWorked": "With {trigger}, your urge dropped by {value} points on average",
-    "suggestedExperiment": "This week's experiment"
+    "suggestedExperiment": "This week's experiment",
+    "progress": "Step progress"
   },
   "interventions": {
     "breathe": {

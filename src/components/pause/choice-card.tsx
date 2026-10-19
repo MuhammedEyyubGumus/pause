@@ -22,7 +22,11 @@ export function ChoiceCard({ label, icon, selected, onToggle, multiple = true, c
       type="button"
       role={multiple ? "checkbox" : "radio"}
       aria-checked={selected}
-      onClick={onToggle}
+      onClick={() => {
+        // Seçerken çok hafif bir dokunsal geri bildirim (destekleyen telefonlarda)
+        if (!selected) navigator.vibrate?.(6);
+        onToggle();
+      }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
       className={cn(

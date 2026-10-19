@@ -30,6 +30,8 @@ import { OptionIcon, useOptionLabel } from "./option-visuals";
 import { questionsFor } from "./questions";
 import { type FlowBehavior, type FlowOption, type OptionKind, optionFitsBehavior } from "./types";
 import { formatClock, usePauseClock } from "./use-pause-clock";
+import { GrowingPath } from "./growing-path";
+import { StepProgress } from "./step-progress";
 import { useSuggestions } from "./use-suggestions";
 
 type Mode = "live" | "sos" | "resume";
@@ -56,6 +58,11 @@ type Step =
 // Pause sürerken süre dolarsa kendiliğinden "Şimdi nasıl?"a geçilen adımlar.
 // Bir alternatifin içindeyken (intervention) kullanıcı bölünmez.
 const INTERRUPTIBLE: Step[] = ["pause", "emotions", "triggers", "question", "pick", "waiting", "sos"];
+// Akıştaki sıra: geri gidişte geçiş ters yönde oynar
+const STEP_ORDER: Step[] = [
+  "loading", "behavior", "intensity", "pause", "emotions", "triggers", "question", "pick", "intervention",
+  "waiting", "sos", "sosBefore", "remeasure", "change", "sosBehavior", "outcome", "data",
+];
 // Koyu "pause yüzeyi" kullanan adımlar
 const PAUSE_SURFACE: Step[] = ["pause", "intervention", "waiting", "sos"];
 
@@ -93,6 +100,25 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
 
   const behavior = behaviors.find((b) => b.id === (event?.row.behavior_id ?? behaviorId));
   const questions = questionsFor(behavior?.template_key);
+
+  // Geçiş yönü: önceki adıma göre ileri mi geri mi (render sırasında türetilir)
+  const [prevStep, setPrevStep] = useState<Step>(step);
+  const [direction, setDirection] = useState(1);
+  if (prevStep !== step) {
+    setPrevStep(step);
+    setDirection(STEP_ORDER.indexOf(step) >= STEP_ORDER.indexOf(prevStep) ? 1 : -1);
+  }
+
+  // Check-in adımları için ilerleme çizgisi
+  const checkinSteps: Step[] = [
+    ...(mode === "live" && behaviors.length > 1 ? (["behavior"] as Step[]) : []),
+    ...(mode === "live" ? (["intensity"] as Step[]) : []),
+    "emotions",
+    "triggers",
+    ...(questions.length ? (["question"] as Step[]) : []),
+    "pick",
+  ];
+  const progressIndex = checkinSteps.indexOf(step);
   const clock = usePauseClock(event?.row.pause_started_at, event?.row.pause_ends_at);
   const pauseRunning = !!event && event.row.pause_status === "active" && !event.row.remeasured_at;
   const optionLabel = useOptionLabel();
@@ -782,13 +808,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
     case "data":
       body = (
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <motion.span
-            initial={reduceMotion ? false : { scale: 0.4, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="size-4 rounded-full bg-primary shadow-[0_0_0_10px_var(--accent)]"
-            aria-hidden
-          />
+          <GrowingPath />
           <h1 className="text-[2rem] leading-tight font-bold">{t("dataTitle")}</h1>
           <p className="max-w-xs text-lg text-muted-foreground">{t("dataBody")}</p>
           <p className="max-w-xs text-sm text-muted-foreground">{t("dataLater")}</p>
@@ -812,21 +832,33 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
       break;
   }
 
-  const motionProps = reduceMotion
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
-    : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -12 } };
+  // İleri: sağdan gelir, sola gider. Geri: tersi. Azaltılmış harekette yalnızca solma.
+  const stepVariants = reduceMotion
+    ? { enter: { opacity: 0 }, center: { opacity: 1 }, exit: { opacity: 0 } }
+    : {
+        enter: (d: number) => ({ opacity: 0, x: 24 * d }),
+        center: { opacity: 1, x: 0 },
+        exit: (d: number) => ({ opacity: 0, x: -24 * d }),
+      };
 
   return (
     <motion.div
-      className={cn("min-h-dvh transition-colors duration-[600ms] ease-calm", onPauseSurface && "bg-pause text-pause-foreground")}
+      className={cn("min-h-dvh overflow-x-clip transition-colors duration-[600ms] ease-calm", onPauseSurface && "bg-pause text-pause-foreground")}
     >
       <SyncAgent />
       <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pt-safe pb-safe">
         {header ?? <div className="h-14" />}
-        <AnimatePresence mode="wait" initial={false}>
+        {progressIndex >= 0 && checkinSteps.length > 1 && (
+          <StepProgress index={progressIndex} total={checkinSteps.length} label={t("progress")} />
+        )}
+        <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.main
             key={step}
-            {...motionProps}
+            custom={direction}
+            variants={stepVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-1 flex-col py-4"
           >
