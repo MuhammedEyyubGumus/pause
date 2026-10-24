@@ -54,6 +54,50 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_analyses: {
+        Row: {
+          behavior_id: string | null
+          body: string
+          created_at: string
+          facts: Json
+          id: string
+          model: string | null
+          period: string
+          source: string
+          user_id: string
+        }
+        Insert: {
+          behavior_id?: string | null
+          body: string
+          created_at?: string
+          facts: Json
+          id?: string
+          model?: string | null
+          period: string
+          source: string
+          user_id?: string
+        }
+        Update: {
+          behavior_id?: string | null
+          body?: string
+          created_at?: string
+          facts?: Json
+          id?: string
+          model?: string | null
+          period?: string
+          source?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_analyses_behavior_id_user_id_fkey"
+            columns: ["behavior_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "behaviors"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
       app_events: {
         Row: {
           app_version: string | null
@@ -460,6 +504,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          ai_consent_at: string | null
           celebrated_milestones: string[]
           consents: Json
           created_at: string
@@ -472,6 +517,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          ai_consent_at?: string | null
           celebrated_milestones?: string[]
           consents?: Json
           created_at?: string
@@ -484,6 +530,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          ai_consent_at?: string | null
           celebrated_milestones?: string[]
           consents?: Json
           created_at?: string

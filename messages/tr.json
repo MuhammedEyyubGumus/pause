@@ -127,7 +127,10 @@
     "analyticsTitle": "Anonim kullanım istatistikleri",
     "analyticsHint": "Uygulamayı iyileştirmemize yardım eder. Hesabına bağlanmaz, içerik içermez.",
     "madeBy": "PAUSE, bir Peace Therapist uygulamasıdır ·",
-    "admin": "Yönetim paneli"
+    "admin": "Yönetim paneli",
+    "ai": "Yapay zekâ analizi",
+    "aiOn": "Açık: yalnızca özet sayılar gönderilir",
+    "aiOff": "Kapalı"
   },
   "urge": {
     "close": "Kapat",
@@ -585,7 +588,9 @@
     "toolboxCard": "Araç kutun",
     "toolboxCardSub": "Sana en çok yardım eden alternatifler",
     "pathCard": "Yolun",
-    "pathCardSub": "Her kayıtla büyüyen yol, haftalık eğilim, saatler"
+    "pathCardSub": "Her kayıtla büyüyen yol, haftalık eğilim, saatler",
+    "analyzeCard": "Pattern'lerimi analiz et",
+    "analyzeCardSub": "Sayılarına dayanan kısa bir yorum"
   },
   "reflect": {
     "chainLabel": "Davranış zinciri",
@@ -1030,5 +1035,59 @@
     "share": "Paylaş",
     "dismiss": "Kapat",
     "loginNote": "Ana ekrandan açınca giriş yapman istenirse aynı e-postayla tekrar gir."
+  },
+  "analyze": {
+    "title": "Pattern'lerimi analiz et",
+    "back": "Geri",
+    "intro": "Uygulama önce kayıtlarından sayıları kendisi hesaplar; yapay zekâ yalnızca bu sayıları yorumlar, yeni sayı uydurmaz.",
+    "lockedTitle": "Biraz daha veri gerekiyor",
+    "lockedBody": "Bu dönemde en az {min} dürtü kaydı olunca anlamlı bir yorum yapılabilir.",
+    "progress": "{count}/{min} kayıt",
+    "consentTitle": "Yapay zekâ ile yorum",
+    "consent1": "Yorum için yalnızca özet sayılar gönderilir: kaç dürtü, en sık tetikleyici ve duygu, yoğun saatler, alternatiflerin ortalama etkisi gibi.",
+    "consent2": "Notların, adın, e-postan ve kendi yazdığın etiketler gönderilmez. Sayılar Anthropic'in Claude modeline yalnızca yorumu oluşturmak için iletilir.",
+    "consent3": "İznini bu ekrandan istediğin zaman geri çekebilirsin; geri çekince önceki yorumlar da silinir.",
+    "consentButton": "İzin ver ve analiz et",
+    "working1": "Sayıların hesaplanıyor…",
+    "working2": "Yorum yazılıyor…",
+    "sourceAi": "Yapay zekâ yorumu",
+    "sourceTemplate": "Otomatik özet",
+    "basedOn": "Bu yorumun dayandığı sayılar",
+    "disclaimer": "Bu bir yorumdur; tanı ya da tedavi değildir. Kendin için anlamlı olanı al, gerisini bırak.",
+    "readyBody": "Bu dönem için henüz bir yorum yok. Hazır olduğunda aşağıdan başlat.",
+    "limited": "Bugünlük yapay zekâ yorum sınırına ulaştın; bu sefer otomatik özet gösterildi.",
+    "again": "Yeniden analiz et",
+    "run": "Analiz et",
+    "revoke": "Yapay zekâ iznini geri çek",
+    "errors": {
+      "consent": "Önce izin vermen gerekiyor.",
+      "notEnough": "Bu dönemde en az {min} kayıt gerekiyor.",
+      "failed": "Şu an analiz yapılamadı. Biraz sonra tekrar dene."
+    },
+    "custom": {
+      "trigger": "kendi eklediğin bir tetikleyici",
+      "emotion": "kendi eklediğin bir duygu",
+      "intervention": "kendi eklediğin bir alternatif",
+      "behavior": "kendi eklediğin davranış"
+    },
+    "facts": {
+      "urges": "Bu dönemde {count} dürtü kaydettin.",
+      "urgesWithAvg": "Bu dönemde {count} dürtü kaydettin; ortalama şiddet {avg}/10.",
+      "topTrigger": "En sık tetikleyici {name} oldu (kayıtların {share}'i).",
+      "topTriggerWithAvg": "En sık tetikleyici {name} oldu (kayıtların {share}'i, ortalama {avg}/10).",
+      "topEmotion": "En sık hissettiğin duygu: {name} ({share}).",
+      "peak": "Dürtüler en çok {hours} arasında geliyor.",
+      "busiestDay": "En yoğun gün {day}.",
+      "paused": "{count} kayıtta pause yaptın ({share}).",
+      "change": "Yeniden ölçtüğün {count} kayıtta dürtü ortalama {change} puan değişti.",
+      "notDone": "Sonucunu girdiğin kayıtların {share}'inde davranışı yapmadın ({count} kez).",
+      "effective": "{name}: {count} ölçümde ortalama {change} puan.",
+      "pair": "{trigger} kaynaklı dürtülerde en çok {alternative} işe yaradı ({change}).",
+      "learning": "{name} için henüz öğreniyoruz: {count}/{min} ölçüm.",
+      "suggestPair": "Gelecek hafta için küçük bir deney: {trigger} kaynaklı bir dürtüde ilk olarak {alternative} dene ve sonra dürtünü yeniden ölç.",
+      "suggestLearning": "Gelecek hafta için küçük bir deney: {name} alternatifini birkaç kez daha deneyip her seferinde dürtünü yeniden ölç.",
+      "suggestPeak": "Gelecek hafta için küçük bir deney: {hours} arasında dürtü gelirse önce pause'u başlat, sonra karar ver.",
+      "suggestDefault": "Gelecek hafta için küçük bir deney: her dürtüde pause'dan sonra şiddeti yeniden ölç; neyin işe yaradığını böyle öğreniriz."
+    }
   }
 }

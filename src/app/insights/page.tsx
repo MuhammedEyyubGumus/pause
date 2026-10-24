@@ -1,4 +1,4 @@
-import { ChevronRight, CirclePlay, Compass, FlaskConical, Milestone, PiggyBank, Route, Wrench } from "lucide-react";
+import { ChevronRight, CirclePlay, Compass, FlaskConical, Milestone, PiggyBank, Route, Sparkles, Wrench } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -119,6 +119,25 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
       )}
 
       <main className="flex flex-1 flex-col gap-4 py-4">
+        <Link
+          href={(() => {
+            const q = new URLSearchParams();
+            if (period !== "30") q.set("p", period);
+            if (behaviorId) q.set("b", behaviorId);
+            const s = q.toString();
+            return s ? `/analyze?${s}` : "/analyze";
+          })()}
+          className="flex items-center gap-3 rounded-card border-2 border-primary/30 bg-accent p-4 text-accent-foreground transition-transform active:scale-[0.98]"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
+            <Sparkles className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("analyzeCard")}</span>
+            <span className="text-sm opacity-80">{t("analyzeCardSub")}</span>
+          </span>
+          <ChevronRight className="size-5 opacity-70 rtl:rotate-180" aria-hidden />
+        </Link>
         <Link
           href={behaviorId ? `/map?b=${behaviorId}` : "/map"}
           className="flex items-center gap-3 rounded-card bg-pause p-4 text-pause-foreground transition-transform active:scale-[0.98]"

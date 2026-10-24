@@ -127,7 +127,10 @@
     "analyticsTitle": "Anonymous usage statistics",
     "analyticsHint": "Helps us improve the app. Not linked to your account, contains no content.",
     "madeBy": "PAUSE is a Peace Therapist app ·",
-    "admin": "Admin panel"
+    "admin": "Admin panel",
+    "ai": "AI analysis",
+    "aiOn": "On: only summary numbers are sent",
+    "aiOff": "Off"
   },
   "urge": {
     "close": "Close",
@@ -631,7 +634,9 @@
     "toolboxCard": "Your toolbox",
     "toolboxCardSub": "The alternatives that help you most",
     "pathCard": "Your path",
-    "pathCardSub": "A path that grows with each entry, weekly trend, timing"
+    "pathCardSub": "A path that grows with each entry, weekly trend, timing",
+    "analyzeCard": "Analyze my patterns",
+    "analyzeCardSub": "A short interpretation of your numbers"
   },
   "review": {
     "close": "Close",
@@ -1030,5 +1035,59 @@
     "share": "Share",
     "dismiss": "Close",
     "loginNote": "If you're asked to sign in when opening from the home screen, use the same email again."
+  },
+  "analyze": {
+    "title": "Analyze my patterns",
+    "back": "Back",
+    "intro": "The app first calculates the numbers from your entries; AI only interprets those numbers and never makes new ones up.",
+    "lockedTitle": "A bit more data needed",
+    "lockedBody": "A meaningful interpretation needs at least {min} urge entries in this period.",
+    "progress": "{count}/{min} entries",
+    "consentTitle": "Interpretation with AI",
+    "consent1": "Only summary numbers are sent: how many urges, the most common trigger and emotion, busy hours, the average effect of alternatives and so on.",
+    "consent2": "Your notes, name, email and any labels you wrote yourself are never sent. The numbers go to Anthropic's Claude model only to write the interpretation.",
+    "consent3": "You can withdraw permission on this screen at any time; previous interpretations are deleted too.",
+    "consentButton": "Allow and analyze",
+    "working1": "Calculating your numbers…",
+    "working2": "Writing the interpretation…",
+    "sourceAi": "AI interpretation",
+    "sourceTemplate": "Automatic summary",
+    "basedOn": "The numbers behind this interpretation",
+    "disclaimer": "This is an interpretation, not a diagnosis or treatment. Take what's useful to you and leave the rest.",
+    "readyBody": "No interpretation for this period yet. Start one below when you're ready.",
+    "limited": "You've reached today's AI interpretation limit; an automatic summary is shown this time.",
+    "again": "Analyze again",
+    "run": "Analyze",
+    "revoke": "Withdraw AI permission",
+    "errors": {
+      "consent": "You need to give permission first.",
+      "notEnough": "At least {min} entries are needed in this period.",
+      "failed": "Couldn't analyze right now. Try again in a bit."
+    },
+    "custom": {
+      "trigger": "a trigger you added",
+      "emotion": "an emotion you added",
+      "intervention": "an alternative you added",
+      "behavior": "a behavior you added"
+    },
+    "facts": {
+      "urges": "{count, plural, one {You logged # urge in this period.} other {You logged # urges in this period.}}",
+      "urgesWithAvg": "{count, plural, one {You logged # urge in this period} other {You logged # urges in this period}}; average intensity {avg}/10.",
+      "topTrigger": "The most common trigger was {name} ({share} of entries).",
+      "topTriggerWithAvg": "The most common trigger was {name} ({share} of entries, average {avg}/10).",
+      "topEmotion": "The emotion you felt most often: {name} ({share}).",
+      "peak": "Urges come most often between {hours}.",
+      "busiestDay": "The busiest day is {day}.",
+      "paused": "You paused in {count} entries ({share}).",
+      "change": "In the {count} entries you re-measured, your urge changed by {change} points on average.",
+      "notDone": "You didn't act in {share} of the entries with an outcome ({count} times).",
+      "effective": "{name}: {change} points on average over {count} measurements.",
+      "pair": "For {trigger} urges, {alternative} helped most ({change}).",
+      "learning": "Still learning about {name}: {count}/{min} measurements.",
+      "suggestPair": "A small experiment for next week: when an urge comes from {trigger}, try {alternative} first, then re-measure your urge.",
+      "suggestLearning": "A small experiment for next week: try {name} a few more times and re-measure your urge each time.",
+      "suggestPeak": "A small experiment for next week: if an urge comes between {hours}, start the pause first and decide afterwards.",
+      "suggestDefault": "A small experiment for next week: re-measure your urge after each pause; that's how we learn what works."
+    }
   }
 }

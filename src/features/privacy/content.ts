@@ -2,7 +2,7 @@
 // Herkese açık sürümden önce bir hukukçuya (KVKK / GDPR) kontrol ettirilmeli ve
 // iletişim bilgisi eklenmeli.
 
-export const PRIVACY_UPDATED = "2026-10-11";
+export const PRIVACY_UPDATED = "2026-10-24";
 
 type Section = { title: string; body: string[] };
 
@@ -38,6 +38,7 @@ export const PRIVACY: Record<"tr" | "en", { title: string; updated: string; intr
           "Uygulamanın sunulması: Vercel; sunucu işlemleri Frankfurt bölgesinde çalışır.",
           "Giriş kodu e-postaları: Google (Gmail) üzerinden gönderilir; e-postada yalnızca giriş kodu bulunur.",
           "Bildirimler: tarayıcının bildirim servisi (Apple, Google veya Mozilla) üzerinden şifreli iletilir. Bildirimde davranışının adı geçmez.",
+          "Yapay zekâ yorumu (yalnızca \"Pattern'lerimi analiz et\"e izin verirsen): uygulamanın hesapladığı özet sayılar (kayıt sayısı, oranlar, ortalamalar, en sık tetikleyici/duygu, yoğun saatler) yorum yazılması için Anthropic'in Claude modeline gönderilir. Notların, adın, e-postan ve kendi yazdığın etiketler gönderilmez. Oluşan yorum hesabında saklanır; izni geri çekince silinir.",
           "Bunların dışında kimseyle veri paylaşmıyoruz. Üçüncü taraf reklam ya da analitik aracı kullanmıyoruz.",
         ],
       },
@@ -105,6 +106,7 @@ export const PRIVACY: Record<"tr" | "en", { title: string; updated: string; intr
           "Serving the app: Vercel; server-side processing runs in the Frankfurt region.",
           "Sign-in code emails: sent through Google (Gmail); the email contains only the code.",
           "Notifications: delivered encrypted through your browser's push service (Apple, Google or Mozilla). They never include the name of your behavior.",
+          "AI interpretation (only if you allow \"Analyze my patterns\"): the summary numbers the app calculates (entry counts, shares, averages, most common trigger/emotion, busy hours) are sent to Anthropic's Claude model to write the interpretation. Your notes, name, email and labels you wrote yourself are never sent. The interpretation is stored in your account and deleted when you withdraw permission.",
           "We don't share data with anyone else. We use no third-party advertising or analytics tools.",
         ],
       },

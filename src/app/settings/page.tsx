@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight, LayoutDashboard, LogOut, MessageSquareText, Plus } from "lucide-react";
+import { ArrowLeft, ChevronRight, LayoutDashboard, LogOut, MessageSquareText, Plus, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -145,6 +145,16 @@ export default async function SettingsPage() {
         <h2 className="text-sm font-semibold text-muted-foreground">{t("yourData")}</h2>
         <AccountSection />
         <AnalyticsSetting />
+        <Link href="/analyze" className="flex items-center gap-3 rounded-xl bg-card p-4 transition-colors hover:bg-accent/60">
+          <span className="grid size-10 place-items-center rounded-full bg-muted">
+            <Sparkles className="size-5" aria-hidden />
+          </span>
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">{t("ai")}</span>
+            <span className="text-sm text-muted-foreground">{profile.ai_consent_at ? t("aiOn") : t("aiOff")}</span>
+          </span>
+          <ChevronRight className="size-5 text-muted-foreground rtl:rotate-180" aria-hidden />
+        </Link>
       </section>
 
       <section className="mt-auto flex flex-col gap-2">
