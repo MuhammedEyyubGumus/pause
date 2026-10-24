@@ -184,7 +184,22 @@
     "suggestedPlan": "The plan you chose for yourself last time",
     "suggestedWorked": "With {trigger}, your urge dropped by {value} points on average",
     "suggestedExperiment": "This week's experiment",
-    "progress": "Step progress"
+    "progress": "Step progress",
+    "talk": {
+      "name": "PAUSE",
+      "typing": "PAUSE is typing",
+      "feelBoth": "You're feeling {emotion}, and your urge is at {urge}/10 right now.",
+      "feelEmotion": "You're feeling {emotion}.",
+      "feelUrge": "Your urge is at {urge}/10 right now.",
+      "strong": "That's a strong urge. Urges are like waves: they rise, then they fall.",
+      "space": "{minutes, plural, one {You don't have to decide anything right now. You have # minute of space.} other {You don't have to decide anything right now. You have # minutes of space.}}",
+      "spaceNoClock": "You don't have to decide anything right now.",
+      "worked": "In your past entries, when urges came from {trigger}, {alternative} lowered your urge by {value} points on average.",
+      "plan": "Last time, you wrote that you wanted to try {alternative} next time.",
+      "experiment": "This week you're trying {alternative}; now is a good moment.",
+      "learning": "We're learning together what helps you. Pick something small; then we'll re-measure your urge.",
+      "whyIntro": "What you wrote to yourself:"
+    }
   },
   "interventions": {
     "breathe": {

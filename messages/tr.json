@@ -184,7 +184,22 @@
     "suggestedPlan": "Geçen sefer kendin için seçtiğin plan",
     "suggestedWorked": "{trigger} olduğunda dürtün ortalama {value} puan düştü",
     "suggestedExperiment": "Bu haftanın deneyi",
-    "progress": "Adım ilerlemesi"
+    "progress": "Adım ilerlemesi",
+    "talk": {
+      "name": "PAUSE",
+      "typing": "PAUSE yazıyor",
+      "feelBoth": "{emotion} hissediyorsun ve dürtün şu an {urge}/10.",
+      "feelEmotion": "{emotion} hissediyorsun.",
+      "feelUrge": "Dürtün şu an {urge}/10.",
+      "strong": "Güçlü bir dürtü. Dürtüler dalga gibidir: yükselir, sonra iner.",
+      "space": "Şu anda karar vermek zorunda değilsin. Önünde {minutes} dakikalık bir alan var.",
+      "spaceNoClock": "Şu anda karar vermek zorunda değilsin.",
+      "worked": "Geçmiş kayıtlarında {trigger} kaynaklı dürtülerde {alternative} dürtünü ortalama {value} puan düşürdü.",
+      "plan": "Geçen sefer, bir dahaki sefere {alternative} denemek istediğini yazmıştın.",
+      "experiment": "Bu hafta {alternative} deniyorsun; şimdi tam sırası.",
+      "learning": "Sana neyin iyi geldiğini birlikte öğreniyoruz. Küçük bir şey seç; sonra dürtünü yeniden ölçeriz.",
+      "whyIntro": "Kendine yazdığın:"
+    }
   },
   "interventions": {
     "breathe": {

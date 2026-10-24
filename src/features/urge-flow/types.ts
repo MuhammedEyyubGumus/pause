@@ -20,6 +20,7 @@ export type FlowBehavior = {
   icon: string;
   template_key: string | null;
   pause_minutes: number;
+  why?: string | null; // "Neden değiştirmek istiyorum?" — zor anda hatırlatılır
 };
 
 // Bir seçenek bu davranışta gösterilir mi?

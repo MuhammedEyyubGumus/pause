@@ -18,7 +18,7 @@ export async function loadFlowData() {
   const [{ data: behaviors }, { data: options }] = await Promise.all([
     supabase
       .from("behaviors")
-      .select("id, name, icon, template_key, pause_minutes")
+      .select("id, name, icon, template_key, pause_minutes, why")
       .eq("is_active", true)
       .is("archived_at", null)
       .order("sort_order"),

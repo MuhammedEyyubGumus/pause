@@ -28,6 +28,8 @@ import { FlowHeader } from "./flow-header";
 import { IntensityPicker } from "./intensity-picker";
 import { OptionGrid } from "./option-grid";
 import { OptionIcon, useOptionLabel } from "./option-visuals";
+import { pauseMessage, remainingMinutes, type TalkSuggestion } from "./pause-message";
+import { PauseTalk } from "./pause-talk";
 import { questionsFor } from "./questions";
 import { type FlowBehavior, type FlowOption, type OptionKind, optionFitsBehavior } from "./types";
 import { formatClock, usePauseClock } from "./use-pause-clock";
@@ -82,6 +84,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
   const tc = useTranslations("common");
   const tb = useTranslations("behaviors");
   const tOpt = useTranslations("options");
+  const tTalk = useTranslations("urge.talk");
   const router = useRouter();
   const reduceMotion = useReducedMotion();
 
@@ -94,6 +97,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
   const [options, setOptions] = useState(initialOptions);
   const [activeIntervention, setActiveIntervention] = useState<LocalIntervention | null>(null);
   const [asked, setAsked] = useState(false); // duygu/tetikleyici soruldu mu
+  const [talked, setTalked] = useState(false); // PAUSE mesajı bir kez gösterildi mi
   const [error, setError] = useState<string | null>(null);
   const flowStartedAt = useRef(Date.now());
   const initialized = useRef(false);
@@ -574,7 +578,39 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
       break;
     }
 
-    case "pick":
+    case "pick": {
+      const usable = orderForFlow(byKind("intervention"), toolbox);
+      const list = suggestionsFor(
+        event?.triggers ?? [],
+        (id) => usable.some((o) => o.id === id),
+        event?.row.urge_before,
+      );
+      // "PAUSE ile konuş": o anki durum + geçmişte işe yarayan (ilk öneri)
+      const labelOf = (id: string | undefined) => {
+        const o = id ? options.find((x) => x.id === id) : undefined;
+        return o ? optionLabel(o) : "";
+      };
+      const top = list[0];
+      const talkSuggestion: TalkSuggestion | null = !top
+        ? null
+        : top.kind === "worked"
+          ? {
+              kind: "worked",
+              alternative: labelOf(top.optionId),
+              trigger: labelOf(top.triggerId),
+              value: Math.abs(top.avgChange).toLocaleString(locale, { maximumFractionDigits: 1 }),
+            }
+          : { kind: top.kind, alternative: labelOf(top.optionId) };
+      const emotion = labelOf(event?.emotions?.[0]);
+      const talkLines = pauseMessage(
+        {
+          urge: event?.row.urge_before ?? null,
+          emotion: emotion ? (locale === "tr" ? emotion : emotion.toLocaleLowerCase(locale)) : null,
+          remainingMin: pauseRunning ? remainingMinutes(clock.remainingMs) : null,
+          suggestion: talkSuggestion,
+        },
+        tTalk,
+      );
       header = (
         <FlowHeader
           onBack={() => setStep(questions.length ? "question" : "triggers")}
@@ -583,17 +619,9 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
       );
       body = (
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-question">{t("pickTitle")}</h1>
-            <p className="text-muted-foreground">{t("pickHint")}</p>
-          </div>
+          <PauseTalk lines={talkLines} why={behavior?.why?.trim() || null} animate={!talked} onShown={() => setTalked(true)} />
+          <h1 className="text-question">{t("pickTitle")}</h1>
           {(() => {
-            const usable = orderForFlow(byKind("intervention"), toolbox);
-            const list = suggestionsFor(
-              event?.triggers ?? [],
-              (id) => usable.some((o) => o.id === id),
-              event?.row.urge_before,
-            );
             if (!list.length) return null;
             return (
               <section className="flex flex-col gap-2" aria-label={t("suggestedTitle")}>
@@ -632,7 +660,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
             );
           })()}
           <OptionGrid
-            options={orderForFlow(byKind("intervention"), toolbox)}
+            options={usable}
             selected={[]}
             multiple={false}
             onToggle={(id) => {
@@ -649,6 +677,7 @@ export function UrgeFlow({ mode, userId, timeZone, behaviors, options: initialOp
         </button>
       );
       break;
+    }
 
     case "intervention":
       header = (
